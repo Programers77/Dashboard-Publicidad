@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Modelos - Departamento de Publicidad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_mode.css') }}">
+</head>
+<body>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1>Ad<span>Panel</span></h1>
+            </div>
+            <a href="{{ url_for('dashboard') }}" class="menu-item {% if active_page == 'dashboard' %}active{% endif %}">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('campana') }}" class="menu-item {% if active_page == 'campana' %}active{% endif %}">
+                <i class="fas fa-bullhorn"></i>
+                <span>Campañas</span>
+            </a>
+            <a href="{{ url_for('modelo') }}" class="menu-item {% if active_page == 'modelo' %}active{% endif %}">
+                <i class="fas fa-users"></i>
+                <span>Modelos</span>
+            </a>
+        </div>
+
+    <div class="container">
+        <header>
+            <div class="header-title">
+                <h1>Listado de Modelos</h1>
+                <p>Catálogo de modelos para diferentes tipos de pautas</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary">Agregar Modelo</button>
+                <button class="btn btn-secondary">Editar Modelo</button>
+            </div>
+        </header>
+
+        <div class="summary-cards">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <div class="card-title">Total de Modelos</div>
+                <div class="card-value">8</div>
+                <div class="card-trend"><i class="fas fa-arrow-up"></i> Rango de tallas variado</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="card-title">Tallas más Comunes</div>
+                <div class="card-value">S - M</div>
+                <div class="card-trend"><i class="fas fa-info-circle"></i> Camisa y Pantalón</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shoe-prints"></i>
+                </div>
+                <div class="card-title">Rango de Zapatos</div>
+                <div class="card-value">36 - 43</div>
+                <div class="card-trend"><i class="fas fa-chart-pie"></i> Diversidad de calzado</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="card-title">Pauta mas Común</div>
+                <div class="card-value">Gala y Formal</div>
+                <div class="card-trend"><i class="fas fa-glass-cheers"></i> Estilo elegante</div>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombre y Apellido</th>
+                        <th>Camisa / Franela</th>
+                        <th>Pantalón</th>
+                        <th>Vestidos - Traje</th>
+                        <th>Zapatos</th>
+                        <th>N° Outfits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Maria Eugenia Quevedo</td>
+                        <td><span class="size-tag">S</span> 30 - 32</td>
+                        <td><span class="size-tag">S</span> 39</td>
+                        <td>-</td>
+                        <td>39</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Betzaly Montilla</td>
+                        <td><span class="size-tag">S</span> 30 - 32</td>
+                        <td><span class="size-tag">S</span> 38</td>
+                        <td>-</td>
+                        <td>38</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Yoncleidis Pirona</td>
+                        <td><span class="size-tag">M</span> 38</td>
+                        <td><span class="size-tag">M</span> 39 - 40</td>
+                        <td>-</td>
+                        <td>39 - 40</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Rubeli Araujo</td>
+                        <td><span class="size-tag">XS</span> - <span class="size-tag">S</span> 30</td>
+                        <td><span class="size-tag">XS</span> - <span class="size-tag">S</span> 36</td>
+                        <td>-</td>
+                        <td>36</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Yeider Frontado</td>
+                        <td><span class="size-tag">S</span> - <span class="size-tag">M</span> 30 - 32</td>
+                        <td><span class="size-tag">S</span> - <span class="size-tag">M</span> 41</td>
+                        <td>-</td>
+                        <td>41</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Leonardo Narvaez</td>
+                        <td><span class="size-tag">M</span> - <span class="size-tag">L</span> 34</td>
+                        <td><span class="size-tag">M</span> - <span class="size-tag">L</span> 43</td>
+                        <td>-</td>
+                        <td>43</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Osmel Adrian</td>
+                        <td><span class="size-tag">L</span> - <span class="size-tag">XL</span> 34</td>
+                        <td><span class="size-tag">L</span> - <span class="size-tag">XL</span> 41 - 42</td>
+                        <td>-</td>
+                        <td>41 - 42</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Robert Escalona</td>
+                        <td><span class="size-tag">L</span> 34</td>
+                        <td>N/A</td>
+                        <td>-</td>
+                        <td>40 - 41</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='Js/modelo.js') }}"></script>
+</body>
+</html>
