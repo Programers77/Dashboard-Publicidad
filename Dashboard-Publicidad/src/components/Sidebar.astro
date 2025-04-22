@@ -1,0 +1,17 @@
+<div class="sidebar">
+    <div class="logo">
+        <h1>Ad<span>Panel</span></h1>
+    </div>
+    <a href="{{ url_for('dashboard') }}" class="menu-item {% if active_page == 'dashboard' %}active{% endif %}">
+        <i class="fas fa-chart-line"></i>
+        <span>Dashboard</span>
+    </a>
+    <a href="{{ url_for('campana') }}" class="menu-item {% if active_page == 'campana' %}active{% endif %}">
+        <i class="fas fa-bullhorn"></i>
+        <span>Campañas</span>
+    </a>
+    <a href="{{ url_for('modelo') }}" class="menu-item {% if active_page == 'modelo' %}active{% endif %}">
+        <i class="fas fa-users"></i>
+        <span>Modelos</span>
+    </a>
+</div>
