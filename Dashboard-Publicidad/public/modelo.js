@@ -12,3 +12,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Agrega event listener al contenedor padre (más eficiente)
+    document.querySelector('.table-wrapper').addEventListener('click', function (e) {
+        const modelRow = e.target.closest('tr');
+        if (!modelRow) return;
+
+        // Obtén el id del modelo directamente del atributo data-model-id de la fila
+        const modelId = modelRow.getAttribute('data-model-id');
+        if (modelId) {
+            // Previene el comportamiento por defecto solo si es un enlace
+            e.preventDefault();
+
+            // Navegación compatible con Astro
+            window.location.pathname = `vista_personal`;
+        }
+    });
+});

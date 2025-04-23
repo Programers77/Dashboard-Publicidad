@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-    :root {
+  :root {
     --primary-color: #4361ee;
     --secondary-color: #f72585;
     --light-gray: #f5f5f5;
@@ -13,33 +13,33 @@
     --warning-color: #fbbf24;
     --card-icon-size: 40px;
     --table-hover-color: rgba(67, 97, 238, 0.08);
-}
+  }
 
-* {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-body {
+  body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden; /* Evita scroll horizontal no deseado */
     background-color: #f9fafb;
-}
+  }
 
-.container {
+  .container {
     width: calc(100% - 240px); /* Resta el ancho del sidebar (240px) */
     margin-left: 240px; /* Igual al ancho del sidebar */
     padding: 20px;
     box-sizing: border-box;
     max-width: none; /* Elimina el límite de 1400px */
-}
+  }
 
-header {
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,114 +48,118 @@ header {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    width: 100%
-}
+    width: 100%;
+  }
 
-.header-title h1 {
+  .header-title h1 {
     color: var(--primary-color);
     font-size: 24px;
     margin-bottom: 5px;
-}
+  }
 
-.header-title p {
+  .header-title p {
     color: var(--text-light);
     font-size: 14px;
-}
+  }
 
-.header-actions {
+  .header-actions {
     display: flex;
     gap: 15px;
-}
+  }
 
-.summary-cards {
+  .summary-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Cartas responsivas */
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    ); /* Cartas responsivas */
     gap: 20px; /* Espacio entre cartas */
     width: 100%; /* Ocupa el ancho disponible */
     margin-bottom: 30px;
-}
+  }
 
-.btn {
+  .btn {
     padding: 10px 20px;
     border: none;
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+  }
 
-.btn-primary {
+  .btn-primary {
     background-color: var(--primary-color);
     color: var(--white);
-}
+  }
 
-.btn-primary:hover {
+  .btn-primary:hover {
     background-color: #3651d1;
-}
+  }
 
-.btn-secondary {
+  .btn-secondary {
     background-color: var(--secondary-color);
     color: var(--white);
-}
+  }
 
-.btn-secondary:hover {
+  .btn-secondary:hover {
     background-color: #e11e79;
-}
+  }
 
-
-.card {
+  .card {
     background-color: var(--white);
     padding: 25px 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
     width: 100%;
-}
+  }
 
-.card-title {
+  .card-title {
     font-size: 14px;
     color: var(--text-light);
     margin-bottom: 10px;
-}
+  }
 
-.card-value {
+  .card-value {
     font-size: 28px;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 5px;
-}
+  }
 
-.card-trend {
+  .card-trend {
     display: flex;
     align-items: center;
     font-size: 14px;
     color: var(--success-color);
     gap: 8px;
-}
+  }
 
-.card-trend i {
+  .card-trend i {
     margin-right: 6px; /* Alternativa al gap para mayor compatibilidad */
     font-size: 12px; /* Opcional: ajustar tamaño del icono */
-}
+  }
 
-.card:hover {
+  .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
+  }
 
-.card::before {
-    content: '';
+  .card::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 4px;
     height: 100%;
     background-color: var(--primary-color);
-}
+  }
 
-.card-icon {
+  .card-icon {
     width: var(--card-icon-size);
     height: var(--card-icon-size);
     display: flex;
@@ -166,52 +170,53 @@ header {
     margin-bottom: 15px;
     color: var(--primary-color);
     font-size: 20px;
-}
+  }
 
-.table-wrapper {
+  .table-wrapper {
     width: 100%;
     overflow-x: auto; /* Permite scroll horizontal si la tabla es muy ancha */
-}
+  }
 
-table {
+  table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     font-size: 0.9rem;
-}
+  }
 
-th, td {
+  th,
+  td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
-}
+  }
 
-th {
+  th {
     background-color: var(--primary-color);
     color: var(--white);
     font-weight: 600;
     position: sticky;
     top: 0;
     padding: 15px;
-}
+  }
 
-th:first-child {
+  th:first-child {
     border-top-left-radius: 10px;
-}
+  }
 
-th:last-child {
+  th:last-child {
     border-top-right-radius: 10px;
-}
+  }
 
-tr:nth-child(even) {
+  tr:nth-child(even) {
     background-color: var(--light-gray);
-}
+  }
 
-tr:hover {
+  tr:hover {
     background-color: var(--table-hover-color);
-}
+  }
 
-.size-tag {
+  .size-tag {
     display: inline-block;
     background-color: var(--secondary-color);
     color: var(--white);
@@ -220,170 +225,198 @@ tr:hover {
     font-size: 0.75rem;
     margin-right: 5px;
     font-weight: 500;
-}
+  }
 
-/* Añadir efecto sutil a las celdas */
-td {
+  /* Añadir efecto sutil a las celdas */
+  td {
     transition: background-color 0.2s ease;
-}
+  }
 
-td:hover {
+  td:hover {
     background-color: rgba(67, 97, 238, 0.05);
-}
+  }
 
-@media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     .table-wrapper {
-        overflow-x: auto;
+      overflow-x: auto;
     }
-    
-    table {
-        min-width: 800px;
-    }
-}
 
-@media (max-width: 768px) {
     table {
-        font-size: 0.8rem;
+      min-width: 800px;
     }
-}
+  }
+
+  @media (max-width: 768px) {
+    table {
+      font-size: 0.8rem;
+    }
+  }
 </style>
 
 <div class="container">
-    <header>
-        <div class="header-title">
-            <h1>Listado de Modelos</h1>
-            <p>Catálogo de modelos para diferentes tipos de pautas</p>
-        </div>
-        <div class="header-actions">
-            <button class="btn btn-primary">Agregar Modelo</button>
-            <button class="btn btn-secondary">Editar Modelo</button>
-        </div>
-    </header>
-
-    <div class="summary-cards">
-        <div class="card">
-            <div class="card-icon">
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <div class="card-title">Total de Modelos</div>
-            <div class="card-value">8</div>
-            <div class="card-trend"><i class="fas fa-arrow-up"></i> Rango de tallas variado</div>
-        </div>
-        <div class="card">
-            <div class="card-icon">
-                <i class="fas fa-tshirt"></i>
-            </div>
-            <div class="card-title">Tallas más Comunes</div>
-            <div class="card-value">S - M</div>
-            <div class="card-trend"><i class="fas fa-info-circle"></i> Camisa y Pantalón</div>
-        </div>
-        <div class="card">
-            <div class="card-icon">
-                <i class="fas fa-shoe-prints"></i>
-            </div>
-            <div class="card-title">Rango de Zapatos</div>
-            <div class="card-value">36 - 43</div>
-            <div class="card-trend"><i class="fas fa-chart-pie"></i> Diversidad de calzado</div>
-        </div>
-        <div class="card">
-            <div class="card-icon">
-                <i class="fas fa-star"></i>
-            </div>
-            <div class="card-title">Pauta mas Común</div>
-            <div class="card-value">Gala y Formal</div>
-            <div class="card-trend"><i class="fas fa-glass-cheers"></i> Estilo elegante</div>
-        </div>
+  <header>
+    <div class="header-title">
+      <h1>Listado de Modelos</h1>
+      <p>Catálogo de modelos para diferentes tipos de pautas</p>
     </div>
-
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>N°</th>
-                    <th>Nombre y Apellido</th>
-                    <th>Camisa / Franela</th>
-                    <th>Pantalón</th>
-                    <th>Vestidos - Traje</th>
-                    <th>Zapatos</th>
-                    <th>N° Outfits</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Maria Eugenia Quevedo</td>
-                    <td><span class="size-tag">S</span> 30 - 32</td>
-                    <td><span class="size-tag">S</span> 39</td>
-                    <td>-</td>
-                    <td>39</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Betzaly Montilla</td>
-                    <td><span class="size-tag">S</span> 30 - 32</td>
-                    <td><span class="size-tag">S</span> 38</td>
-                    <td>-</td>
-                    <td>38</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Yoncleidis Pirona</td>
-                    <td><span class="size-tag">M</span> 38</td>
-                    <td><span class="size-tag">M</span> 39 - 40</td>
-                    <td>-</td>
-                    <td>39 - 40</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Rubeli Araujo</td>
-                    <td><span class="size-tag">XS</span> - <span class="size-tag">S</span> 30</td>
-                    <td><span class="size-tag">XS</span> - <span class="size-tag">S</span> 36</td>
-                    <td>-</td>
-                    <td>36</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Yeider Frontado</td>
-                    <td><span class="size-tag">S</span> - <span class="size-tag">M</span> 30 - 32</td>
-                    <td><span class="size-tag">S</span> - <span class="size-tag">M</span> 41</td>
-                    <td>-</td>
-                    <td>41</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Leonardo Narvaez</td>
-                    <td><span class="size-tag">M</span> - <span class="size-tag">L</span> 34</td>
-                    <td><span class="size-tag">M</span> - <span class="size-tag">L</span> 43</td>
-                    <td>-</td>
-                    <td>43</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Osmel Adrian</td>
-                    <td><span class="size-tag">L</span> - <span class="size-tag">XL</span> 34</td>
-                    <td><span class="size-tag">L</span> - <span class="size-tag">XL</span> 41 - 42</td>
-                    <td>-</td>
-                    <td>41 - 42</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Robert Escalona</td>
-                    <td><span class="size-tag">L</span> 34</td>
-                    <td>N/A</td>
-                    <td>-</td>
-                    <td>40 - 41</td>
-                    <td>1</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="header-actions">
+      <button class="btn btn-primary">Agregar Modelo</button>
+      <button class="btn btn-secondary">Editar Modelo</button>
     </div>
+  </header>
+
+  <div class="summary-cards">
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-user-friends"></i>
+      </div>
+      <div class="card-title">Total de Modelos</div>
+      <div class="card-value">8</div>
+      <div class="card-trend">
+        <i class="fas fa-arrow-up"></i> Rango de tallas variado
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-tshirt"></i>
+      </div>
+      <div class="card-title">Tallas más Comunes</div>
+      <div class="card-value">S - M</div>
+      <div class="card-trend">
+        <i class="fas fa-info-circle"></i> Camisa y Pantalón
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-shoe-prints"></i>
+      </div>
+      <div class="card-title">Rango de Zapatos</div>
+      <div class="card-value">36 - 43</div>
+      <div class="card-trend">
+        <i class="fas fa-chart-pie"></i> Diversidad de calzado
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="card-title">Pauta mas Común</div>
+      <div class="card-value">Gala y Formal</div>
+      <div class="card-trend">
+        <i class="fas fa-glass-cheers"></i> Estilo elegante
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Nombre y Apellido</th>
+          <th>Camisa / Franela</th>
+          <th>Pantalón</th>
+          <th>Vestidos - Traje</th>
+          <th>Zapatos</th>
+          <th>N° Outfits</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <tr data-model-id="1">
+            <td>1</td>
+            <td>Maria Eugenia Quevedo</td>
+            <td><span class="size-tag">S</span> 30 - 32</td>
+            <td><span class="size-tag">S</span> 39</td>
+            <td>-</td>
+            <td>39</td>
+            <td>1</td>
+          </tr>
+        </tr>
+        <!-- <tr>
+          <td>2</td>
+          <td>Betzaly Montilla</td>
+          <td><span class="size-tag">S</span> 30 - 32</td>
+          <td><span class="size-tag">S</span> 38</td>
+          <td>-</td>
+          <td>38</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Yoncleidis Pirona</td>
+          <td><span class="size-tag">M</span> 38</td>
+          <td><span class="size-tag">M</span> 39 - 40</td>
+          <td>-</td>
+          <td>39 - 40</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Rubeli Araujo</td>
+          <td
+            ><span class="size-tag">XS</span> - <span class="size-tag">S</span> 30</td
+          >
+          <td
+            ><span class="size-tag">XS</span> - <span class="size-tag">S</span> 36</td
+          >
+          <td>-</td>
+          <td>36</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Yeider Frontado</td>
+          <td
+            ><span class="size-tag">S</span> - <span class="size-tag">M</span> 30
+            - 32</td
+          >
+          <td
+            ><span class="size-tag">S</span> - <span class="size-tag">M</span> 41</td
+          >
+          <td>-</td>
+          <td>41</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Leonardo Narvaez</td>
+          <td
+            ><span class="size-tag">M</span> - <span class="size-tag">L</span> 34</td
+          >
+          <td
+            ><span class="size-tag">M</span> - <span class="size-tag">L</span> 43</td
+          >
+          <td>-</td>
+          <td>43</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Osmel Adrian</td>
+          <td
+            ><span class="size-tag">L</span> - <span class="size-tag">XL</span> 34</td
+          >
+          <td
+            ><span class="size-tag">L</span> - <span class="size-tag">XL</span> 41
+            - 42</td
+          >
+          <td>-</td>
+          <td>41 - 42</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Robert Escalona</td>
+          <td><span class="size-tag">L</span> 34</td>
+          <td>N/A</td>
+          <td>-</td>
+          <td>40 - 41</td>
+          <td>1</td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <script src="/modelo.js" defer></script>

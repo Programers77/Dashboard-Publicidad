@@ -1,0 +1,249 @@
+<div class="container">
+
+  <!-- Main Content Grid -->
+  <div class="model-profile">
+    <!-- Column 1: Profile Info -->
+    <div class="profile-column">
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-image-container">
+          <div class="image-wrapper">
+            <img
+              src="/descarga.png"
+              alt="Foto del modelo"
+              class="model-photo"
+            />
+            <div class="photo-badge">
+              <i class="fas fa-camera"></i> Cambiar foto
+            </div>
+          </div>
+          <div class="profile-info">
+            <div class="model-name" id="data-model-id">
+              Maria Eugenia Quevedo
+              <div class="model-id">ID: MOD-2023-001</div>
+            </div>
+            <div class="model-status">
+              <span class="status-badge active">
+                <i class="fas fa-circle"></i> Activo
+              </span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-edit">
+          <i class="fas fa-edit"></i> Editar Modelo
+        </button>
+        <!-- Personal Details -->
+        <div class="details-section">
+          <h3><i class="fas fa-id-card"></i> Información Personal</h3>
+          <div class="detail-item">
+            <span class="detail-label">CI:</span>
+            <span class="detail-value">12.345.678</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Fecha Nacimiento:</span>
+            <span class="detail-value">01/01/1990 (34 años)</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Teléfono:</span>
+            <span class="detail-value">+598 99 123 456</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Email:</span>
+            <span class="detail-value">mquevedo@example.com</span>
+          </div>
+        </div>
+
+        <!-- Wallet Summary -->
+        <div class="details-section wallet-summary">
+          <h3><i class="fas fa-wallet"></i> Resumen Billetera</h3>
+          <div class="wallet-balance">
+            <div class="balance-amount">$500.00</div>
+            <div class="balance-label">Saldo Actual</div>
+          </div>
+          <div class="wallet-stats">
+            <div class="stat-item">
+              <div class="stat-value credit">$250.00</div>
+              <div class="stat-label">Crédito</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value debit">$100.00</div>
+              <div class="stat-label">Débito</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Movimientos</div>
+            </div>
+          </div>
+          <button class="btn btn-view-wallet">
+            <i class="fas fa-eye"></i> Ver detalle completo
+          </button>
+        </div>
+      </div>
+
+      <!-- QR Code Section -->
+      <div class="qr-card">
+        <h3><i class="fas fa-qrcode"></i> Identificación</h3>
+        <div class="qr-code-container">
+          <img src="/qr-code-placeholder.png" alt="Código QR" />
+          <div class="qr-text">ID: MOD-2023-001</div>
+        </div>
+        <div class="qr-actions">
+          <button class="btn btn-download">
+            <i class="fas fa-download"></i> Descargar
+          </button>
+          <button class="btn btn-print">
+            <i class="fas fa-print"></i> Imprimir
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 2: Main Content -->
+    <div class="content-column">
+      <!-- Guidelines Section -->
+      <div class="section-card">
+        <div class="section-header">
+          <h2><i class="fas fa-tags"></i> Pautas Asignadas</h2>
+          <button class="btn btn-add">
+            <i class="fas fa-plus"></i> Añadir Pauta
+          </button>
+        </div>
+        <div class="tags-container">
+          <span class="tag tag-gala">
+            <i class="fas fa-star"></i> Gala y Formal
+            <button class="tag-remove"><i class="fas fa-times"></i></button>
+          </span>
+          <span class="tag tag-casual">
+            <i class="fas fa-tshirt"></i> Casual
+            <button class="tag-remove"><i class="fas fa-times"></i></button>
+          </span>
+          <span class="tag tag-sport">
+            <i class="fas fa-running"></i> Deportivo
+            <button class="tag-remove"><i class="fas fa-times"></i></button>
+          </span>
+        </div>
+      </div>
+
+      <!-- Outfits Section -->
+      <div class="section-card">
+        <div class="section-header">
+          <h2><i class="fas fa-tshirt"></i> Outfits Asignados</h2>
+          <button class="btn btn-add">
+            <i class="fas fa-plus"></i> Añadir Outfit
+          </button>
+        </div>
+
+        <div class="outfit-filters">
+          <div class="filter-group">
+            <label for="outfit-type">Filtrar por:</label>
+            <select id="outfit-type" class="filter-select">
+              <option value="all">Todos los outfits</option>
+              <option value="gala">Gala y Formal</option>
+              <option value="casual">Casual</option>
+              <option value="sport">Deportivo</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="outfit-size">Talla:</label>
+            <select id="outfit-size" class="filter-select">
+              <option value="all">Todas</option>
+              <option value="s">S</option>
+              <option value="m">M</option>
+              <option value="l">L</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="outfits-grid">
+          <div class="outfit-card featured">
+            <div class="outfit-image">
+              <img src="/placeholder-outfit.jpg" alt="Outfit 1" />
+            </div>
+            <div class="outfit-info">
+              <div class="outfit-header">
+                <h4 class="outfit-name">Vestido de Gala</h4>
+                <div class="outfit-actions">
+                  <button class="btn-icon" title="Vista rápida">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <button class="btn-icon" title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn-icon" title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="outfit-details">
+                <div class="detail-row">
+                  <span><i class="fas fa-ruler"></i> Talla: S</span>
+                  <span><i class="fas fa-palette"></i> Color: Negro</span>
+                </div>
+                <div class="detail-row">
+                  <span><i class="fas fa-barcode"></i> #4512</span>
+                  <span
+                    ><i class="fas fa-calendar"></i> Asignado: 15/03/2023</span
+                  >
+                </div>
+                <div class="outfit-guidelines">
+                  <span class="guideline-tag tag-gala">Gala</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="outfit-card">
+            <div class="outfit-image">
+              <img src="/placeholder-outfit.jpg" alt="Outfit 2" />
+            </div>
+            <div class="outfit-info">
+              <div class="outfit-header">
+                <h4 class="outfit-name">Conjunto Casual</h4>
+                <div class="outfit-actions">
+                  <button class="btn-icon" title="Vista rápida">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <button class="btn-icon" title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn-icon" title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="outfit-details">
+                <div class="detail-row">
+                  <span><i class="fas fa-ruler"></i> Talla: M</span>
+                  <span><i class="fas fa-palette"></i> Color: Azul</span>
+                </div>
+                <div class="detail-row">
+                  <span><i class="fas fa-barcode"></i> #6789</span>
+                  <span
+                    ><i class="fas fa-calendar"></i> Asignado: 10/03/2023</span
+                  >
+                </div>
+                <div class="outfit-guidelines">
+                  <span class="guideline-tag tag-casual">Casual</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions Section (Hidden by default, shown when clicking "Ver detalle completo") -->
+      <div class="section-card transactions-section" style="display: none;">
+        <div class="section-header">
+          <h2><i class="fas fa-exchange-alt"></i> Historial de Movimientos</h2>
+        </div>
+        <div class="transactions-table">
+          <!-- Table content would be dynamically loaded -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"
+></script>
+<script src="/modelo.js" defer></script>
