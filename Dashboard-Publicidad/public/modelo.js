@@ -30,3 +30,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+document.querySelector('.modal-footer .btn-primary').addEventListener('click', function () {
+    // Obtener valores del formulario
+    const ci = document.getElementById('edit-ci').value;
+    const birthdate = document.getElementById('edit-birthdate').value;
+    const phone = document.getElementById('edit-phone').value;
+    const email = document.getElementById('edit-email').value;
+
+    // Actualizar la vista
+    document.getElementById('current-ci').textContent = ci;
+    document.getElementById('current-phone').textContent = phone;
+    document.getElementById('current-email').textContent = email;
+
+    // Opcional: formatear la fecha de nacimiento si es necesario
+    if (birthdate) {
+        const birthDate = new Date(birthdate);
+        const age = new Date().getFullYear() - birthDate.getFullYear();
+        document.getElementById('current-birthdate').textContent =
+            `${birthDate.toLocaleDateString()} (${age} años)`;
+    }
+
+    // Cerrar el modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('editarModeloModal'));
+    modal.hide();
+});
+
+
+
