@@ -1,0 +1,624 @@
+
+:root {
+  --primary-color: #6a5acd;
+  --primary-light: #9370db;
+  --primary-dark: #483d8b;
+  --secondary-color: #ff7e5f;
+  --text-color: #2d3748;
+  --text-light: #4a5568;
+  --text-lighter: #718096;
+  --light-gray: #f7fafc;
+  --medium-gray: #e2e8f0;
+  --dark-gray: #cbd5e0;
+  --success-color: #48bb78;
+  --warning-color: #ed8936;
+  --danger-color: #f56565;
+  --info-color: #4299e1;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* Base Styles */
+
+
+/* Header Styles */
+.header-container {
+  background: linear-gradient(135deg, var(--white));
+  color: white;
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  margin-left: 750px;
+}
+
+.header-title h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: rgb(0, 0, 0);
+}
+
+.subtitle {
+  opacity: 0.9;
+  font-size: 14px;
+    color: white;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Button Styles */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-edit {
+  background-color: var(--primary-light);
+  color: rgb(255, 255, 255);
+  margin-bottom: 5px;
+  margin-left:46rem
+}
+.btn-edit:hover {
+  background-color:#483d8b;
+  color: white;
+}
+
+
+.btn-back {
+  background-color: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-back:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-add {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-add:hover {
+  background-color: #3aa76d;
+}
+
+.btn-view-wallet {
+  width: 100%;
+  background-color: var(--medium-gray);
+  color: var(--text-color);
+  margin-top: 16px;
+}
+
+.btn-view-wallet:hover {
+  background-color: var(--dark-gray);
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--text-lighter);
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s;
+  padding: 4px;
+}
+
+.btn-icon:hover {
+  color: var(--primary-color);
+}
+
+/* Main Content Grid */
+.model-profile {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 34px;
+}
+
+.profile-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content-column {
+  grid-row: 1; /* Esto lo coloca en la primera fila */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Profile Card */
+.profile-card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+}
+
+.profile-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--white);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 16px;
+}
+
+.model-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  padding: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.photo-badge:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.profile-info {
+  text-align: center;
+  width: 100%;
+}
+
+.model-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.model-id {
+  font-size: 13px;
+  color: var(--text-lighter);
+  margin-bottom: 12px;
+}
+
+.model-status {
+  margin-top: 8px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background-color: #ebf8f2;
+  color: var(--success-color);
+}
+
+.status-badge i {
+  font-size: 8px;
+}
+
+/* Details Sections */
+.details-section {
+  margin-bottom: 20px;
+}
+
+.details-section h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.detail-label {
+  color: var(--text-lighter);
+  font-weight: 500;
+}
+
+.detail-value {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* Wallet Summary */
+.wallet-summary {
+  background-color: var(--light-gray);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.wallet-balance {
+  text-align: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.balance-amount {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+}
+
+.balance-label {
+  font-size: 13px;
+  color: var(--text-lighter);
+}
+
+.wallet-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.stat-value.credit {
+  color: var(--success-color);
+}
+
+.stat-value.debit {
+  color: var(--danger-color);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-lighter);
+}
+
+/* QR Card */
+.qr-card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  text-align: center;
+}
+
+.qr-card h3 {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.qr-code-container {
+  margin: 0 auto 12px;
+  padding: 12px;
+  background: white;
+  border: 1px solid var(--medium-gray);
+  border-radius: var(--radius-md);
+  display: inline-block;
+}
+
+.qr-code-container img {
+  width: 140px;
+  height: 140px;
+}
+
+.qr-text {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.qr-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.btn-download {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-print {
+  background-color: var(--medium-gray);
+  color: var(--text-color);
+}
+
+/* Section Cards */
+.section-card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--medium-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Tags */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px 20px;
+  
+}
+
+.tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-gala {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.tag-casual {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.tag-sport {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+}
+
+.tag-remove {
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  font-size: 10px;
+}
+
+.tag-remove:hover {
+  opacity: 1;
+}
+
+/* Outfit Filters */
+.outfit-filters {
+  padding: 10 20px 12px;  
+  gap: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.filter-group label {
+  font-size: 13px;
+  margin-left: 8px;
+  color: var(--text-lighter);
+}
+
+.filter-select {
+  padding: 6px 10px;
+  margin-bottom: 5px;
+  margin-left: 3px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--medium-gray);
+  font-size: 13px;
+  background-color: var(--white);
+}
+
+/* Outfits Grid */
+.outfits-grid {
+  padding: 0 20px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.outfit-card {
+  border: 1px solid var(--medium-gray);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.outfit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.outfit-card.featured {
+  border-left: 4px solid var(--primary-color);
+}
+
+.outfit-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.outfit-image {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+}
+
+.outfit-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.outfit-card:hover .outfit-image img {
+  transform: scale(1.03);
+}
+
+.outfit-info {
+  padding: 12px;
+}
+
+.outfit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.outfit-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.outfit-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.outfit-details {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.outfit-guidelines {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+}
+
+.guideline-tag {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .model-profile {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  .wallet-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .outfit-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
