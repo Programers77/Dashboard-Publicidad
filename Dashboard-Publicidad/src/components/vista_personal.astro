@@ -281,14 +281,75 @@
           </span>
         </div>
       </div>
+      <!-- Modal para Añadir Pauta -->
 
-      
-
+      <div
+        class="modal fade"
+        id="agregarPautaModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title">
+                <i class="fas fa-tags me-2"></i>Agregar Pauta
+              </h5>
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="formAgregarPauta">
+                <div class="mb-3">
+                  <label class="form-label">Tipo de Pauta*</label>
+                  <div class="input-group mb-3">
+                    <select class="form-select" id="pautaTipo">
+                      <option value="">Seleccione o ingrese nuevo</option>
+                      <option value="gala">Gala y Formal</option>
+                      <option value="casual">Casual</option>
+                      <option value="sport">Deportivo</option>
+                      <option value="custom">-- Ingresar nuevo tipo --</option>
+                    </select>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control mt-2 d-none"
+                    id="nuevoTipoPauta"
+                    placeholder="Escriba el nuevo tipo de pauta"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="pautaDescripcion" class="form-label"
+                    >Descripción (Opcional)</label
+                  >
+                  <textarea class="form-control" id="pautaDescripcion" rows="3"
+                  ></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                data-bs-dismiss="modal"
+              >
+                <i class="fas fa-times me-1"></i>Cancelar
+              </button>
+              <button type="button" class="btn btn-primary" id="guardarPauta">
+                <i class="fas fa-save me-1"></i>Guardar Pauta
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Outfits Section -->
       <div class="section-card">
         <div class="section-header">
           <h2><i class="fas fa-tshirt"></i> Outfits Asignados</h2>
-          <button class="btn btn-add">
+          <button class="btn btn-add" id="abrirModalOutfit">
             <i class="fas fa-plus"></i> Añadir Outfit
           </button>
         </div>
@@ -314,7 +375,8 @@
           </div>
         </div>
 
-        <div class="outfits-grid">
+        <div class="outfits-grid" id="outfitsContainer">
+          <!-- Outfits will be dynamically added here -->
           <div class="outfit-card featured">
             <div class="outfit-image">
               <img src="/placeholder-outfit.jpg" alt="Outfit 1" />
@@ -386,6 +448,106 @@
                   <span class="guideline-tag tag-casual">Casual</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para Añadir Outfit -->
+      <div
+        class="modal fade"
+        id="agregarOutfitModal"
+        tabindex="-1"
+        aria-labelledby="agregarOutfitModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="agregarOutfitModalLabel">
+                <i class="fas fa-tshirt"></i> Agregar Nuevo Outfit
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="formAgregarOutfit">
+                <div class="row mb-3">
+                  <div class="col-md-8">
+                    <label for="outfitNombre" class="form-label"
+                      >Nombre del Outfit</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="outfitNombre"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-4">
+                    <label for="outfitTipo" class="form-label">Tipo</label>
+                    <select class="form-select" id="outfitTipo" required>
+                      <option value="">Seleccionar...</option>
+                      <option value="gala">Gala y Formal</option>
+                      <option value="casual">Casual</option>
+                      <option value="sport">Deportivo</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-4">
+                    <label for="outfitTalla" class="form-label">Talla</label>
+                    <select class="form-select" id="outfitTalla" required>
+                      <option value="">Seleccionar...</option>
+                      <option value="s">S</option>
+                      <option value="m">M</option>
+                      <option value="l">L</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="outfitColor" class="form-label">Color</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="outfitColor"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-4">
+                    <label for="outfitCodigo" class="form-label">Código</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="outfitCodigo"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="outfitImagen" class="form-label"
+                    >Imagen (URL)</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="outfitImagen"
+                    placeholder="Pega la URL de la imagen"
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal">Cancelar</button
+              >
+              <button type="button" class="btn btn-primary" id="guardarOutfit"
+                >Guardar Outfit</button
+              >
             </div>
           </div>
         </div>

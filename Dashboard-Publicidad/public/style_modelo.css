@@ -1,3 +1,5 @@
+
+
 :root {
   --primary-color: #6a5acd;
   --primary-light: #9370db;
@@ -21,6 +23,7 @@
   --radius-md: 8px;
   --radius-lg: 12px;
 }
+
 
 /* Base Styles */
 
@@ -621,5 +624,3 @@
     align-items: flex-start;
   }
 }
-
-
