@@ -1,5 +1,4 @@
 <div class="container">
-
   <!-- Main Content Grid -->
   <div class="model-profile">
     <!-- Column 1: Profile Info -->
@@ -29,27 +28,186 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-edit">
+        <button
+          class="btn btn-edit"
+          data-bs-toggle="modal"
+          data-bs-target="#editarModeloModal"
+        >
           <i class="fas fa-edit"></i> Editar Modelo
         </button>
         <!-- Personal Details -->
-        <div class="details-section">
-          <h3><i class="fas fa-id-card"></i> Información Personal</h3>
-          <div class="detail-item">
-            <span class="detail-label">CI:</span>
-            <span class="detail-value">12.345.678</span>
+        <div class="details-section mt-4">
+          <h3 class="text-xl font-semibold mb-3">
+            <i class="fas fa-id-card mr-2"></i>Información Personal
+          </h3>
+          <div class="detail-item mb-2">
+            <span class="detail-label font-medium">CI:</span>
+            <span class="detail-value" id="current-ci">12.345.678</span>
           </div>
-          <div class="detail-item">
-            <span class="detail-label">Fecha Nacimiento:</span>
-            <span class="detail-value">01/01/1990 (34 años)</span>
+          <div class="detail-item mb-2">
+            <span class="detail-label font-medium">Fecha Nacimiento:</span>
+            <span class="detail-value" id="current-birthdate"
+              >01/01/1990 (34 años)</span
+            >
           </div>
-          <div class="detail-item">
-            <span class="detail-label">Teléfono:</span>
-            <span class="detail-value">+598 99 123 456</span>
+          <div class="detail-item mb-2">
+            <span class="detail-label font-medium">Teléfono:</span>
+            <span class="detail-value" id="current-phone">+598 99 123 456</span>
           </div>
-          <div class="detail-item">
-            <span class="detail-label">Email:</span>
-            <span class="detail-value">mquevedo@example.com</span>
+          <div class="detail-item mb-2">
+            <span class="detail-label font-medium">Email:</span>
+            <span class="detail-value" id="current-email"
+              >mquevedo@example.com</span
+            >
+          </div>
+        </div>
+
+        <!-- Modal de Bootstrap -->
+        <div
+          class="modal fade"
+          id="editarModeloModal"
+          tabindex="-1"
+          aria-labelledby="editarModeloModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editarModeloModalLabel">
+                  Editar Información del Modelo
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="formEditarModelo">
+                  <div class="mb-3">
+                    <label for="edit-ci" class="form-label">CI</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="edit-ci"
+                      value="12.345.678"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-birthdate" class="form-label"
+                      >Fecha de Nacimiento</label
+                    >
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="edit-birthdate"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-phone" class="form-label">Teléfono</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="edit-phone"
+                      value="+598 99 123 456"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-email" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="edit-email"
+                      value="mquevedo@example.com"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal">Cancelar</button
+                >
+                <button type="button" class="btn btn-primary"
+                  >Guardar Cambios</button
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal de Bootstrap -->
+        <div
+          class="modal fade"
+          id="editarModeloModal"
+          tabindex="-1"
+          aria-labelledby="editarModeloModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editarModeloModalLabel">
+                  Editar Información del Modelo
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="formEditarModelo">
+                  <div class="mb-3">
+                    <label for="edit-ci" class="form-label">CI</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="edit-ci"
+                      value="12.345.678"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-birthdate" class="form-label"
+                      >Fecha de Nacimiento</label
+                    >
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="edit-birthdate"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-phone" class="form-label">Teléfono</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="edit-phone"
+                      value="+598 99 123 456"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-email" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="edit-email"
+                      value="mquevedo@example.com"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal">Cancelar</button
+                >
+                <button type="button" class="btn btn-primary"
+                  >Guardar Cambios</button
+                >
+              </div>
+            </div>
           </div>
         </div>
 
@@ -123,6 +281,8 @@
           </span>
         </div>
       </div>
+
+      
 
       <!-- Outfits Section -->
       <div class="section-card">
@@ -243,7 +403,6 @@
     </div>
   </div>
 </div>
-
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"
 ></script>
