@@ -1,395 +1,412 @@
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #4361ee;
-            --primary-light: #e6e9ff;
-            --secondary: #3f37c9;
-            --success: #4cc9f0;
-            --warning: #f8961e;
-            --danger: #f72585;
-            --dark: #212529;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --white: #ffffff;
-            
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
-            
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            
-            --transition: all 0.3s ease;
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style> :root {
+        --primary: #4361ee;
+        --primary-light: #e6e9ff;
+        --secondary: #3f37c9;
+        --success: #4cc9f0;
+        --warning: #f8961e;
+        --danger: #f72585;
+        --dark: #212529;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+        --white: #ffffff;
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+        --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
         
-        body {
-            background-color: #f5f7ff;
-            color: var(--dark);
-        }
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
         
-        .budget-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        /* Header */
+        --transition: all 0.3s ease;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+        background-color: #f5f7ff;
+        color: var(--dark);
+    }
+    
+    .budget-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    
+    /* Header */
+    .budget-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    
+    .budget-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .budget-title i {
+        color: var(--primary);
+        font-size: 1.5rem;
+    }
+    
+    .budget-actions {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1.2rem;
+        border-radius: var(--radius-sm);
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .btn-primary {
+        background-color: var(--primary);
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--secondary);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .btn-outline {
+        background-color: transparent;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+        background-color: var(--primary-light);
+    }
+    
+    /* Budget Overview */
+    .budget-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .budget-card {
+        background-color: var(--white);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .budget-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+    }
+    
+    .budget-card.primary::before {
+        background-color: var(--primary);
+    }
+    
+    .budget-card.success::before {
+        background-color: var(--success);
+    }
+    
+    .budget-card.warning::before {
+        background-color: var(--warning);
+    }
+    
+    .budget-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .budget-card-title {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .budget-card-title i {
+        font-size: 1.2rem;
+    }
+    
+    .budget-amount {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .budget-progress-container {
+        margin: 1.5rem 0;
+    }
+    
+    .budget-progress-label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--gray);
+    }
+    
+    .budget-progress {
+        height: 10px;
+        background-color: var(--light);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    .progress-bar {
+        height: 100%;
+        border-radius: 5px;
+    }
+    
+    .progress-bar.primary {
+        background-color: var(--primary);
+    }
+    
+    .progress-bar.success {
+        background-color: var(--success);
+    }
+    
+    .progress-bar.warning {
+        background-color: var(--warning);
+    }
+    
+    .budget-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+    
+    .stat-value {
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+        color: var(--gray);
+    }
+    
+    /* Budget Allocation */
+    .allocation-section {
+        background-color: var(--white);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 2rem;
+    }
+    
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    
+    .allocation-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .allocation-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: var(--radius-md);
+        transition: var(--transition);
+        cursor: pointer;
+    }
+    
+    .allocation-item:hover {
+        background-color: var(--light);
+    }
+    
+    .allocation-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+    }
+    
+    .allocation-details {
+        flex: 1;
+    }
+    
+    .allocation-category {
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+    }
+    
+    .allocation-amount {
+        font-size: 0.9rem;
+        color: var(--gray);
+    }
+    
+    .allocation-percent {
+        font-weight: 700;
+    }
+    
+    /* Budget Timeline */
+    .timeline-section {
+        background-color: var(--white);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+        margin-top: 2rem;
+    }
+    
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: var(--light);
+    }
+    
+    .timeline-item {
+        position: relative;
+        padding-bottom: 2rem;
+    }
+    
+    .timeline-item:last-child {
+        padding-bottom: 0;
+    }
+    
+    .timeline-dot {
+        position: absolute;
+        left: -30px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.6rem;
+    }
+    
+    .timeline-dot.primary {
+        background-color: var(--primary);
+    }
+    
+    .timeline-dot.success {
+        background-color: var(--success);
+    }
+    
+    .timeline-dot.warning {
+        background-color: var(--warning);
+    }
+    
+    .timeline-content {
+        background-color: var(--light);
+        padding: 1rem;
+        border-radius: var(--radius-md);
+    }
+    
+    .timeline-date {
+        font-size: 0.8rem;
+        color: var(--gray);
+        margin-bottom: 0.5rem;
+    }
+    
+    .timeline-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .timeline-description {
+        font-size: 0.9rem;
+        color: var(--gray);
+    }
+    
+    
+    
+    /* Responsive */
+    @media (max-width: 768px) {
         .budget-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .budget-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .budget-title i {
-            color: var(--primary);
-            font-size: 1.5rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
         }
         
         .budget-actions {
-            display: flex;
-            gap: 1rem;
+            width: 100%;
+            flex-wrap: wrap;
         }
         
         .btn {
-            padding: 0.6rem 1.2rem;
-            border-radius: var(--radius-sm);
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--secondary);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--primary-light);
-        }
-        
-        /* Budget Overview */
-        .budget-overview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .budget-card {
-            background-color: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .budget-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-        }
-        
-        .budget-card.primary::before {
-            background-color: var(--primary);
-        }
-        
-        .budget-card.success::before {
-            background-color: var(--success);
-        }
-        
-        .budget-card.warning::before {
-            background-color: var(--warning);
-        }
-        
-        .budget-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .budget-card-title {
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .budget-card-title i {
-            font-size: 1.2rem;
-        }
-        
-        .budget-amount {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .budget-progress-container {
-            margin: 1.5rem 0;
-        }
-        
-        .budget-progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-        
-        .budget-progress {
-            height: 10px;
-            background-color: var(--light);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            border-radius: 5px;
-        }
-        
-        .progress-bar.primary {
-            background-color: var(--primary);
-        }
-        
-        .progress-bar.success {
-            background-color: var(--success);
-        }
-        
-        .progress-bar.warning {
-            background-color: var(--warning);
-        }
-        
-        .budget-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-        
-        /* Budget Allocation */
-        .allocation-section {
-            background-color: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 2rem;
-        }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .allocation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .allocation-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: var(--radius-md);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .allocation-item:hover {
-            background-color: var(--light);
-        }
-        
-        .allocation-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-        
-        .allocation-details {
             flex: 1;
-        }
-        
-        .allocation-category {
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-        
-        .allocation-amount {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        .allocation-percent {
-            font-weight: 700;
-        }
-        
-        /* Budget Timeline */
-        .timeline-section {
-            background-color: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            margin-top: 2rem;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--light);
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-        }
-        
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: -30px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 0.6rem;
         }
         
-        .timeline-dot.primary {
-            background-color: var(--primary);
-        }
         
-        .timeline-dot.success {
-            background-color: var(--success);
+    }
+
+    /* MODAL ASIGNAR PRESUPUESTO */
+
+    .bg-primary-custom {
+            background-color: #4361ee !important;
         }
-        
-        .timeline-dot.warning {
-            background-color: var(--warning);
+        .bg-secondary-custom {
+            background-color: #f72585 !important;
         }
-        
-        .timeline-content {
-            background-color: var(--light);
-            padding: 1rem;
-            border-radius: var(--radius-md);
+        .text-primary-custom {
+            color: #4361ee !important;
         }
-        
-        .timeline-date {
-            font-size: 0.8rem;
-            color: var(--gray);
-            margin-bottom: 0.5rem;
+        .text-secondary-custom {
+            color: #f72585 !important;
         }
-        
-        .timeline-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-description {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .budget-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .budget-actions {
-                width: 100%;
-                flex-wrap: wrap;
-            }
-            
-            .btn {
-                flex: 1;
-                justify-content: center;
-            }
-        }
+
     </style>
-</head>
-<body>
     <div class="budget-container">
         <!-- Header -->
         <div class="budget-header">
@@ -401,7 +418,7 @@
                 <button class="btn btn-outline">
                     <i class="fas fa-file-export"></i> Exportar
                 </button>
-                <button class="btn btn-primary">
+                <button class="btn bg-primary-custom text-white" data-bs-toggle="modal" data-bs-target="#asignarPresupuestoModal">
                     <i class="fas fa-plus"></i> Asignar Presupuesto
                 </button>
             </div>
@@ -667,3 +684,145 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="asignarPresupuestoModal" tabindex="-1" aria-labelledby="asignarPresupuestoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+            <div class="modal-header bg-primary-custom text-white py-2">
+                <h6 class="modal-title" id="asignarPresupuestoModalLabel">Asignación de Presupuesto</h6>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-3">
+                <form id="presupuestoForm">
+                    <!-- Presupuesto Total -->
+                    <div class="mb-2">
+                        <label for="presupuestoTotal" class="form-label small fw-bold">Presupuesto Total</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control form-control-sm" id="presupuestoTotal" placeholder="Monto total" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Distribución compacta -->
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold">Distribución</label>
+                        <div class="row g-2">
+                            <!-- Campañas Publicitarias -->
+                            <div class="col-6">
+                                <label for="campanasPublicitarias" class="form-label small">Campañas</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control form-control-sm categoria-input" id="campanasPublicitarias" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                                <small class="text-muted"><span id="porcentajeCampanas">0%</span></small>
+                            </div>
+                            
+                            <!-- Medios Digitales -->
+                            <div class="col-6">
+                                <label for="mediosDigitales" class="form-label small">Digitales</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control form-control-sm categoria-input" id="mediosDigitales" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                                <small class="text-muted"><span id="porcentajeMedios">0%</span></small>
+                            </div>
+                            
+                            <!-- Modelos e Influencers -->
+                            <div class="col-6">
+                                <label for="modelosInfluencers" class="form-label small">Modelos/Influencers</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control form-control-sm categoria-input" id="modelosInfluencers" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                                <small class="text-muted"><span id="porcentajeModelos">0%</span></small>
+                            </div>
+                            
+                            <!-- Eventos y Activaciones -->
+                            <div class="col-6">
+                                <label for="eventosActivaciones" class="form-label small">Eventos</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control form-control-sm categoria-input" id="eventosActivaciones" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                                <small class="text-muted"><span id="porcentajeEventos">0%</span></small>
+                            </div>
+                            
+                            <!-- Producción Creativa -->
+                            <div class="col-6">
+                                <label for="produccionCreativa" class="form-label small">Producción</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control form-control-sm categoria-input" id="produccionCreativa" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                                <small class="text-muted"><span id="porcentajeProduccion">0%</span></small>
+                            </div>
+                            
+                            <!-- Otros Gastos -->
+                            <div class="col-6">
+                                <label for="otrosGastos" class="form-label small">Otros</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control form-control-sm categoria-input" id="otrosGastos" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                                <small class="text-muted"><span id="porcentajeOtros">0%</span></small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resumen compacto -->
+                    <div class="alert alert-info py-1 px-2 mt-2 mb-2 small">
+                        <div class="d-flex justify-content-between">
+                            <span>Total asignado:</span>
+                            <strong id="totalAsignado">$0.00</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Restante:</span>
+                            <strong id="restante">$0.00</strong>
+                        </div>
+                    </div>
+                    
+                    <!-- Fecha y Responsable en una línea -->
+                    <div class="row g-2 mb-2">
+                        <div class="col-6">
+                            <label for="fechaAsignacion" class="form-label small">Fecha</label>
+                            <input type="date" class="form-control form-control-sm" id="fechaAsignacion" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="responsable" class="form-label small">Responsable</label>
+                            <input type="text" class="form-control form-control-sm" id="responsable" placeholder="Nombre">
+                        </div>
+                    </div>
+                    
+                    <!-- Observaciones reducida -->
+                    <div class="mb-2">
+                        <label for="observaciones" class="form-label small">Notas</label>
+                        <textarea class="form-control form-control-sm" id="observaciones" rows="1" placeholder="Observaciones..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer py-1">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-sm btn-primary bg-primary-custom" id="guardarPresupuesto">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+rel="stylesheet"
+integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+crossorigin="anonymous"
+/>
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+/>
+    
+<script src="/presupuesto.js" defer></script>
+
