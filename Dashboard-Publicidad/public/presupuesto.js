@@ -1,60 +1,74 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('budgetModal');
-    const openModalBtn = document.querySelector('.budget-actions .btn-primary');
-    const closeModalBtn = document.getElementById('closeBudgetModal');
-    const cancelBtn = document.getElementById('cancelBudget');
-    const budgetPeriod = document.getElementById('budgetPeriod');
-    const specificDatesGroup = document.getElementById('specificDatesGroup');
+    const presupuestoTotal = document.getElementById('presupuestoTotal');
+    const categoriaInputs = document.querySelectorAll('.categoria-input');
+    const totalAsignado = document.getElementById('totalAsignado');
+    const restante = document.getElementById('restante');
     
-    // Verifica que todos los elementos existan
-    if (!modal || !openModalBtn || !closeModalBtn || !cancelBtn || !budgetPeriod || !specificDatesGroup) {
-        console.error('No se encontraron todos los elementos necesarios para el modal');
-        return;
-    }
-    
-    // Función para abrir modal
-    function openModal() {
-        console.log('Abriendo modal'); // Para depuración
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    // Función para cerrar modal
-    function closeModal() {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
-    // Event listeners con verificación
-    openModalBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        openModal();
-    });
-    
-    closeModalBtn.addEventListener('click', closeModal);
-    cancelBtn.addEventListener('click', closeModal);
-    
-    // Cerrar al hacer clic fuera del modal
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Mostrar/ocultar fechas específicas
-    budgetPeriod.addEventListener('change', function(e) {
-        specificDatesGroup.style.display = e.target.value === 'specific' ? 'block' : 'none';
-    });
-    
-    // Manejar el envío del formulario
-    const budgetForm = document.getElementById('budgetForm');
-    if (budgetForm) {
-        budgetForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Presupuesto asignado correctamente');
-            closeModal();
-            e.target.reset();
-            specificDatesGroup.style.display = 'none';
+    // Función para actualizar los cálculos
+    function actualizarCalculos() {
+        let total = parseFloat(presupuestoTotal.value) || 0;
+        let sumaAsignada = 0;
+        
+        // Calcular suma asignada y porcentajes
+        categoriaInputs.forEach(input => {
+            const valor = parseFloat(input.value) || 0;
+            sumaAsignada += valor;
+            
+            // Actualizar porcentaje
+            const porcentajeId = 'porcentaje' + input.id.charAt(0).toUpperCase() + input.id.slice(1);
+            const porcentajeElement = document.getElementById(porcentajeId);
+            if (porcentajeElement) {
+                const porcentaje = total > 0 ? (valor / total * 100).toFixed(2) : 0;
+                porcentajeElement.textContent = porcentaje + '%';
+            }
         });
+        
+        // Actualizar resumen
+        totalAsignado.textContent = '$' + sumaAsignada.toFixed(2);
+        const restanteValor = total - sumaAsignada;
+        restante.textContent = '$' + restanteValor.toFixed(2);
+        
+        // Cambiar color si hay exceso o falta
+        if (restanteValor < 0) {
+            restante.parentElement.classList.remove('alert-info');
+            restante.parentElement.classList.add('alert-danger');
+        } else if (restanteValor > 0) {
+            restante.parentElement.classList.remove('alert-info');
+            restante.parentElement.classList.add('alert-warning');
+        } else {
+            restante.parentElement.classList.remove('alert-danger', 'alert-warning');
+            restante.parentElement.classList.add('alert-info');
+        }
     }
+    
+    // Escuchar cambios en los inputs
+    presupuestoTotal.addEventListener('input', actualizarCalculos);
+    categoriaInputs.forEach(input => {
+        input.addEventListener('input', actualizarCalculos);
+    });
+    
+    // Botón guardar
+    document.getElementById('guardarPresupuesto').addEventListener('click', function() {
+        const total = parseFloat(presupuestoTotal.value) || 0;
+        let sumaAsignada = 0;
+        
+        categoriaInputs.forEach(input => {
+            sumaAsignada += parseFloat(input.value) || 0;
+        });
+        
+        if (sumaAsignada > total) {
+            alert('La suma asignada a las categorías no puede exceder el presupuesto total.');
+            return;
+        }
+        
+        if (!document.getElementById('presupuestoForm').checkValidity()) {
+            alert('Por favor complete todos los campos requeridos.');
+            return;
+        }
+        
+        // Aquí iría la lógica para guardar los datos
+        alert('Presupuesto asignado correctamente!');
+        // Cerrar el modal
+        bootstrap.Modal.getInstance(document.getElementById('asignarPresupuestoModal')).hide();
+    });
 });
