@@ -1,3 +1,4 @@
+
 // Función para cargar SweetAlert dinámicamente y usarlo
 async function showSwal(config) {
     try {
