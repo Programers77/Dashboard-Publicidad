@@ -66,20 +66,7 @@
     .budget-actions {
         display: flex;
         gap: 1rem;
-    }
-    
-    .btn {
-        padding: 0.6rem 1.2rem;
-        border-radius: var(--radius-sm);
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
+    }  
     .btn-primary {
         background-color: var(--primary);
         color: white;
@@ -390,21 +377,228 @@
         
         
     }
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+    }
+    .category-card {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 12px;
+        transition: all 0.3s ease;
+    }
+    .category-card:hover {
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .nav-tabs .nav-link {
+        border: none;
+        color: #6c757d;
+        font-weight: 500;
+        padding: 8px 12px;
+    }
+    .nav-tabs .nav-link.active {
+        color: #3a7bd5;
+        border-bottom: 2px solid #3a7bd5;
+        background: transparent;
+    }
+    .form-control:focus, .input-group-text {
+        border-color: #dee2e6;
+    }
+    .input-group-text {
+        background-color: #f8f9fa;
+    }
 
-    /* MODAL ASIGNAR PRESUPUESTO */
+     /* Color personalizado para botones y encabezados */
+     .btn-premier, .bg-gradient-premier {
+        background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+        border: none;
+        color: white;
+    }
+    
+    .btn-premier:hover {
+        background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Animaciones para los inputs al enfocar */
+    .form-control:focus, .form-select:focus {
+        border-color: #3a7bd5;
+        box-shadow: 0 0 0 0.25rem rgba(58, 123, 213, 0.25);
+        transform: scale(1.02);
+        transition: all 0.3s ease;
+    }
+    
+    /* Estilo para el modal */
+    .modal-content {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    
+    .modal-header {
+        border-bottom: none;
+    }
+    
+    /* Efecto hover para los botones del footer */
+    .modal-footer button {
+        transition: all 0.3s ease;
+    }
+    
+    .modal-footer button:hover {
+        transform: translateY(-2px);
+    }
 
-    .bg-primary-custom {
-            background-color: #4361ee !important;
-        }
-        .bg-secondary-custom {
-            background-color: #f72585 !important;
-        }
-        .text-primary-custom {
-            color: #4361ee !important;
-        }
-        .text-secondary-custom {
-            color: #f72585 !important;
-        }
+
+    /* Estilos para la tabla de historial */
+#tablaHistorial {
+    font-size: 0.9rem;
+}
+
+#tablaHistorial th {
+    border-top: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+}
+
+#tablaHistorial tr {
+    transition: all 0.2s ease;
+}
+
+#tablaHistorial tr:hover {
+    background-color: #f8f9fa;
+}
+
+.eliminar-presupuesto {
+    transition: all 0.2s ease;
+    opacity: 0.5;
+}
+
+.eliminar-presupuesto:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.placeholder-row {
+    background-color: #f8f9fa !important;
+}
+
+/* Animación para nuevos registros */
+@keyframes highlight {
+    0% { background-color: rgba(58, 123, 213, 0.1); }
+    100% { background-color: transparent; }
+}
+
+.highlight-row {
+    animation: highlight 2s ease-out;
+}
+
+
+.success-checkmark {
+        width: 80px;
+        height: 115px;
+        margin: 0 auto;
+    }
+    
+    .check-icon {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        border-radius: 50%;
+        box-sizing: content-box;
+        border: 4px solid #4CAF50;
+    }
+    
+    .check-icon::before {
+        top: 3px;
+        left: -2px;
+        width: 30px;
+        transform-origin: 100% 50%;
+        border-radius: 100px 0 0 100px;
+    }
+    
+    .check-icon::after {
+        top: 0;
+        left: 30px;
+        width: 60px;
+        transform-origin: 0 50%;
+        border-radius: 0 100px 100px 0;
+        animation: rotate-circle 4.25s ease-in;
+    }
+    
+    .check-icon::before, .check-icon::after {
+        content: '';
+        height: 100px;
+        position: absolute;
+        background: #FFFFFF;
+        transform: rotate(-45deg);
+    }
+    
+    .icon-line {
+        height: 5px;
+        background-color: #4CAF50;
+        display: block;
+        border-radius: 2px;
+        position: absolute;
+        z-index: 10;
+    }
+    
+    .icon-line.line-tip {
+        top: 46px;
+        left: 14px;
+        width: 25px;
+        transform: rotate(45deg);
+        animation: icon-line-tip 0.75s;
+    }
+    
+    .icon-line.line-long {
+        top: 38px;
+        right: 8px;
+        width: 47px;
+        transform: rotate(-45deg);
+        animation: icon-line-long 0.75s;
+    }
+    
+    .icon-circle {
+        top: -4px;
+        left: -4px;
+        z-index: 10;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: absolute;
+        box-sizing: content-box;
+        border: 4px solid rgba(76, 175, 80, .5);
+    }
+    
+    .icon-fix {
+        top: 8px;
+        width: 5px;
+        left: 26px;
+        z-index: 1;
+        height: 85px;
+        position: absolute;
+        transform: rotate(-45deg);
+        background-color: #FFFFFF;
+    }
+    
+    @keyframes icon-line-tip {
+        0% { width: 0; left: 1px; top: 19px; }
+        54% { width: 0; left: 1px; top: 19px; }
+        70% { width: 50px; left: -8px; top: 37px; }
+        84% { width: 17px; left: 21px; top: 48px; }
+        100% { width: 25px; left: 14px; top: 45px; }
+    }
+    
+    @keyframes icon-line-long {
+        0% { width: 0; right: 46px; top: 54px; }
+        65% { width: 0; right: 46px; top: 54px; }
+        84% { width: 55px; right: 0px; top: 35px; }
+        100% { width: 47px; right: 8px; top: 38px; }
+    }
 
     </style>
     <div class="budget-container">
@@ -418,8 +612,8 @@
                 <button class="btn btn-outline">
                     <i class="fas fa-file-export"></i> Exportar
                 </button>
-                <button class="btn bg-primary-custom text-white" data-bs-toggle="modal" data-bs-target="#asignarPresupuestoModal">
-                    <i class="fas fa-plus"></i> Asignar Presupuesto
+                <button class="btn btn-premier" data-bs-toggle="modal" data-bs-target="#presupuestoModal">
+                    <i class="fas fa-plus-circle me-2"></i> Registrar Presupuesto
                 </button>
             </div>
         </div>
@@ -616,194 +810,97 @@
             </div>
         </div>
         
-        <!-- Budget Timeline -->
-        <div class="timeline-section">
-            <div class="section-header">
-                <h2 class="section-title">Historial de Asignaciones</h2>
-                <button class="btn btn-outline">
-                    <i class="fas fa-history"></i> Ver completo
-                </button>
+        <div class="card shadow-sm">
+            <div class="card-header bg-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-history me-2 text-primary"></i> Historial de Presupuestos
+                </h5>
             </div>
-            
-            <div class="timeline">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot primary">
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">15 Julio 2025</div>
-                        <div class="timeline-title">Ajuste de presupuesto para campaña de verano</div>
-                        <div class="timeline-description">
-                            Se asignaron $15,000 adicionales para la campaña de verano en redes sociales.
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot success">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">1 Julio 2025</div>
-                        <div class="timeline-title">Asignación mensual aprobada</div>
-                        <div class="timeline-description">
-                            Presupuesto de $42,500 aprobado para el mes de julio.
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot warning">
-                        <i class="fas fa-exclamation"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">25 Junio 2025</div>
-                        <div class="timeline-title">Solicitud de incremento presupuestal</div>
-                        <div class="timeline-description">
-                            Solicitud de $20,000 adicionales para contratación de influencers.
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot primary">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">10 Junio 2025</div>
-                        <div class="timeline-title">Aprobación de presupuesto Q3</div>
-                        <div class="timeline-description">
-                            $75,000 aprobados para actividades del tercer trimestre.
-                        </div>
-                    </div>
+            <div class="card-body">
+                <!-- Tabla de historial -->
+                <div class="table-responsive">
+                    <table class="table table-hover" id="tablaHistorial">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">Observaciones</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoHistorial">
+                            <!-- Los registros se agregarán aquí dinámicamente -->
+                            <tr class="placeholder-row">
+                                <td colspan="4" class="text-center py-4">
+                                    <i class="fas fa-folder-open fa-2x text-muted mb-2"></i>
+                                    <p class="text-muted">No hay presupuestos registrados</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal -->
-<div class="modal fade" id="asignarPresupuestoModal" tabindex="-1" aria-labelledby="asignarPresupuestoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
-            <div class="modal-header bg-primary-custom text-white py-2">
-                <h6 class="modal-title" id="asignarPresupuestoModalLabel">Asignación de Presupuesto</h6>
+<div class="modal fade" id="presupuestoModal" tabindex="-1" aria-labelledby="presupuestoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <!-- Encabezado del modal -->
+            <div class="modal-header bg-gradient-premier text-white">
+                <h5 class="modal-title" id="presupuestoModalLabel">
+                    <i class="fas fa-file-invoice-dollar me-2"></i> Nuevo Presupuesto
+                </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-3">
-                <form id="presupuestoForm">
-                    <!-- Presupuesto Total -->
-                    <div class="mb-2">
-                        <label for="presupuestoTotal" class="form-label small fw-bold">Presupuesto Total</label>
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-text">$</span>
-                            <input type="number" class="form-control form-control-sm" id="presupuestoTotal" placeholder="Monto total" min="0" step="0.01" required>
+            
+            <!-- Cuerpo del modal -->
+            <div class="modal-body p-4">
+                <form id="formPresupuesto">
+                    <!-- Campo de Presupuesto -->
+                    <div class="mb-3 animate__animated animate__fadeIn">
+                        <label for="montoPresupuesto" class="form-label fw-bold">
+                            <i class="fas fa-money-bill-wave me-2"></i>Monto del Presupuesto
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">$</span>
+                            <input type="number" class="form-control" id="montoPresupuesto" 
+                                   placeholder="Ingrese el monto" step="0.01" min="0" required>
+                            <span class="input-group-text bg-light">.00</span>
                         </div>
+                        <div class="form-text">Ingrese el monto presupuestado</div>
                     </div>
                     
-                    <!-- Distribución compacta -->
-                    <div class="mb-2">
-                        <label class="form-label small fw-bold">Distribución</label>
-                        <div class="row g-2">
-                            <!-- Campañas Publicitarias -->
-                            <div class="col-6">
-                                <label for="campanasPublicitarias" class="form-label small">Campañas</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text">$</span>
-                                    <input type="number" class="form-control form-control-sm categoria-input" id="campanasPublicitarias" placeholder="0.00" min="0" step="0.01">
-                                </div>
-                                <small class="text-muted"><span id="porcentajeCampanas">0%</span></small>
-                            </div>
-                            
-                            <!-- Medios Digitales -->
-                            <div class="col-6">
-                                <label for="mediosDigitales" class="form-label small">Digitales</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text">$</span>
-                                    <input type="number" class="form-control form-control-sm categoria-input" id="mediosDigitales" placeholder="0.00" min="0" step="0.01">
-                                </div>
-                                <small class="text-muted"><span id="porcentajeMedios">0%</span></small>
-                            </div>
-                            
-                            <!-- Modelos e Influencers -->
-                            <div class="col-6">
-                                <label for="modelosInfluencers" class="form-label small">Modelos/Influencers</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text">$</span>
-                                    <input type="number" class="form-control form-control-sm categoria-input" id="modelosInfluencers" placeholder="0.00" min="0" step="0.01">
-                                </div>
-                                <small class="text-muted"><span id="porcentajeModelos">0%</span></small>
-                            </div>
-                            
-                            <!-- Eventos y Activaciones -->
-                            <div class="col-6">
-                                <label for="eventosActivaciones" class="form-label small">Eventos</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text">$</span>
-                                    <input type="number" class="form-control form-control-sm categoria-input" id="eventosActivaciones" placeholder="0.00" min="0" step="0.01">
-                                </div>
-                                <small class="text-muted"><span id="porcentajeEventos">0%</span></small>
-                            </div>
-                            
-                            <!-- Producción Creativa -->
-                            <div class="col-6">
-                                <label for="produccionCreativa" class="form-label small">Producción</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text">$</span>
-                                    <input type="number" class="form-control form-control-sm categoria-input" id="produccionCreativa" placeholder="0.00" min="0" step="0.01">
-                                </div>
-                                <small class="text-muted"><span id="porcentajeProduccion">0%</span></small>
-                            </div>
-                            
-                            <!-- Otros Gastos -->
-                            <div class="col-6">
-                                <label for="otrosGastos" class="form-label small">Otros</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text">$</span>
-                                    <input type="number" class="form-control form-control-sm categoria-input" id="otrosGastos" placeholder="0.00" min="0" step="0.01">
-                                </div>
-                                <small class="text-muted"><span id="porcentajeOtros">0%</span></small>
-                            </div>
-                        </div>
+                    <!-- Campo de Fecha -->
+                    <div class="mb-3 animate__animated animate__fadeIn animate__delay-1s">
+                        <label for="fechaRegistro" class="form-label fw-bold">
+                            <i class="far fa-calendar-alt me-2"></i>Fecha de Registro
+                        </label>
+                        <input type="date" class="form-control" id="fechaRegistro" required>
+                        <div class="form-text">Seleccione la fecha de registro</div>
                     </div>
                     
-                    <!-- Resumen compacto -->
-                    <div class="alert alert-info py-1 px-2 mt-2 mb-2 small">
-                        <div class="d-flex justify-content-between">
-                            <span>Total asignado:</span>
-                            <strong id="totalAsignado">$0.00</strong>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span>Restante:</span>
-                            <strong id="restante">$0.00</strong>
-                        </div>
-                    </div>
-                    
-                    <!-- Fecha y Responsable en una línea -->
-                    <div class="row g-2 mb-2">
-                        <div class="col-6">
-                            <label for="fechaAsignacion" class="form-label small">Fecha</label>
-                            <input type="date" class="form-control form-control-sm" id="fechaAsignacion" required>
-                        </div>
-                        <div class="col-6">
-                            <label for="responsable" class="form-label small">Responsable</label>
-                            <input type="text" class="form-control form-control-sm" id="responsable" placeholder="Nombre">
-                        </div>
-                    </div>
-                    
-                    <!-- Observaciones reducida -->
-                    <div class="mb-2">
-                        <label for="observaciones" class="form-label small">Notas</label>
-                        <textarea class="form-control form-control-sm" id="observaciones" rows="1" placeholder="Observaciones..."></textarea>
+                    <!-- Campo de Observaciones -->
+                    <div class="mb-3 animate__animated animate__fadeIn animate__delay-2s">
+                        <label for="observaciones" class="form-label fw-bold">
+                            <i class="fas fa-edit me-2"></i>Observaciones
+                        </label>
+                        <textarea class="form-control" id="observaciones" rows="3" 
+                                  placeholder="Breve descripción o notas adicionales"></textarea>
+                        <div class="form-text">Opcional: agregue comentarios relevantes</div>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer py-1">
-                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-sm btn-primary bg-primary-custom" id="guardarPresupuesto">Guardar</button>
+            
+            <!-- Pie del modal -->
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Cancelar
+                </button>
+                <button type="button" class="btn btn-premier rounded-pill px-4" id="guardarPresupuesto">
+                    <i class="fas fa-save me-2"></i>Guardar Presupuesto
+                </button>
             </div>
         </div>
     </div>
@@ -819,10 +916,12 @@ crossorigin="anonymous"
 rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
-<link
-rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
-/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
 <script src="/presupuesto.js" defer></script>
 
