@@ -196,4 +196,4 @@ async function showSwal(config) {
   document.addEventListener('DOMContentLoaded', initApp);
 
 
-  alert("Hola desde presupuesto.js")
+  alert("Hola desde presupuesto.js2")
