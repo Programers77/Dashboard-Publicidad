@@ -193,4 +193,7 @@ async function showSwal(config) {
   }
   
   // Inicializar la aplicación cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', initApp);
+  document.addEventListener('DOMContentLoaded', initApp)
+
+  console.log('Presupuesto.js cargado correctamente.');
+  
