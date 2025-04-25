@@ -194,3 +194,6 @@ async function showSwal(config) {
   
   // Inicializar la aplicación cuando el DOM esté listo
   document.addEventListener('DOMContentLoaded', initApp);
+
+
+  alert("Hola desde presupuesto.js")
