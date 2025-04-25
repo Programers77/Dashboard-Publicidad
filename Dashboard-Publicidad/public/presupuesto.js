@@ -153,7 +153,7 @@ async function showSwal(config) {
   
   // Función para actualizar el historial (se mantiene igual)
   function actualizarHistorial() {
-    const cuerpoHistorial = document.getElementById('cuerpoHistorial');
+    const cuerpoHistorial = document.getElementById('cuerpoHistorial');gt
     cuerpoHistorial.innerHTML = '';
     
     if (presupuestos.length === 0) {
