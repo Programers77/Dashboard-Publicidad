@@ -1,927 +1,946 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+<style>
+  :root {
+    --primary: #4361ee;
+    --primary-light: #e6e9ff;
+    --secondary: #3f37c9;
+    --success: #4cc9f0;
+    --warning: #f8961e;
+    --danger: #f72585;
+    --dark: #212529;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+    --white: #ffffff;
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style> :root {
-        --primary: #4361ee;
-        --primary-light: #e6e9ff;
-        --secondary: #3f37c9;
-        --success: #4cc9f0;
-        --warning: #f8961e;
-        --danger: #f72585;
-        --dark: #212529;
-        --light: #f8f9fa;
-        --gray: #6c757d;
-        --white: #ffffff;
-        
-        --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
-        --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
-        
-        --radius-sm: 8px;
-        --radius-md: 12px;
-        --radius-lg: 16px;
-        
-        --transition: all 0.3s ease;
-    }
-    
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-        background-color: #f5f7ff;
-        color: var(--dark);
-    }
-    
-    .budget-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
-    
-    /* Header */
-    .budget-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-    }
-    
-    .budget-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--dark);
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-    
-    .budget-title i {
-        color: var(--primary);
-        font-size: 1.5rem;
-    }
-    
-    .budget-actions {
-        display: flex;
-        gap: 1rem;
-    }  
-    .btn-primary {
-        background-color: var(--primary);
-        color: white;
-    }
-    
-    .btn-primary:hover {
-        background-color: var(--secondary);
-        box-shadow: var(--shadow-md);
-    }
-    
-    .btn-outline {
-        background-color: transparent;
-        border: 1px solid var(--primary);
-        color: var(--primary);
-    }
-    
-    .btn-outline:hover {
-        background-color: var(--primary-light);
-    }
-    
-    /* Budget Overview */
-    .budget-overview {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-    
-    .budget-card {
-        background-color: var(--white);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem;
-        box-shadow: var(--shadow-sm);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .budget-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 5px;
-        height: 100%;
-    }
-    
-    .budget-card.primary::before {
-        background-color: var(--primary);
-    }
-    
-    .budget-card.success::before {
-        background-color: var(--success);
-    }
-    
-    .budget-card.warning::before {
-        background-color: var(--warning);
-    }
-    
-    .budget-card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-    
-    .budget-card-title {
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .budget-card-title i {
-        font-size: 1.2rem;
-    }
-    
-    .budget-amount {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-    
-    .budget-progress-container {
-        margin: 1.5rem 0;
-    }
-    
-    .budget-progress-label {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-        font-size: 0.85rem;
-        color: var(--gray);
-    }
-    
-    .budget-progress {
-        height: 10px;
-        background-color: var(--light);
-        border-radius: 5px;
-        overflow: hidden;
-    }
-    
-    .progress-bar {
-        height: 100%;
-        border-radius: 5px;
-    }
-    
-    .progress-bar.primary {
-        background-color: var(--primary);
-    }
-    
-    .progress-bar.success {
-        background-color: var(--success);
-    }
-    
-    .progress-bar.warning {
-        background-color: var(--warning);
-    }
-    
-    .budget-stats {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 1rem;
-    }
-    
-    .stat-item {
-        text-align: center;
-    }
-    
-    .stat-value {
-        font-weight: 700;
-        font-size: 1.1rem;
-    }
-    
-    .stat-label {
-        font-size: 0.8rem;
-        color: var(--gray);
-    }
-    
-    /* Budget Allocation */
-    .allocation-section {
-        background-color: var(--white);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem;
-        box-shadow: var(--shadow-sm);
-        margin-bottom: 2rem;
-    }
-    
-    .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
-    }
-    
-    .section-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-    
-    .allocation-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-    }
-    
-    .allocation-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem;
-        border-radius: var(--radius-md);
-        transition: var(--transition);
-        cursor: pointer;
-    }
-    
-    .allocation-item:hover {
-        background-color: var(--light);
-    }
-    
-    .allocation-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.2rem;
-    }
-    
-    .allocation-details {
-        flex: 1;
-    }
-    
-    .allocation-category {
-        font-weight: 600;
-        margin-bottom: 0.2rem;
-    }
-    
-    .allocation-amount {
-        font-size: 0.9rem;
-        color: var(--gray);
-    }
-    
-    .allocation-percent {
-        font-weight: 700;
-    }
-    
-    /* Budget Timeline */
-    .timeline-section {
-        background-color: var(--white);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem;
-        box-shadow: var(--shadow-sm);
-    }
-    
-    .timeline {
-        position: relative;
-        padding-left: 30px;
-        margin-top: 2rem;
-    }
-    
-    .timeline::before {
-        content: '';
-        position: absolute;
-        left: 10px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background-color: var(--light);
-    }
-    
-    .timeline-item {
-        position: relative;
-        padding-bottom: 2rem;
-    }
-    
-    .timeline-item:last-child {
-        padding-bottom: 0;
-    }
-    
-    .timeline-dot {
-        position: absolute;
-        left: -30px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 0.6rem;
-    }
-    
-    .timeline-dot.primary {
-        background-color: var(--primary);
-    }
-    
-    .timeline-dot.success {
-        background-color: var(--success);
-    }
-    
-    .timeline-dot.warning {
-        background-color: var(--warning);
-    }
-    
-    .timeline-content {
-        background-color: var(--light);
-        padding: 1rem;
-        border-radius: var(--radius-md);
-    }
-    
-    .timeline-date {
-        font-size: 0.8rem;
-        color: var(--gray);
-        margin-bottom: 0.5rem;
-    }
-    
-    .timeline-title {
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-    }
-    
-    .timeline-description {
-        font-size: 0.9rem;
-        color: var(--gray);
-    }
-    
-    
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-        .budget-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .budget-actions {
-            width: 100%;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            flex: 1;
-            justify-content: center;
-        }
-        
-        
-    }
-    .bg-gradient-primary {
-        background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
-    }
-    .category-card {
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        padding: 12px;
-        transition: all 0.3s ease;
-    }
-    .category-card:hover {
-        background-color: #fff;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .nav-tabs .nav-link {
-        border: none;
-        color: #6c757d;
-        font-weight: 500;
-        padding: 8px 12px;
-    }
-    .nav-tabs .nav-link.active {
-        color: #3a7bd5;
-        border-bottom: 2px solid #3a7bd5;
-        background: transparent;
-    }
-    .form-control:focus, .input-group-text {
-        border-color: #dee2e6;
-    }
-    .input-group-text {
-        background-color: #f8f9fa;
-    }
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
 
-     /* Color personalizado para botones y encabezados */
-     .btn-premier, .bg-gradient-premier {
-        background: linear-gradient(135deg, #3a7bd5, #00d2ff);
-        border: none;
-        color: white;
-    }
-    
-    .btn-premier:hover {
-        background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Animaciones para los inputs al enfocar */
-    .form-control:focus, .form-select:focus {
-        border-color: #3a7bd5;
-        box-shadow: 0 0 0 0.25rem rgba(58, 123, 213, 0.25);
-        transform: scale(1.02);
-        transition: all 0.3s ease;
-    }
-    
-    /* Estilo para el modal */
-    .modal-content {
-        border-radius: 15px;
-        overflow: hidden;
-    }
-    
-    .modal-header {
-        border-bottom: none;
-    }
-    
-    /* Efecto hover para los botones del footer */
-    .modal-footer button {
-        transition: all 0.3s ease;
-    }
-    
-    .modal-footer button:hover {
-        transform: translateY(-2px);
-    }
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
 
+    --transition: all 0.3s ease;
+  }
 
-    /* Estilos para la tabla de historial */
-#tablaHistorial {
-    font-size: 0.9rem;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-#tablaHistorial th {
-    border-top: none;
+  body {
+    background-color: #f5f7ff;
+    color: var(--dark);
+  }
+
+  .budget-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* Header */
+  .budget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .budget-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .budget-title i {
+    color: var(--primary);
+    font-size: 1.5rem;
+  }
+
+  .budget-actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-sm);
+    border: none;
     font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.5px;
-    color: #6c757d;
-}
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-#tablaHistorial tr {
-    transition: all 0.2s ease;
-}
+  .btn-primary {
+    background-color: var(--primary);
+    color: white;
+  }
 
-#tablaHistorial tr:hover {
-    background-color: #f8f9fa;
-}
+  .btn-primary:hover {
+    background-color: var(--secondary);
+    box-shadow: var(--shadow-md);
+  }
 
-.eliminar-presupuesto {
-    transition: all 0.2s ease;
-    opacity: 0.5;
-}
+  .btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+  }
 
-.eliminar-presupuesto:hover {
-    opacity: 1;
-    transform: scale(1.1);
-}
+  .btn-outline:hover {
+    background-color: var(--primary-light);
+  }
 
-.placeholder-row {
-    background-color: #f8f9fa !important;
-}
+  /* Budget Overview */
+  .budget-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
 
-/* Animación para nuevos registros */
-@keyframes highlight {
-    0% { background-color: rgba(58, 123, 213, 0.1); }
-    100% { background-color: transparent; }
-}
+  .budget-card {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
 
-.highlight-row {
-    animation: highlight 2s ease-out;
-}
+  .budget-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+  }
+
+  .budget-card.primary::before {
+    background-color: var(--primary);
+  }
+
+  .budget-card.success::before {
+    background-color: var(--success);
+  }
+
+  .budget-card.warning::before {
+    background-color: var(--warning);
+  }
+
+  .budget-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .budget-card-title {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .budget-card-title i {
+    font-size: 1.2rem;
+  }
+
+  .budget-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .budget-progress-container {
+    margin: 1.5rem 0;
+  }
+
+  .budget-progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  .budget-progress {
+    height: 10px;
+    background-color: var(--light);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    border-radius: 5px;
+  }
+
+  .progress-bar.primary {
+    background-color: var(--primary);
+  }
+
+  .progress-bar.success {
+    background-color: var(--success);
+  }
+
+  .progress-bar.warning {
+    background-color: var(--warning);
+  }
+
+  .budget-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+
+  /* Budget Allocation */
+  .allocation-section {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .allocation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .allocation-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    cursor: pointer;
+  }
+
+  .allocation-item:hover {
+    background-color: var(--light);
+  }
+
+  .allocation-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  .allocation-details {
+    flex: 1;
+  }
+
+  .allocation-category {
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .allocation-amount {
+    font-size: 0.9rem;
+    color: var(--gray);
+  }
+
+  .allocation-percent {
+    font-weight: 700;
+  }
+
+  /* Budget Timeline */
+  .timeline-section {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 2rem;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--light);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.6rem;
+  }
+
+  .timeline-dot.primary {
+    background-color: var(--primary);
+  }
+
+  .timeline-dot.success {
+    background-color: var(--success);
+  }
+
+  .timeline-dot.warning {
+    background-color: var(--warning);
+  }
+
+  .timeline-content {
+    background-color: var(--light);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .timeline-date {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-description {
+    font-size: 0.9rem;
+    color: var(--gray);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .budget-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .budget-actions {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  /* MODAL ASIGNAR PRESUPUESTO */
+
+  .bg-primary-custom {
+    background-color: #4361ee !important;
+  }
+  .bg-secondary-custom {
+    background-color: #f72585 !important;
+  }
+  .text-primary-custom {
+    color: #4361ee !important;
+  }
+  .text-secondary-custom {
+    color: #f72585 !important;
+  }
+</style>
 
 
-.success-checkmark {
-        width: 80px;
-        height: 115px;
-        margin: 0 auto;
-    }
-    
-    .check-icon {
-        width: 80px;
-        height: 80px;
-        position: relative;
-        border-radius: 50%;
-        box-sizing: content-box;
-        border: 4px solid #4CAF50;
-    }
-    
-    .check-icon::before {
-        top: 3px;
-        left: -2px;
-        width: 30px;
-        transform-origin: 100% 50%;
-        border-radius: 100px 0 0 100px;
-    }
-    
-    .check-icon::after {
-        top: 0;
-        left: 30px;
-        width: 60px;
-        transform-origin: 0 50%;
-        border-radius: 0 100px 100px 0;
-        animation: rotate-circle 4.25s ease-in;
-    }
-    
-    .check-icon::before, .check-icon::after {
-        content: '';
-        height: 100px;
-        position: absolute;
-        background: #FFFFFF;
-        transform: rotate(-45deg);
-    }
-    
-    .icon-line {
-        height: 5px;
-        background-color: #4CAF50;
-        display: block;
-        border-radius: 2px;
-        position: absolute;
-        z-index: 10;
-    }
-    
-    .icon-line.line-tip {
-        top: 46px;
-        left: 14px;
-        width: 25px;
-        transform: rotate(45deg);
-        animation: icon-line-tip 0.75s;
-    }
-    
-    .icon-line.line-long {
-        top: 38px;
-        right: 8px;
-        width: 47px;
-        transform: rotate(-45deg);
-        animation: icon-line-long 0.75s;
-    }
-    
-    .icon-circle {
-        top: -4px;
-        left: -4px;
-        z-index: 10;
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        position: absolute;
-        box-sizing: content-box;
-        border: 4px solid rgba(76, 175, 80, .5);
-    }
-    
-    .icon-fix {
-        top: 8px;
-        width: 5px;
-        left: 26px;
-        z-index: 1;
-        height: 85px;
-        position: absolute;
-        transform: rotate(-45deg);
-        background-color: #FFFFFF;
-    }
-    
-    @keyframes icon-line-tip {
-        0% { width: 0; left: 1px; top: 19px; }
-        54% { width: 0; left: 1px; top: 19px; }
-        70% { width: 50px; left: -8px; top: 37px; }
-        84% { width: 17px; left: 21px; top: 48px; }
-        100% { width: 25px; left: 14px; top: 45px; }
-    }
-    
-    @keyframes icon-line-long {
-        0% { width: 0; right: 46px; top: 54px; }
-        65% { width: 0; right: 46px; top: 54px; }
-        84% { width: 55px; right: 0px; top: 35px; }
-        100% { width: 47px; right: 8px; top: 38px; }
-    }
+<div class="budget-container">
+  <!-- Header -->
+  <div class="budget-header">
+    <h1 class="budget-title">
+      <i class="fas fa-chart-pie"></i>
+      Gestión de Presupuesto
+    </h1>
+    <div class="budget-actions">
+      <button class="btn btn-outline">
+        <i class="fas fa-file-export"></i> Exportar
+      </button>
+      <button
+        class="btn bg-primary-custom text-white"
+        data-bs-toggle="modal"
+        data-bs-target="#asignarPresupuestoModal"
+      >
+        <i class="fas fa-plus"></i> Asignar Presupuesto
+      </button>
+    </div>
+  </div>
 
-    </style>
-    <div class="budget-container">
-        <!-- Header -->
-        <div class="budget-header">
-            <h1 class="budget-title">
-                <i class="fas fa-chart-pie"></i>
-                Gestión de Presupuesto
-            </h1>
-            <div class="budget-actions">
-                <button class="btn btn-outline">
-                    <i class="fas fa-file-export"></i> Exportar
-                </button>
-                <button class="btn btn-premier" data-bs-toggle="modal" data-bs-target="#presupuestoModal">
-                    <i class="fas fa-plus-circle me-2"></i> Registrar Presupuesto
-                </button>
-            </div>
+  <!-- Budget Overview -->
+  <div class="budget-overview">
+    <!-- Total Budget Card -->
+    <div class="budget-card primary">
+      <div class="budget-card-header">
+        <div class="budget-card-title">
+          <i class="fas fa-wallet"></i>
+          Presupuesto Total
         </div>
-        
-        <!-- Budget Overview -->
-        <div class="budget-overview">
-            <!-- Total Budget Card -->
-            <div class="budget-card primary">
-                <div class="budget-card-header">
-                    <div class="budget-card-title">
-                        <i class="fas fa-wallet"></i>
-                        Presupuesto Total
-                    </div>
-                    <span>2025</span>
-                </div>
-                <div class="budget-amount">$250,000.00</div>
-                <div class="budget-progress-container">
-                    <div class="budget-progress-label">
-                        <span>Asignado</span>
-                        <span>100%</span>
-                    </div>
-                    <div class="budget-progress">
-                        <div class="progress-bar primary" style="width: 100%"></div>
-                    </div>
-                </div>
-                <div class="budget-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">$180,450</div>
-                        <div class="stat-label">Disponible</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">$69,550</div>
-                        <div class="stat-label">Utilizado</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">27.8%</div>
-                        <div class="stat-label">Ejecutado</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Current Month Budget -->
-            <div class="budget-card success">
-                <div class="budget-card-header">
-                    <div class="budget-card-title">
-                        <i class="fas fa-calendar-alt"></i>
-                        Presupuesto Mensual
-                    </div>
-                    <span>Julio 2025</span>
-                </div>
-                <div class="budget-amount">$42,500.00</div>
-                <div class="budget-progress-container">
-                    <div class="budget-progress-label">
-                        <span>Ejecutado</span>
-                        <span>35%</span>
-                    </div>
-                    <div class="budget-progress">
-                        <div class="progress-bar success" style="width: 35%"></div>
-                    </div>
-                </div>
-                <div class="budget-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">$27,625</div>
-                        <div class="stat-label">Disponible</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">$14,875</div>
-                        <div class="stat-label">Utilizado</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">+12%</div>
-                        <div class="stat-label">vs Junio</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Budget Forecast -->
-            <div class="budget-card warning">
-                <div class="budget-card-header">
-                    <div class="budget-card-title">
-                        <i class="fas fa-chart-line"></i>
-                        Proyección Anual
-                    </div>
-                    <span>2025</span>
-                </div>
-                <div class="budget-amount">$298,750.00</div>
-                <div class="budget-progress-container">
-                    <div class="budget-progress-label">
-                        <span>Disponibilidad</span>
-                        <span>83.7%</span>
-                    </div>
-                    <div class="budget-progress">
-                        <div class="progress-bar warning" style="width: 83.7%"></div>
-                    </div>
-                </div>
-                <div class="budget-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">$48,750</div>
-                        <div class="stat-label">Sobre presupuesto</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">6.2%</div>
-                        <div class="stat-label">Incremento</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">Q4</div>
-                        <div class="stat-label">Pico de gasto</div>
-                    </div>
-                </div>
-            </div>
+        <span>2025</span>
+      </div>
+      <div class="budget-amount">$250,000.00</div>
+      <div class="budget-progress-container">
+        <div class="budget-progress-label">
+          <span>Asignado</span>
+          <span>100%</span>
         </div>
-        
-        <!-- Budget Allocation -->
-        <div class="allocation-section">
-            <div class="section-header">
-                <h2 class="section-title">Distribución del Presupuesto</h2>
-                <button class="btn btn-outline">
-                    <i class="fas fa-sliders-h"></i> Ajustar
-                </button>
-            </div>
-            
-            <div class="allocation-grid">
-                <!-- Campañas Publicitarias -->
-                <div class="allocation-item">
-                    <div class="allocation-icon" style="background-color: var(--primary);">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <div class="allocation-details">
-                        <div class="allocation-category">Campañas Publicitarias</div>
-                        <div class="allocation-amount">$85,000.00</div>
-                    </div>
-                    <div class="allocation-percent">34%</div>
-                </div>
-                
-                <!-- Medios Digitales -->
-                <div class="allocation-item">
-                    <div class="allocation-icon" style="background-color: var(--success);">
-                        <i class="fas fa-ad"></i>
-                    </div>
-                    <div class="allocation-details">
-                        <div class="allocation-category">Medios Digitales</div>
-                        <div class="allocation-amount">$62,500.00</div>
-                    </div>
-                    <div class="allocation-percent">25%</div>
-                </div>
-                
-                <!-- Modelos e Influencers -->
-                <div class="allocation-item">
-                    <div class="allocation-icon" style="background-color: var(--warning);">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div class="allocation-details">
-                        <div class="allocation-category">Modelos e Influencers</div>
-                        <div class="allocation-amount">$50,000.00</div>
-                    </div>
-                    <div class="allocation-percent">20%</div>
-                </div>
-                
-                <!-- Eventos y Activaciones -->
-                <div class="allocation-item">
-                    <div class="allocation-icon" style="background-color: var(--danger);">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <div class="allocation-details">
-                        <div class="allocation-category">Eventos y Activaciones</div>
-                        <div class="allocation-amount">$30,000.00</div>
-                    </div>
-                    <div class="allocation-percent">12%</div>
-                </div>
-                
-                <!-- Producción Creativa -->
-                <div class="allocation-item">
-                    <div class="allocation-icon" style="background-color: #6a11cb;">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <div class="allocation-details">
-                        <div class="allocation-category">Producción Creativa</div>
-                        <div class="allocation-amount">$15,000.00</div>
-                    </div>
-                    <div class="allocation-percent">6%</div>
-                </div>
-                
-                <!-- Otros Gastos -->
-                <div class="allocation-item">
-                    <div class="allocation-icon" style="background-color: var(--gray);">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
-                    <div class="allocation-details">
-                        <div class="allocation-category">Otros Gastos</div>
-                        <div class="allocation-amount">$7,500.00</div>
-                    </div>
-                    <div class="allocation-percent">3%</div>
-                </div>
-            </div>
+        <div class="budget-progress">
+          <div class="progress-bar primary" style="width: 100%"></div>
         </div>
-        
-        <div class="card shadow-sm">
-            <div class="card-header bg-white">
-                <h5 class="card-title mb-0">
-                    <i class="fas fa-history me-2 text-primary"></i> Historial de Presupuestos
-                </h5>
-            </div>
-            <div class="card-body">
-                <!-- Tabla de historial -->
-                <div class="table-responsive">
-                    <table class="table table-hover" id="tablaHistorial">
-                        <thead class="table-light">
-                            <tr>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Monto</th>
-                                <th scope="col">Observaciones</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cuerpoHistorial">
-                            <!-- Los registros se agregarán aquí dinámicamente -->
-                            <tr class="placeholder-row">
-                                <td colspan="4" class="text-center py-4">
-                                    <i class="fas fa-folder-open fa-2x text-muted mb-2"></i>
-                                    <p class="text-muted">No hay presupuestos registrados</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+      </div>
+      <div class="budget-stats">
+        <div class="stat-item">
+          <div class="stat-value">$180,450</div>
+          <div class="stat-label">Disponible</div>
         </div>
+        <div class="stat-item">
+          <div class="stat-value">$69,550</div>
+          <div class="stat-label">Utilizado</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">27.8%</div>
+          <div class="stat-label">Ejecutado</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Modal -->
-<div class="modal fade" id="presupuestoModal" tabindex="-1" aria-labelledby="presupuestoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow-lg">
-            <!-- Encabezado del modal -->
-            <div class="modal-header bg-gradient-premier text-white">
-                <h5 class="modal-title" id="presupuestoModalLabel">
-                    <i class="fas fa-file-invoice-dollar me-2"></i> Nuevo Presupuesto
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            
-            <!-- Cuerpo del modal -->
-            <div class="modal-body p-4">
-                <form id="formPresupuesto">
-                    <!-- Campo de Presupuesto -->
-                    <div class="mb-3 animate__animated animate__fadeIn">
-                        <label for="montoPresupuesto" class="form-label fw-bold">
-                            <i class="fas fa-money-bill-wave me-2"></i>Monto del Presupuesto
-                        </label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light">$</span>
-                            <input type="number" class="form-control" id="montoPresupuesto" 
-                                   placeholder="Ingrese el monto" step="0.01" min="0" required>
-                            <span class="input-group-text bg-light">.00</span>
-                        </div>
-                        <div class="form-text">Ingrese el monto presupuestado</div>
-                    </div>
-                    
-                    <!-- Campo de Fecha -->
-                    <div class="mb-3 animate__animated animate__fadeIn animate__delay-1s">
-                        <label for="fechaRegistro" class="form-label fw-bold">
-                            <i class="far fa-calendar-alt me-2"></i>Fecha de Registro
-                        </label>
-                        <input type="date" class="form-control" id="fechaRegistro" required>
-                        <div class="form-text">Seleccione la fecha de registro</div>
-                    </div>
-                    
-                    <!-- Campo de Observaciones -->
-                    <div class="mb-3 animate__animated animate__fadeIn animate__delay-2s">
-                        <label for="observaciones" class="form-label fw-bold">
-                            <i class="fas fa-edit me-2"></i>Observaciones
-                        </label>
-                        <textarea class="form-control" id="observaciones" rows="3" 
-                                  placeholder="Breve descripción o notas adicionales"></textarea>
-                        <div class="form-text">Opcional: agregue comentarios relevantes</div>
-                    </div>
-                </form>
-            </div>
-            
-            <!-- Pie del modal -->
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
-                    <i class="fas fa-times me-2"></i>Cancelar
-                </button>
-                <button type="button" class="btn btn-premier rounded-pill px-4" id="guardarPresupuesto">
-                    <i class="fas fa-save me-2"></i>Guardar Presupuesto
-                </button>
-            </div>
+    <!-- Current Month Budget -->
+    <div class="budget-card success">
+      <div class="budget-card-header">
+        <div class="budget-card-title">
+          <i class="fas fa-calendar-alt"></i>
+          Presupuesto Mensual
         </div>
+        <span>Julio 2025</span>
+      </div>
+      <div class="budget-amount">$42,500.00</div>
+      <div class="budget-progress-container">
+        <div class="budget-progress-label">
+          <span>Ejecutado</span>
+          <span>35%</span>
+        </div>
+        <div class="budget-progress">
+          <div class="progress-bar success" style="width: 35%"></div>
+        </div>
+      </div>
+      <div class="budget-stats">
+        <div class="stat-item">
+          <div class="stat-value">$27,625</div>
+          <div class="stat-label">Disponible</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$14,875</div>
+          <div class="stat-label">Utilizado</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">+12%</div>
+          <div class="stat-label">vs Junio</div>
+        </div>
+      </div>
     </div>
+
+    <!-- Budget Forecast -->
+    <div class="budget-card warning">
+      <div class="budget-card-header">
+        <div class="budget-card-title">
+          <i class="fas fa-chart-line"></i>
+          Proyección Anual
+        </div>
+        <span>2025</span>
+      </div>
+      <div class="budget-amount">$298,750.00</div>
+      <div class="budget-progress-container">
+        <div class="budget-progress-label">
+          <span>Disponibilidad</span>
+          <span>83.7%</span>
+        </div>
+        <div class="budget-progress">
+          <div class="progress-bar warning" style="width: 83.7%"></div>
+        </div>
+      </div>
+      <div class="budget-stats">
+        <div class="stat-item">
+          <div class="stat-value">$48,750</div>
+          <div class="stat-label">Sobre presupuesto</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">6.2%</div>
+          <div class="stat-label">Incremento</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">Q4</div>
+          <div class="stat-label">Pico de gasto</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Budget Allocation -->
+  <div class="allocation-section">
+    <div class="section-header">
+      <h2 class="section-title">Distribución del Presupuesto</h2>
+      <button class="btn btn-outline">
+        <i class="fas fa-sliders-h"></i> Ajustar
+      </button>
+    </div>
+
+    <div class="allocation-grid">
+      <!-- Campañas Publicitarias -->
+      <div class="allocation-item">
+        <div class="allocation-icon" style="background-color: var(--primary);">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="allocation-details">
+          <div class="allocation-category">Campañas Publicitarias</div>
+          <div class="allocation-amount">$85,000.00</div>
+        </div>
+        <div class="allocation-percent">34%</div>
+      </div>
+
+      <!-- Medios Digitales -->
+      <div class="allocation-item">
+        <div class="allocation-icon" style="background-color: var(--success);">
+          <i class="fas fa-ad"></i>
+        </div>
+        <div class="allocation-details">
+          <div class="allocation-category">Medios Digitales</div>
+          <div class="allocation-amount">$62,500.00</div>
+        </div>
+        <div class="allocation-percent">25%</div>
+      </div>
+
+      <!-- Modelos e Influencers -->
+      <div class="allocation-item">
+        <div class="allocation-icon" style="background-color: var(--warning);">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="allocation-details">
+          <div class="allocation-category">Modelos e Influencers</div>
+          <div class="allocation-amount">$50,000.00</div>
+        </div>
+        <div class="allocation-percent">20%</div>
+      </div>
+
+      <!-- Eventos y Activaciones -->
+      <div class="allocation-item">
+        <div class="allocation-icon" style="background-color: var(--danger);">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="allocation-details">
+          <div class="allocation-category">Eventos y Activaciones</div>
+          <div class="allocation-amount">$30,000.00</div>
+        </div>
+        <div class="allocation-percent">12%</div>
+      </div>
+
+      <!-- Producción Creativa -->
+      <div class="allocation-item">
+        <div class="allocation-icon" style="background-color: #6a11cb;">
+          <i class="fas fa-paint-brush"></i>
+        </div>
+        <div class="allocation-details">
+          <div class="allocation-category">Producción Creativa</div>
+          <div class="allocation-amount">$15,000.00</div>
+        </div>
+        <div class="allocation-percent">6%</div>
+      </div>
+
+      <!-- Otros Gastos -->
+      <div class="allocation-item">
+        <div class="allocation-icon" style="background-color: var(--gray);">
+          <i class="fas fa-ellipsis-h"></i>
+        </div>
+        <div class="allocation-details">
+          <div class="allocation-category">Otros Gastos</div>
+          <div class="allocation-amount">$7,500.00</div>
+        </div>
+        <div class="allocation-percent">3%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Budget Timeline -->
+  <div class="timeline-section">
+    <div class="section-header">
+      <h2 class="section-title">Historial de Asignaciones</h2>
+      <button class="btn btn-outline">
+        <i class="fas fa-history"></i> Ver completo
+      </button>
+    </div>
+
+    <div class="timeline">
+      <!-- Timeline Item 1 -->
+      <div class="timeline-item">
+        <div class="timeline-dot primary">
+          <i class="fas fa-plus"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">15 Julio 2025</div>
+          <div class="timeline-title">
+            Ajuste de presupuesto para campaña de verano
+          </div>
+          <div class="timeline-description">
+            Se asignaron $15,000 adicionales para la campaña de verano en redes
+            sociales.
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 2 -->
+      <div class="timeline-item">
+        <div class="timeline-dot success">
+          <i class="fas fa-exchange-alt"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">1 Julio 2025</div>
+          <div class="timeline-title">Asignación mensual aprobada</div>
+          <div class="timeline-description">
+            Presupuesto de $42,500 aprobado para el mes de julio.
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 3 -->
+      <div class="timeline-item">
+        <div class="timeline-dot warning">
+          <i class="fas fa-exclamation"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">25 Junio 2025</div>
+          <div class="timeline-title">Solicitud de incremento presupuestal</div>
+          <div class="timeline-description">
+            Solicitud de $20,000 adicionales para contratación de influencers.
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 4 -->
+      <div class="timeline-item">
+        <div class="timeline-dot primary">
+          <i class="fas fa-check"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">10 Junio 2025</div>
+          <div class="timeline-title">Aprobación de presupuesto Q3</div>
+          <div class="timeline-description">
+            $75,000 aprobados para actividades del tercer trimestre.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="asignarPresupuestoModal"
+  tabindex="-1"
+  aria-labelledby="asignarPresupuestoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+      <div class="modal-header bg-primary-custom text-white py-2">
+        <h6 class="modal-title" id="asignarPresupuestoModalLabel">
+          Asignación de Presupuesto
+        </h6>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-3">
+        <form id="presupuestoForm">
+          <!-- Presupuesto Total -->
+          <div class="mb-2">
+            <label for="presupuestoTotal" class="form-label small fw-bold"
+              >Presupuesto Total</label
+            >
+            <div class="input-group input-group-sm">
+              <span class="input-group-text">$</span>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                id="presupuestoTotal"
+                placeholder="Monto total"
+                min="0"
+                step="0.01"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Distribución compacta -->
+          <div class="mb-2">
+            <label class="form-label small fw-bold">Distribución</label>
+            <div class="row g-2">
+              <!-- Campañas Publicitarias -->
+              <div class="col-6">
+                <label for="campanasPublicitarias" class="form-label small"
+                  >Campañas</label
+                >
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    class="form-control form-control-sm categoria-input"
+                    id="campanasPublicitarias"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+                <small class="text-muted"
+                  ><span id="porcentajeCampanas">0%</span></small
+                >
+              </div>
+
+              <!-- Medios Digitales -->
+              <div class="col-6">
+                <label for="mediosDigitales" class="form-label small"
+                  >Digitales</label
+                >
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    class="form-control form-control-sm categoria-input"
+                    id="mediosDigitales"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+                <small class="text-muted"
+                  ><span id="porcentajeMedios">0%</span></small
+                >
+              </div>
+
+              <!-- Modelos e Influencers -->
+              <div class="col-6">
+                <label for="modelosInfluencers" class="form-label small"
+                  >Modelos/Influencers</label
+                >
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    class="form-control form-control-sm categoria-input"
+                    id="modelosInfluencers"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+                <small class="text-muted"
+                  ><span id="porcentajeModelos">0%</span></small
+                >
+              </div>
+
+              <!-- Eventos y Activaciones -->
+              <div class="col-6">
+                <label for="eventosActivaciones" class="form-label small"
+                  >Eventos</label
+                >
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    class="form-control form-control-sm categoria-input"
+                    id="eventosActivaciones"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+                <small class="text-muted"
+                  ><span id="porcentajeEventos">0%</span></small
+                >
+              </div>
+
+              <!-- Producción Creativa -->
+              <div class="col-6">
+                <label for="produccionCreativa" class="form-label small"
+                  >Producción</label
+                >
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    class="form-control form-control-sm categoria-input"
+                    id="produccionCreativa"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+                <small class="text-muted"
+                  ><span id="porcentajeProduccion">0%</span></small
+                >
+              </div>
+
+              <!-- Otros Gastos -->
+              <div class="col-6">
+                <label for="otrosGastos" class="form-label small">Otros</label>
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    class="form-control form-control-sm categoria-input"
+                    id="otrosGastos"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+                <small class="text-muted"
+                  ><span id="porcentajeOtros">0%</span></small
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Resumen compacto -->
+          <div class="alert alert-info py-1 px-2 mt-2 mb-2 small">
+            <div class="d-flex justify-content-between">
+              <span>Total asignado:</span>
+              <strong id="totalAsignado">$0.00</strong>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Restante:</span>
+              <strong id="restante">$0.00</strong>
+            </div>
+          </div>
+
+          <!-- Fecha y Responsable en una línea -->
+          <div class="row g-2 mb-2">
+            <div class="col-6">
+              <label for="fechaAsignacion" class="form-label small">Fecha</label
+              >
+              <input
+                type="date"
+                class="form-control form-control-sm"
+                id="fechaAsignacion"
+                required
+              />
+            </div>
+            <div class="col-6">
+              <label for="responsable" class="form-label small"
+                >Responsable</label
+              >
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="responsable"
+                placeholder="Nombre"
+              />
+            </div>
+          </div>
+
+          <!-- Observaciones reducida -->
+          <div class="mb-2">
+            <label for="observaciones" class="form-label small">Notas</label>
+            <textarea
+              class="form-control form-control-sm"
+              id="observaciones"
+              rows="1"
+              placeholder="Observaciones..."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer py-1">
+        <button
+          type="button"
+          class="btn btn-sm btn-secondary"
+          data-bs-dismiss="modal">Cancelar</button
+        >
+        <button
+          type="button"
+          class="btn btn-sm btn-primary bg-primary-custom"
+          id="guardarPresupuesto">Guardar</button
+        >
+      </div>
+    </div>
+  </div>
 </div>
 
 <link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-rel="stylesheet"
-integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+  crossorigin="anonymous"
 />
 <link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Animate.css -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
 <script src="/presupuesto.js" defer></script>
-

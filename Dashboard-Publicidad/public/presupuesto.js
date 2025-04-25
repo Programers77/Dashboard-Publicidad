@@ -1,3 +1,4 @@
+
 // Función para cargar SweetAlert dinámicamente y usarlo
 async function showSwal(config) {
     try {
@@ -192,7 +193,7 @@ async function showSwal(config) {
     return new Date(fechaString).toLocaleDateString('es-ES', opciones);
   }
   
-  // Inicializar la aplicación cuando el DOM esté listo
+
   document.addEventListener('DOMContentLoaded', initApp);
 
 
