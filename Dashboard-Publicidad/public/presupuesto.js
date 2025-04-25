@@ -193,8 +193,8 @@ async function showSwal(config) {
     return new Date(fechaString).toLocaleDateString('es-ES', opciones);
   }
   
-  // Inicializar la aplicación cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', initApp)
 
-  console.log('Presupuesto.js cargado correctamente.');
-  
+  document.addEventListener('DOMContentLoaded', initApp);
+
+
+  alert("Hola desde presupuesto.js")
