@@ -1,4 +1,23 @@
-document.addEventListener('DOMContentLoaded', function() {
+function loadSweetAlert() {
+    return new Promise((resolve, reject) => {
+      if (window.Swal) return resolve(); // Ya está cargado
+  
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+  
+  // Uso en tu código
+  document.addEventListener('DOMContentLoaded', async function() {
+    // Carga SweetAlert antes de usarlo
+    await loadSweetAlert().catch(() => {
+      console.error('No se pudo cargar SweetAlert');
+      // Puedes fallar silenciosamente o mostrar un alert nativo
+    });
+    
     // Elementos del DOM
     const newAdButton = document.getElementById('new-ad-button');
     const adModal = new bootstrap.Modal(document.getElementById('adModal'));
@@ -25,7 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Evento para el botón Siguiente
     nextButton.addEventListener('click', function() {
       if (adNameInput.value.trim() === '') {
-        alert('Por favor ingrese el nombre de la publicidad');
+        Swal.fire({
+          icon: 'error',
+          title: 'Campo requerido',
+          text: 'Por favor ingrese el nombre de la publicidad',
+          confirmButtonColor: '#3085d6',
+        });
         return;
       }
       
@@ -78,8 +102,17 @@ document.addEventListener('DOMContentLoaded', function() {
       };
       
       console.log('Datos a guardar:', adData);
-      alert(`Publicidad "${adData.name}" guardada exitosamente`);
-      adModal.hide();
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Publicidad guardada',
+        text: `Publicidad "${adData.name}" guardada exitosamente`,
+        confirmButtonColor: '#3085d6',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          adModal.hide();
+        }
+      });
     });
     
     // Función para calcular el total
@@ -111,4 +144,4 @@ document.addEventListener('DOMContentLoaded', function() {
       totalInput.value = '';
       document.getElementById('adModalLabel').textContent = 'Nueva Publicidad';
     }
-  });
+});

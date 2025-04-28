@@ -58,20 +58,6 @@
     }
   }
 
-/* Añade esto a tu archivo CSS si lo deseas */
-#adModal .modal-body {
-    padding: 20px;
-  }
-  
-  #adModal .form-label {
-    font-weight: 500;
-  }
-  
-  #adModal input[type="number"] {
-    text-align: right;
-  }
-  
-  #adModal #total {
-    font-weight: bold;
-    background-color: #f8f9fa;
-  }
+
+
+
