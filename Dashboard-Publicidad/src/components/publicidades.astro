@@ -1,0 +1,313 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="main-content">
+  <div class="header">
+    <h2><i class="fas fa-ad"></i> Gestión de Publicidades</h2>
+    <button class="btn btn-primary" id="new-ad-button">
+        <i class="fas fa-plus"></i> Nueva Publicidad
+    </button>
+  </div>
+
+  <!-- Resumen Estadístico y Botón Nueva Publicidad -->
+  <div class="cards-row-header">
+    <div class="cards-row">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Publicidades Activas</div>
+          <div class="card-icon bg-success">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="card-value">24</div>
+        <div class="card-label">+5 este mes</div>
+        <div class="card-trend trend-up">
+          <i class="fas fa-arrow-up"></i> 12.5%
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Presupuesto Total</div>
+          <div class="card-icon bg-primary">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+        </div>
+        <div class="card-value">$12,450</div>
+        <div class="card-label">80% del límite</div>
+        <div class="progress-bar">
+          <div class="progress bg-warning" style="width: 80%"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Campañas en Curso</div>
+          <div class="card-icon bg-info">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+        </div>
+        <div class="card-value">8</div>
+        <div class="card-label">3 finalizando</div>
+        <div class="card-trend trend-down">
+          <i class="fas fa-arrow-down"></i> 5.2%
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Publicidades -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"><i class="fas fa-list-ul"></i> Listado de Publicidades</h3>
+      <button class="btn btn-outline">
+        <i class="fas fa-file-export"></i> Exportar
+      </button>
+    </div>
+    
+    <table class="payment-table">
+      <thead>
+        <tr>
+          <th>Publicidad</th>
+          <th>Medio</th>
+          <th>Inversión</th>
+          <th>Periodo</th>
+          <th>Alcance</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="model-profile">
+              <img src="https://via.placeholder.com/48" alt="Publicidad" class="model-avatar">
+              <div class="model-details">
+                <span class="model-name">Campaña Verano 2023</span>
+                <span class="model-handle">#PUB-001</span>
+              </div>
+            </div>
+          </td>
+          <td>Redes Sociales</td>
+          <td class="payment-amount">$2,500</td>
+          <td>
+            <div class="fecha-pago">
+              <span class="date">15 Jun - 30 Ago</span>
+              <span class="date-status upcoming">En curso</span>
+            </div>
+          </td>
+          <td>125K</td>
+          <td>
+            <span class="payment-status payment-status--completed">
+              <span class="payment-status__circle"></span>
+              <span class="payment-status__text">Activo</span>
+            </span>
+          </td>
+          <td class="action-cell">
+            <div class="action-buttons">
+              <button class="btn-action view-receipt" title="Ver detalles">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="btn-action edit" title="Editar">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-action confirm" title="Pausar">
+                <i class="fas fa-pause"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="model-profile">
+              <img src="https://via.placeholder.com/48" alt="Publicidad" class="model-avatar">
+              <div class="model-details">
+                <span class="model-name">Lanzamiento Producto X</span>
+                <span class="model-handle">#PUB-002</span>
+              </div>
+            </div>
+          </td>
+          <td>TV</td>
+          <td class="payment-amount">$5,800</td>
+          <td>
+            <div class="fecha-pago">
+              <span class="date">01 Sep - 30 Sep</span>
+              <span class="date-status upcoming">Próximo</span>
+            </div>
+          </td>
+          <td>350K</td>
+          <td>
+            <span class="payment-status payment-status--pending">
+              <span class="payment-status__circle"></span>
+              <span class="payment-status__text">Pendiente</span>
+            </span>
+          </td>
+          <td class="action-cell">
+            <div class="action-buttons">
+              <button class="btn-action view-receipt" title="Ver detalles">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="btn-action edit" title="Editar">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-action confirm" title="Activar">
+                <i class="fas fa-play"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="model-profile">
+              <img src="https://via.placeholder.com/48" alt="Publicidad" class="model-avatar">
+              <div class="model-details">
+                <span class="model-name">Oferta Navideña</span>
+                <span class="model-handle">#PUB-003</span>
+              </div>
+            </div>
+          </td>
+          <td>Radio</td>
+          <td class="payment-amount">$1,200</td>
+          <td>
+            <div class="fecha-pago">
+              <span class="date">01 Dic - 25 Dic</span>
+              <span class="date-status completed">Finalizado</span>
+            </div>
+          </td>
+          <td>85K</td>
+          <td>
+            <span class="payment-status">
+              <span class="payment-status__circle"></span>
+              <span class="payment-status__text">Finalizado</span>
+            </span>
+          </td>
+          <td class="action-cell">
+            <div class="action-buttons">
+              <button class="btn-action view-receipt" title="Ver detalles">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="btn-action edit" title="Reutilizar">
+                <i class="fas fa-redo"></i>
+              </button>
+              <button class="btn-action" title="Reporte">
+                <i class="fas fa-chart-pie"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal para nueva publicidad -->
+<div class="modal fade" id="adModal" tabindex="-1" aria-labelledby="adModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="adModalLabel">Nueva Publicidad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Paso 1: Nombre de la publicidad -->
+          <div id="step1">
+            <div class="mb-3">
+              <label for="adName" class="form-label">Nombre de la Publicidad</label>
+              <input type="text" class="form-control" id="adName" placeholder="Ej. Valla Principal - Av. Bolívar">
+            </div>
+          </div>
+          
+          <!-- Paso 2: Detalles completos -->
+          <div id="step2" style="display: none;">
+            <form id="adForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="installationDate" class="form-label">Fecha de Instalación</label>
+                    <input type="date" class="form-control" id="installationDate">
+                  </div>
+                  <div class="mb-3">
+                    <label for="paymentDate" class="form-label">Fecha de Pago</label>
+                    <input type="date" class="form-control" id="paymentDate">
+                  </div>
+                  <div class="mb-3">
+                    <label for="uninstallationDate" class="form-label">Fecha de Desinstalación</label>
+                    <input type="date" class="form-control" id="uninstallationDate">
+                  </div>
+                  <div class="mb-3">
+                    <label for="location" class="form-label">Ubicación</label>
+                    <input type="text" class="form-control" id="location" placeholder="Dirección exacta">
+                  </div>
+                  <div class="mb-3">
+                    <label for="production" class="form-label">Producción</label>
+                    <input type="text" class="form-control" id="production" placeholder="Detalles de producción">
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="lease" class="form-label">Arrendamiento</label>
+                    <input type="number" class="form-control" id="lease" step="0.01" placeholder="0.00">
+                  </div>
+                  <div class="mb-3">
+                    <label for="installationPrice" class="form-label">Precio de Instalación</label>
+                    <input type="number" class="form-control" id="installationPrice" step="0.01" placeholder="0.00">
+                  </div>
+                  <div class="mb-3">
+                    <label for="quantity" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" id="quantity" placeholder="1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="uninstallationPrice" class="form-label">Precio de Desinstalación</label>
+                    <input type="number" class="form-control" id="uninstallationPrice" step="0.01" placeholder="0.00">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="municipalTax" class="form-label">Impuesto Municipal</label>
+                    <input type="number" class="form-control" id="municipalTax" step="0.01" placeholder="0.00">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="corpoelecTax" class="form-label">Impuesto de CORPOELEC</label>
+                    <input type="number" class="form-control" id="corpoelecTax" step="0.01" placeholder="0.00">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="inttTax" class="form-label">Impuesto del INTT</label>
+                    <input type="number" class="form-control" id="inttTax" step="0.01" placeholder="0.00">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="monthlyTax" class="form-label">Impuesto Mensual</label>
+                    <input type="number" class="form-control" id="monthlyTax" step="0.01" placeholder="0.00">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="total" class="form-label">Total</label>
+                    <input type="number" class="form-control" id="total" step="0.01" placeholder="0.00" readonly>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="backButton" style="display: none;">Atrás</button>
+          <button type="button" class="btn btn-primary" id="nextButton">Siguiente</button>
+          <button type="button" class="btn btn-success" id="submitButton" style="display: none;">Guardar Publicidad</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="/publicidades.js" defer></script>
