@@ -74,13 +74,13 @@
 }
 
 .btn-edit {
-  background-color: var(--primary-light);
+  background-color: var(--primary-dark);
   color: rgb(255, 255, 255);
   margin-bottom: 5px;
   margin-left: 46rem;
 }
 .btn-edit:hover {
-  background-color: #483d8b;
+  background-color: #9370db;
   color: white;
 }
 

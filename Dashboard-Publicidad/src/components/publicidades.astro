@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<div class="main-content">
+<div class="main-content animate__animated animate__fadeIn">
   <div class="header">
     <h2><i class="fas fa-ad"></i> Gestión de Publicidades</h2>
     <button class="btn btn-primary" id="new-ad-button">
@@ -8,60 +9,55 @@
     </button>
   </div>
 
-  <!-- Resumen Estadístico y Botón Nueva Publicidad -->
-  <div class="cards-row-header">
-    <div class="cards-row">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Publicidades Activas</div>
-          <div class="card-icon bg-success">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-        <div class="card-value">24</div>
-        <div class="card-label">+5 este mes</div>
-        <div class="card-trend trend-up">
-          <i class="fas fa-arrow-up"></i> 12.5%
+  <!-- Resumen Estadístico -->
+  <div class="cards-row">
+    <div class="card animate__animated animate__fadeInUp">
+      <div class="card-header">
+        <div class="card-title">Campañas Activas</div>
+        <div class="card-icon bg-success">
+          <i class="fas fa-play-circle"></i>
         </div>
       </div>
+      <div class="card-value">24</div>
+      <div class="card-label">+5 este mes</div>
+      <div class="card-trend trend-up">
+        <i class="fas fa-arrow-up"></i> 12.5%
+      </div>
+    </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Presupuesto Total</div>
-          <div class="card-icon bg-primary">
-            <i class="fas fa-dollar-sign"></i>
-          </div>
-        </div>
-        <div class="card-value">$12,450</div>
-        <div class="card-label">80% del límite</div>
-        <div class="progress-bar">
-          <div class="progress bg-warning" style="width: 80%"></div>
+    <div class="card animate__animated animate__fadeInUp animate__delay-1s">
+      <div class="card-header">
+        <div class="card-title">Presupuesto Total</div>
+        <div class="card-icon bg-primary">
+          <i class="fas fa-dollar-sign"></i>
         </div>
       </div>
+      <div class="card-value">$12,450</div>
+      <div class="card-label">80% del límite mensual</div>
+      <div class="progress-bar">
+        <div class="progress bg-warning" style="width: 80%"></div>
+      </div>
+    </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Campañas en Curso</div>
-          <div class="card-icon bg-info">
-            <i class="fas fa-bullhorn"></i>
-          </div>
+    <div class="card animate__animated animate__fadeInUp animate__delay-2s">
+      <div class="card-header">
+        <div class="card-title">Campañas en Curso</div>
+        <div class="card-icon bg-info">
+          <i class="fas fa-bullhorn"></i>
         </div>
-        <div class="card-value">8</div>
-        <div class="card-label">3 finalizando</div>
-        <div class="card-trend trend-down">
-          <i class="fas fa-arrow-down"></i> 5.2%
-        </div>
+      </div>
+      <div class="card-value">8</div>
+      <div class="card-label">3 finalizando esta semana</div>
+      <div class="card-trend trend-down">
+        <i class="fas fa-arrow-down"></i> 5.2%
       </div>
     </div>
   </div>
 
   <!-- Tabla de Publicidades -->
-  <div class="card">
+  <div class="card animate__animated animate__fadeIn">
     <div class="card-header">
-      <h3 class="card-title"><i class="fas fa-list-ul"></i> Listado de Publicidades</h3>
-      <button class="btn btn-outline">
-        <i class="fas fa-file-export"></i> Exportar
-      </button>
+      <h3 class="card-title"><i class="fas fa-list-ul"></i> Listado de Campañas</h3>
     </div>
     
     <table class="payment-table">
@@ -77,17 +73,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="animate__animated animate__fadeIn">
           <td>
             <div class="model-profile">
-              <img src="https://via.placeholder.com/48" alt="Publicidad" class="model-avatar">
+              <img src="https://via.placeholder.com/48/4361ee/ffffff?text=CV23" alt="Publicidad" class="model-avatar">
               <div class="model-details">
                 <span class="model-name">Campaña Verano 2023</span>
                 <span class="model-handle">#PUB-001</span>
               </div>
             </div>
           </td>
-          <td>Redes Sociales</td>
+          <td>
+            <span class="media-tag social-media">Redes Sociales</span>
+          </td>
           <td class="payment-amount">$2,500</td>
           <td>
             <div class="fecha-pago">
@@ -95,7 +93,12 @@
               <span class="date-status upcoming">En curso</span>
             </div>
           </td>
-          <td>125K</td>
+          <td>
+            <div class="reach-info">
+              <span class="reach-value">125K</span>
+              <span class="reach-change trend-up"><i class="fas fa-arrow-up"></i> 12%</span>
+            </div>
+          </td>
           <td>
             <span class="payment-status payment-status--completed">
               <span class="payment-status__circle"></span>
@@ -116,17 +119,19 @@
             </div>
           </td>
         </tr>
-        <tr>
+        <tr class="animate__animated animate__fadeIn">
           <td>
             <div class="model-profile">
-              <img src="https://via.placeholder.com/48" alt="Publicidad" class="model-avatar">
+              <img src="https://via.placeholder.com/48/3f37c9/ffffff?text=LPX" alt="Publicidad" class="model-avatar">
               <div class="model-details">
                 <span class="model-name">Lanzamiento Producto X</span>
                 <span class="model-handle">#PUB-002</span>
               </div>
             </div>
           </td>
-          <td>TV</td>
+          <td>
+            <span class="media-tag tv-media">TV</span>
+          </td>
           <td class="payment-amount">$5,800</td>
           <td>
             <div class="fecha-pago">
@@ -134,7 +139,12 @@
               <span class="date-status upcoming">Próximo</span>
             </div>
           </td>
-          <td>350K</td>
+          <td>
+            <div class="reach-info">
+              <span class="reach-value">350K</span>
+              <span class="reach-change">-</span>
+            </div>
+          </td>
           <td>
             <span class="payment-status payment-status--pending">
               <span class="payment-status__circle"></span>
@@ -155,17 +165,19 @@
             </div>
           </td>
         </tr>
-        <tr>
+        <tr class="animate__animated animate__fadeIn">
           <td>
             <div class="model-profile">
-              <img src="https://via.placeholder.com/48" alt="Publicidad" class="model-avatar">
+              <img src="https://via.placeholder.com/48/4895ef/ffffff?text=ON23" alt="Publicidad" class="model-avatar">
               <div class="model-details">
                 <span class="model-name">Oferta Navideña</span>
                 <span class="model-handle">#PUB-003</span>
               </div>
             </div>
           </td>
-          <td>Radio</td>
+          <td>
+            <span class="media-tag radio-media">Radio</span>
+          </td>
           <td class="payment-amount">$1,200</td>
           <td>
             <div class="fecha-pago">
@@ -173,7 +185,12 @@
               <span class="date-status completed">Finalizado</span>
             </div>
           </td>
-          <td>85K</td>
+          <td>
+            <div class="reach-info">
+              <span class="reach-value">85K</span>
+              <span class="reach-change trend-down"><i class="fas fa-arrow-down"></i> 8%</span>
+            </div>
+          </td>
           <td>
             <span class="payment-status">
               <span class="payment-status__circle"></span>
@@ -196,6 +213,8 @@
         </tr>
       </tbody>
     </table>
+    
+    
   </div>
 </div>
 
@@ -204,25 +223,48 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="adModalLabel">Nueva Publicidad</h5>
+          <h5 class="modal-title" id="adModalLabel"><i class="fas fa-plus-circle"></i> Nueva Campaña Publicitaria</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <!-- Paso 1: Nombre de la publicidad -->
           <div id="step1">
+            <div class="mb-4 text-center">
+              <i class="fas fa-ad fa-3x mb-3" style="color: var(--primary-color);"></i>
+              <h4>Crear Nueva Campaña</h4>
+              <p class="text-muted">Comience ingresando los detalles básicos de su nueva campaña publicitaria</p>
+            </div>
+            
             <div class="mb-3">
-              <label for="adName" class="form-label">Nombre de la Publicidad</label>
-              <input type="text" class="form-control" id="adName" placeholder="Ej. Valla Principal - Av. Bolívar">
+              <label for="adName" class="form-label">Nombre de la Campaña</label>
+              <input type="text" class="form-control" id="adName" placeholder="Ej. Campaña Verano 2023 - Redes Sociales">
+            </div>
+            
+            <div class="mb-3">
+              <label for="campaignType" class="form-label">Tipo de Campaña</label>
+              <select class="form-control" id="campaignType">
+                <option value="">Seleccione un tipo</option>
+                <option value="branding">Branding</option>
+                <option value="performance">Performance</option>
+                <option value="promocional">Promocional</option>
+                <option value="lanzamiento">Lanzamiento de Producto</option>
+              </select>
             </div>
           </div>
           
           <!-- Paso 2: Detalles completos -->
           <div id="step2" style="display: none;">
+            <div class="wizard-progress mb-4">
+              <div class="progress-step completed">1</div>
+              <div class="progress-bar"></div>
+              <div class="progress-step active">2</div>
+            </div>
+            
             <form id="adForm">
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label for="installationDate" class="form-label">Fecha de Instalación</label>
+                    <label for="installationDate" class="form-label">Fecha de Inicio</label>
                     <input type="date" class="form-control" id="installationDate">
                   </div>
                   <div class="mb-3">
@@ -230,71 +272,76 @@
                     <input type="date" class="form-control" id="paymentDate">
                   </div>
                   <div class="mb-3">
-                    <label for="uninstallationDate" class="form-label">Fecha de Desinstalación</label>
+                    <label for="uninstallationDate" class="form-label">Fecha de Finalización</label>
                     <input type="date" class="form-control" id="uninstallationDate">
                   </div>
                   <div class="mb-3">
-                    <label for="location" class="form-label">Ubicación</label>
-                    <input type="text" class="form-control" id="location" placeholder="Dirección exacta">
-                  </div>
-                  <div class="mb-3">
-                    <label for="production" class="form-label">Producción</label>
-                    <input type="text" class="form-control" id="production" placeholder="Detalles de producción">
+                    <label for="location" class="form-label">Ubicación/Medio</label>
+                    <input type="text" class="form-control" id="location" placeholder="Ej. Facebook/Instagram o Dirección física">
                   </div>
                 </div>
                 
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label for="lease" class="form-label">Arrendamiento</label>
-                    <input type="number" class="form-control" id="lease" step="0.01" placeholder="0.00">
+                    <label for="mediaType" class="form-label">Tipo de Medio</label>
+                    <select class="form-control" id="mediaType">
+                      <option value="">Seleccione un medio</option>
+                      <option value="redes">Redes Sociales</option>
+                      <option value="tv">Televisión</option>
+                      <option value="radio">Radio</option>
+                      <option value="vallas">Vallas Publicitarias</option>
+                      <option value="prensa">Prensa</option>
+                      <option value="digital">Medios Digitales</option>
+                    </select>
                   </div>
                   <div class="mb-3">
-                    <label for="installationPrice" class="form-label">Precio de Instalación</label>
-                    <input type="number" class="form-control" id="installationPrice" step="0.01" placeholder="0.00">
+                    <label for="budget" class="form-label">Presupuesto Total</label>
+                    <div class="input-group">
+                      <span class="input-group-text">$</span>
+                      <input type="number" class="form-control" id="budget" step="0.01" placeholder="0.00">
+                    </div>
                   </div>
                   <div class="mb-3">
-                    <label for="quantity" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="quantity" placeholder="1">
-                  </div>
-                  <div class="mb-3">
-                    <label for="uninstallationPrice" class="form-label">Precio de Desinstalación</label>
-                    <input type="number" class="form-control" id="uninstallationPrice" step="0.01" placeholder="0.00">
+                    <label for="objective" class="form-label">Objetivo Principal</label>
+                    <select class="form-control" id="objective">
+                      <option value="">Seleccione un objetivo</option>
+                      <option value="awareness">Awareness</option>
+                      <option value="consideration">Consideración</option>
+                      <option value="conversion">Conversión</option>
+                      <option value="traffic">Tráfico</option>
+                      <option value="engagement">Engagement</option>
+                    </select>
                   </div>
                 </div>
               </div>
               
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="municipalTax" class="form-label">Impuesto Municipal</label>
-                    <input type="number" class="form-control" id="municipalTax" step="0.01" placeholder="0.00">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="corpoelecTax" class="form-label">Impuesto de CORPOELEC</label>
-                    <input type="number" class="form-control" id="corpoelecTax" step="0.01" placeholder="0.00">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="inttTax" class="form-label">Impuesto del INTT</label>
-                    <input type="number" class="form-control" id="inttTax" step="0.01" placeholder="0.00">
-                  </div>
-                </div>
+              <div class="mb-3">
+                <label for="campaignDescription" class="form-label">Descripción de la Campaña</label>
+                <textarea class="form-control" id="campaignDescription" rows="3" placeholder="Describa los detalles y objetivos específicos de esta campaña"></textarea>
               </div>
               
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label for="monthlyTax" class="form-label">Impuesto Mensual</label>
-                    <input type="number" class="form-control" id="monthlyTax" step="0.01" placeholder="0.00">
+                    <label class="form-label">Archivos Adjuntos</label>
+                    <div class="file-upload">
+                      <label for="fileUpload" class="file-upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Arrastre archivos aquí o haga clic para seleccionar</span>
+                        <input type="file" id="fileUpload" style="display: none;">
+                      </label>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label for="total" class="form-label">Total</label>
-                    <input type="number" class="form-control" id="total" step="0.01" placeholder="0.00" readonly>
+                    <label for="campaignManager" class="form-label">Responsable</label>
+                    <select class="form-control" id="campaignManager">
+                      <option value="">Asignar responsable</option>
+                      <option value="1">María González</option>
+                      <option value="2">Carlos Mendoza</option>
+                      <option value="3">Ana Rodríguez</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -302,9 +349,15 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="backButton" style="display: none;">Atrás</button>
-          <button type="button" class="btn btn-primary" id="nextButton">Siguiente</button>
-          <button type="button" class="btn btn-success" id="submitButton" style="display: none;">Guardar Publicidad</button>
+          <button type="button" class="btn btn-secondary" id="backButton" style="display: none;">
+            <i class="fas fa-arrow-left"></i> Atrás
+          </button>
+          <button type="button" class="btn btn-primary" id="nextButton">
+            Siguiente <i class="fas fa-arrow-right"></i>
+          </button>
+          <button type="button" class="btn btn-success" id="submitButton" style="display: none;">
+            <i class="fas fa-save"></i> Guardar Campaña
+          </button>
         </div>
       </div>
     </div>
