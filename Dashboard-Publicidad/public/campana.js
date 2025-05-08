@@ -174,14 +174,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 3. Función para agregar nueva campaña
     function agregarNuevaCampana(nombreCampana) {
-        const fechaActual = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
+        const fechaActual = new Date().toISOString().split('T')[0];
         
         const datos = {
             "nombre_campañas": nombreCampana,
             "fecha_creacion": fechaActual,
             "activa": true
         };
-
+        
         fetch('http://10.100.39.23:8000/campanas/apihead/', {
             method: 'POST',
             headers: {
@@ -190,32 +190,46 @@ document.addEventListener('DOMContentLoaded', function() {
             body: JSON.stringify(datos)
         })
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor');
-            }
+            if (!response.ok) throw new Error('Error en la respuesta del servidor');
             return response.json();
         })
         .then(data => {
             console.log('Success:', data);
-            // Cierra el modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById('agregarCampanaModal'));
-            modal.hide();
+            nuevaCampanaId = data.id;
             
-            // Recargar los datos para mostrar la nueva campaña
-            cargarDatosAPI();
+            // Cierra el modal de campaña
+            const modalCampana = bootstrap.Modal.getInstance(document.getElementById('agregarCampanaModal'));
+            modalCampana.hide();
             
-            // Mostrar mensaje de éxito
-            alert('Campaña registrada con éxito');
+            // Recarga los datos para actualizar la vista
+            cargarDatosAPI().then(() => {
+                // Muestra SweetAlert de éxito
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'Campaña registrada correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                
+                // Abre el modal de gastos después de actualizar
+                const modalGastos = new bootstrap.Modal(document.getElementById('agregarGastosModal'));
+                modalGastos.show();
+            });
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error:', error);
-            alert('Error al registrar la campaña: ' + error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al registrar la campaña: ' + error.message
+            });
         });
     }
 
     // Función para cargar datos de la API
     function cargarDatosAPI() {
-        fetch('http://10.100.39.23:8000/campanas/apidescrip/resumencampanas/')
+        return fetch('http://10.100.39.23:8000/campanas/apidescrip/resumencampanas/')
             .then(response => {
                 if (!response.ok) throw new Error('Error en la respuesta del servidor');
                 return response.json();
@@ -226,11 +240,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.campanas) {
                     updateCampanasTable(data.campanas);
                 }
+                return data; // Devuelve los datos para poder encadenar
             })
             .catch(error => {
                 console.error('Error al obtener datos de la API:', error);
+                throw error; // Propaga el error
             });
     }
+    
     // Variable para guardar el ID de la campaña recién creada
     let nuevaCampanaId = null;
 
@@ -286,23 +303,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Función para registrar gastos
     function registrarGastos() {
+        // Verificar que SweetAlert está disponible
+        if (typeof Swal === 'undefined') {
+            console.error('SweetAlert2 no está cargado correctamente');
+            alert('Error de configuración del sistema');
+            return;
+        }
+    
         const formGastos = document.getElementById('formGastos');
+        if (!formGastos) {
+            console.error('No se encontró el formulario de gastos');
+            return;
+        }
+    
         if (!formGastos.checkValidity()) {
             formGastos.reportValidity();
             return;
         }
     
+        // Obtener valores de forma segura
+        const getValue = (id) => {
+            const element = document.getElementById(id);
+            return element ? element.value : null;
+        };
+    
         const datosGastos = {
-            fecha_pago: document.getElementById('fechaPago').value,
-            tipo_evento: document.getElementById('tipoEvento').value,
-            tipo_contendido: document.getElementById('tipoContenido').value,
-            duracion: parseInt(document.getElementById('duracion').value),
-            alcance: parseInt(document.getElementById('alcance').value),
-            inversion: parseFloat(document.getElementById('inversion').value),
+            fecha_pago: getValue('fechaPago'),
+            tipo_evento: getValue('tipoEvento'),
+            tipo_contendido: getValue('tipoContenido'),
+            duracion: parseInt(getValue('duracion')) || 0,
+            alcance: parseInt(getValue('alcance')) || 0,
+            inversion: parseFloat(getValue('inversion')) || 0,
             head_id: nuevaCampanaId
         };
+    
+        // Validación adicional
+        if (!datosGastos.head_id) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se ha seleccionado una campaña válida',
+                confirmButtonClass: 'btn btn-primary'
+            });
+            return;
+        }
+    
+        // Mostrar loader
+        Swal.fire({
+            title: 'Registrando gastos...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
     
         fetch('http://10.100.39.23:8000/campanas/apidescrip/', {
             method: 'POST',
@@ -313,42 +365,52 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error en el servidor: ' + response.status);
+                return response.json().then(err => {
+                    throw new Error(err.message || `Error del servidor: ${response.status}`);
+                });
             }
             return response.json();
         })
         .then(data => {
-            // Cerrar ambos modales de forma segura
-            const modalGastos = bootstrap.Modal.getInstance(document.getElementById('agregarGastosModal'));
-            const modalCampana = bootstrap.Modal.getInstance(document.getElementById('agregarCampanaModal'));
-            
-            if (modalGastos) modalGastos.hide();
-            if (modalCampana) modalCampana.hide();
-            
-            // Eliminar el backdrop manualmente si persiste
-            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-            document.body.classList.remove('modal-open');
-            document.body.style.overflow = '';
-            document.body.style.paddingRight = '';
-            
-            // Recargar datos
-            cargarDatosAPI();
-            
-            // Mostrar mensaje de éxito
-            alert('¡Gastos registrados correctamente!');
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'Gastos registrados correctamente',
+                confirmButtonClass: 'btn btn-primary'
+            }).then(() => {
+                // Cerrar modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('agregarGastosModal'));
+                if (modal) modal.hide();
+                
+                // Limpiar backdrop
+                document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                document.body.classList.remove('modal-open');
+                
+                // Recargar datos
+                cargarDatosAPI();
+            });
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Error al registrar los gastos: ' + error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message,
+                confirmButtonClass: 'btn btn-primary'
+            });
         });
     }
     
-    // Event listeners para los botones
+    // Event listener para el botón de guardar campaña
     document.getElementById('guardarCampanaBtn').addEventListener('click', function() {
         const nombreCampana = document.getElementById('nombreCampana').value.trim();
         
         if (nombreCampana === '') {
-            alert('Por favor ingresa un nombre para la campaña');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Campo requerido',
+                text: 'Por favor ingresa un nombre para la campaña',
+                confirmButtonClass: 'btn btn-primary'
+            });
             return;
         }
         
