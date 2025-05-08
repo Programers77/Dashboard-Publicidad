@@ -12,6 +12,8 @@
     --trend-color: #10b981;
     --trend-font-size: 15px;
     --trend-font-weight: 600;
+    
+    
   }
 
   * {
@@ -71,24 +73,6 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-  }
-
-  .btn-primary {
-    background-color: var(--primary-color);
-    color: var(--white);
-  }
-
-  .btn-primary:hover {
-    background-color: #3651d1;
-  }
-
-  .btn-secondary {
-    background-color: var(--secondary-color);
-    color: var(--white);
-  }
-
-  .btn-secondary:hover {
-    background-color: #e11e79;
   }
 
   .summary-cards {
