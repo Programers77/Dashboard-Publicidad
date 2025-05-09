@@ -338,28 +338,27 @@
   }
   
   .auth-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
+    margin-right: 8px;
   }
-  
+
   .auth-badge--approved {
-    background-color: rgba(76, 201, 240, 0.15);
-    color: var(--success);
+      background-color: #d4edda;
+      color: #155724;
   }
-  
-  .auth-badge--pending {
-    background-color: rgba(255, 193, 7, 0.15);
-    color: #FFA000;
-  }
-  
+
   .auth-badge--rejected {
-    background-color: rgba(230, 57, 70, 0.15);
-    color: var(--danger);
+      background-color: #f8d7da;
+      color: #721c24;
+  }
+
+  .auth-badge i {
+      margin-right: 5px;
+      font-size: 14px;
   }
   
   /* Estado Cell */
@@ -459,14 +458,10 @@
   }
   
   .btn-action.edit {
-    color: var(--warning);
-  }
-  
-  .btn-action.view {
     color: var(--info);
   }
-  
-  .btn-action.delete {
+
+   .btn-action.delete {
     color: var(--danger);
   }
   
@@ -793,3 +788,5 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+
+    
