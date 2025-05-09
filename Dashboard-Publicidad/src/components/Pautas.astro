@@ -109,101 +109,89 @@
   </div>
 
   <!-- Modal para Agregar/Editar Pauta -->
-  <div class="modal-overlay" id="pautaModal">
-    <div class="modal-container">
-      <div class="modal-header">
-        <h3 class="modal-title">Nueva Pauta Publicitaria</h3>
-        <button class="modal-close" id="closeModal">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="pautaForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fechaPauta">Fecha</label>
-              <input type="date" id="fechaPauta" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="nombrePauta">Nombre de Pauta</label>
-              <input type="text" id="nombrePauta" class="form-control" placeholder="Ej: Campaña Verano 2025" required>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="ubicacionPauta">Ubicación</label>
-              <input type="text" id="ubicacionPauta" class="form-control" placeholder="Ej: Centro Comercial Plaza Mayor" required>
-            </div>
-            <div class="form-group">
-              <label for="montoPauta">Monto de Pauta</label>
-              <div class="input-with-icon">
-                <i class="fas fa-dollar-sign"></i>
-                <input type="number" id="montoPauta" class="form-control" placeholder="0.00" min="0" step="0.01" required>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="autorizacionComercial">Autorización Comercial</label>
-              <select id="autorizacionComercial" class="form-control" required>
-                <option value="">Seleccionar estado</option>
-                <option value="approved">Aprobada</option>
-                <option value="pending">Pendiente</option>
-                <option value="rejected">Rechazada</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="autorizacionDirectiva">Autorización Directiva</label>
-              <select id="autorizacionDirectiva" class="form-control" required>
-                <option value="">Seleccionar estado</option>
-                <option value="approved">Aprobada</option>
-                <option value="pending">Pendiente</option>
-                <option value="rejected">Rechazada</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="estadoPauta">Estado de la Pauta</label>
-              <select id="estadoPauta" class="form-control" required>
-                <option value="">Seleccionar estado</option>
-                <option value="active">Activa</option>
-                <option value="in-progress">En Proceso</option>
-                <option value="on-hold">En Espera</option>
-                <option value="completed">Completada</option>
-                <option value="cancelled">Cancelada</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="modeloPauta">Modelo</label>
-              <select id="modeloPauta" class="form-control" required>
-                <option value="">Seleccionar modelo</option>
-                <option value="laura">Laura Mendoza</option>
-                <option value="carlos">Carlos Vega</option>
-                <option value="ana">Ana Martínez</option>
-                <option value="miguel">Miguel Sánchez</option>
-                <option value="sofia">Sofía Rodríguez</option>
-              </select>
-            </div>
-          </div>
-          
+<div class="modal-overlay" id="pautaModal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3 class="modal-title">Nueva Pauta Publicitaria</h3>
+      <button class="modal-close" id="closeModal">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form id="pautaForm">
+        <div class="form-row">
           <div class="form-group">
-            <label for="observacionesPauta">Observaciones</label>
-            <textarea id="observacionesPauta" class="form-control" rows="3" placeholder="Detalles adicionales sobre la pauta..."></textarea>
+            <label for="fechaPauta">Fecha</label>
+            <input type="date" id="fechaPauta" class="form-control" required>
           </div>
-          
-          <div class="form-actions">
-            <button type="button" class="btn-cancel" id="cancelPauta">Cancelar</button>
-            <button type="submit" class="btn-save">Guardar Pauta</button>
+          <div class="form-group">
+            <label for="nombrePauta">Nombre de Pauta</label>
+            <input type="text" id="nombrePauta" class="form-control" placeholder="Ej: Campaña Verano 2025" required>
           </div>
-        </form>
-      </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ubicacionPauta">Ubicación</label>
+            <input type="text" id="ubicacionPauta" class="form-control" placeholder="Ej: Centro Comercial Plaza Mayor" required>
+          </div>
+          <div class="form-group">
+            <label for="montoPauta">Monto de Pauta</label>
+            <div class="input-with-icon">
+              <i class="fas fa-dollar-sign"></i>
+              <input type="number" id="montoPauta" class="form-control" placeholder="0.00" min="0" step="0.01" required>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="autorizacionComercial">Autorización Comercial</label>
+            <select id="autorizacionComercial" class="form-control" required>
+              <option value="" selected disabled>Seleccionar estado</option>
+              <option value="approved">Aprobada</option>
+              <option value="pending">Pendiente</option>
+              <option value="rejected">Rechazada</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="autorizacionDirectiva">Autorización Directiva</label>
+            <select id="autorizacionDirectiva" class="form-control" required>
+              <option value="" selected disabled>Seleccionar estado</option>
+              <option value="approved">Aprobada</option>
+              <option value="pending">Pendiente</option>
+              <option value="rejected">Rechazada</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="estadoPauta">Estado de la Pauta</label>
+            <select id="estadoPauta" class="form-control" required>
+              <option value="" selected disabled>Seleccionar estado</option>
+              <option value="active">Activa</option>
+              <option value="in-progress">En Proceso</option>
+              <option value="on-hold">En Espera</option>
+              <option value="completed">Completada</option>
+              <option value="cancelled">Cancelada</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modeloPauta">Modelo</label>
+            <select id="modeloPauta" class="form-control" required>
+              <option value="" selected disabled>Cargando modelos...</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" id="cancelPauta">Cancelar</button>
+          <button type="submit" class="btn-save">Guardar Pauta</button>
+        </div>
+      </form>
     </div>
   </div>
-
-
+</div>
 
 <script src="/pautas.js" defer></script>
