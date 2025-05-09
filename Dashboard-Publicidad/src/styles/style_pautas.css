@@ -738,3 +738,43 @@
       align-items: center;
     }
   }
+
+    /* Mensajes de estado */
+    .loading-message, 
+    .no-data-message, 
+    .error-message {
+      text-align: center;
+      padding: 20px;
+      font-size: 16px;
+    }
+
+    .loading-message {
+      color: #6c757d;
+    }
+
+    .loading-message i {
+      margin-right: 10px;
+    }
+
+    .no-data-message {
+      color: #6c757d;
+      font-style: italic;
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    .error-message i {
+      margin-right: 8px;
+    }
+
+    .fa-spinner {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
