@@ -1,0 +1,174 @@
+
+  <div class="dashboard">
+    <!-- Contenido Principal -->
+    <div class="main-content">
+      <div class="header">
+        <h2>Gestión de Pautas Publicitarias</h2>
+      </div>
+
+      <!-- Tarjetas de resumen -->
+      <div class="cards-row">
+        <div id="PautasActivas" class="card">
+          <div class="card-header">
+            <div class="card-title">Pautas Activas</div>
+            <div class="card-icon bg-primary">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+          </div>
+          <div class="card-value loading">Cargando...</div>
+          <div class="card-label">En ejecución</div>
+        </div>
+        
+        <div id="InversionTotal" class="card">
+          <div class="card-header">
+            <div class="card-title">Inversión Total</div>
+            <div class="card-icon bg-success">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+          </div>
+          <div class="card-value loading">Cargando...</div>
+          <div class="card-label">Presupuesto actual</div>
+
+        </div>
+        
+        <div id="PautasPendientes" class="card">
+          <div class="card-header">
+            <div class="card-title">Pautas Pendientes</div>
+            <div class="card-icon bg-warning">
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+          <div class="card-value loading">Cargando...</div>
+          <div class="card-label">Por autorizar</div>
+        </div>
+      </div>
+
+      <!-- Gestión de Pautas -->
+      <div class="card pautas-management-card">
+        <div class="card-header">
+          <div class="card-title-container">
+            <i class="fas fa-ad card-header-icon"></i>
+            <h3 class="card-title">Administración de Pautas</h3>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-add-pauta" id="btnAddPauta">
+              <i class="fas fa-plus"></i> Nueva Pauta
+            </button>
+          </div>
+        </div>
+
+        <!-- Tabla de pautas -->
+        <div class="pautas-table-container">
+          <table class="pautas-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Nombre de Pauta</th>
+                <th>Ubicación</th>
+                <th>Modelo</th>
+                <th>Autorizaciones</th>
+                <th>Monto</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="8" class="loading-message">
+                  <i class="fas fa-spinner fa-spin"></i> Cargando datos de pautas...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Agregar Pauta -->
+  <div class="modal-overlay" id="pautaModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Nueva Pauta Publicitaria</h3>
+        <button class="modal-close" id="closeModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="pautaForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fechaPauta">Fecha</label>
+              <input type="date" id="fechaPauta" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="nombrePauta">Nombre de Pauta</label>
+              <input type="text" id="nombrePauta" class="form-control" placeholder="Ej: Campaña Verano 2025" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ubicacionPauta">Ubicación</label>
+              <input type="text" id="ubicacionPauta" class="form-control" placeholder="Ej: Centro Comercial Plaza Mayor" required>
+            </div>
+            <div class="form-group">
+              <label for="montoPauta">Monto de Pauta</label>
+              <div class="input-with-icon">
+                <i class="fas fa-dollar-sign"></i>
+                <input type="number" id="montoPauta" class="form-control" placeholder="0.00" min="0" step="0.01" required>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="autorizacionComercial">Autorización Comercial</label>
+              <select id="autorizacionComercial" class="form-control" required>
+                <option value="" selected disabled>Seleccionar estado</option>
+                <option value="true">Aprobada</option>
+                <option value="false">Rechazada</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="autorizacionDirectiva">Autorización Directiva</label>
+              <select id="autorizacionDirectiva" class="form-control" required>
+                <option value="" selected disabled>Seleccionar estado</option>
+                <option value="true">Aprobada</option>
+                <option value="false">Rechazada</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="estadoPauta">Estado de la Pauta</label>
+              <select id="estadoPauta" class="form-control" required>
+                <option value="" selected disabled>Seleccionar estado</option>
+                <option value="Activa">Activa</option>
+                <option value="En Proceso">En Proceso</option>
+                <option value="En Espera">En Espera</option>
+                <option value="Completada">Completada</option>
+                <option value="Cancelada">Cancelada</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="modeloPauta">Modelo</label>
+              <select id="modeloPauta" class="form-control" required>
+                <option value="" selected disabled>Cargando modelos...</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" id="cancelPauta">Cancelar</button>
+            <button type="submit" class="btn-save">Guardar Pauta</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+<script src="/pautas.js" defer></script>
