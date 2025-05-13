@@ -789,4 +789,197 @@
         100% { transform: rotate(360deg); }
     }
 
-    
+
+
+    /* Estilos específicos para el modal de pautas */
+.pauta-modal {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+
+.pauta-modal-content {
+  background-color: #fff;
+  margin: 2% auto;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  animation: pauta-modal-fadein 0.3s;
+}
+
+@keyframes pauta-modal-fadein {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.pauta-close-modal {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.pauta-close-modal:hover {
+  color: #333;
+}
+
+.pauta-form-group {
+  margin-bottom: 20px;
+}
+
+.pauta-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.pauta-form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.pauta-form-control:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.pauta-radio-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.pauta-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  padding-left: 28px;
+}
+
+.pauta-radio-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.pauta-radio-custom {
+  position: absolute;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+}
+
+.pauta-radio-input:checked ~ .pauta-radio-custom {
+  background-color: #4a90e2;
+  border-color: #4a90e2;
+}
+
+.pauta-radio-input:checked ~ .pauta-radio-custom::after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+.pauta-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.pauta-btn-guardar {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.pauta-btn-guardar:hover {
+  background-color: #3a7bc8;
+}
+
+.pauta-btn-cancelar {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.pauta-btn-cancelar:hover {
+  background-color: #e9e9e9;
+}
+
+/* Animación de spinner */
+.pauta-spinner {
+  text-align: center;
+  padding: 20px;
+}
+
+.pauta-spinner-inner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4a90e2;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: pauta-spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes pauta-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pauta-spinner p {
+  margin-top: 10px;
+  color: #4a90e2;
+  font-weight: bold;
+}
+
+.pauta-modelo-titulo {
+  color: #333;
+  font-size: 1.2em;
+  margin: 0 0 15px 0;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  text-align: center;
+}
+

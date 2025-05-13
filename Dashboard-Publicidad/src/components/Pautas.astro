@@ -146,9 +146,7 @@
               <select id="estadoPauta" class="form-control" required>
                 <option value="" selected disabled>Seleccionar estado</option>
                 <option value="Activa">Activa</option>
-                <option value="En Proceso">En Proceso</option>
-                <option value="En Espera">En Espera</option>
-                <option value="Completada">Completada</option>
+                <option value="Pendiente">Pendiente</option>
                 <option value="Cancelada">Cancelada</option>
               </select>
             </div>
@@ -168,6 +166,92 @@
       </div>
     </div>
   </div>
+
+    <!-- Modal de Edición de Pautas -->
+    <div id="pauta-modal-edicion" class="pauta-modal">
+      <div class="pauta-modal-content">
+        <span class="pauta-close-modal">&times;</span>
+        <h2>Editar Pauta</h2>
+
+        <!-- Título del modelo (antes era un input) -->
+        <h3 id="pauta-modelo-titulo" class="pauta-modelo-titulo"></h3> <!-- Nuevo elemento -->
+
+        <!-- Spinner de carga -->
+        <div id="pauta-spinner" class="pauta-spinner" style="display: none;">
+          <div class="pauta-spinner-inner"></div>
+          <p>Cargando datos...</p>
+        </div>
+
+        <form id="pauta-form-editar">
+          <div class="pauta-form-group">
+            <label for="pauta-editar-fecha">Fecha:</label>
+            <input type="date" id="pauta-editar-fecha" class="pauta-form-control" required>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label for="pauta-editar-nombre">Nombre de Pauta:</label>
+            <input type="text" id="pauta-editar-nombre" class="pauta-form-control" required>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label for="pauta-editar-ubicacion">Ubicación:</label>
+            <input type="text" id="pauta-editar-ubicacion" class="pauta-form-control" required>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label for="pauta-editar-monto">Monto:</label>
+            <input type="number" id="pauta-editar-monto" class="pauta-form-control" step="0.01" required>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label>Autorización Comercial:</label>
+            <div class="pauta-radio-group">
+              <label class="pauta-radio-label">
+                <input type="radio" name="pauta-auth-comercial" value="true" class="pauta-radio-input"> 
+                <span class="pauta-radio-custom"></span>
+                Aprobada
+              </label>
+              <label class="pauta-radio-label">
+                <input type="radio" name="pauta-auth-comercial" value="false" class="pauta-radio-input">
+                <span class="pauta-radio-custom"></span>
+                Rechazada
+              </label>
+            </div>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label>Autorización Directiva:</label>
+            <div class="pauta-radio-group">
+              <label class="pauta-radio-label">
+                <input type="radio" name="pauta-auth-directiva" value="true" class="pauta-radio-input">
+                <span class="pauta-radio-custom"></span>
+                Aprobada
+              </label>
+              <label class="pauta-radio-label">
+                <input type="radio" name="pauta-auth-directiva" value="false" class="pauta-radio-input">
+                <span class="pauta-radio-custom"></span>
+                Rechazada
+              </label>
+            </div>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label for="pauta-editar-estado">Estado de la Pauta:</label>
+            <select id="pauta-editar-estado" class="pauta-form-control" required>
+              <option value="PENDIENTE">Pendiente</option>
+              <option value="ACTIVA">Activa</option>
+              <option value="PROCESADA">Procesada</option>
+              <option value="CANCELADA">Cancelada</option>
+            </select>
+          </div>
+          
+          <div class="pauta-form-actions">
+            <button type="button" class="pauta-btn-cancelar">Cancelar</button>
+            <button type="submit" class="pauta-btn-guardar">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
 
 
