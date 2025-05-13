@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
 <div class="container">
   <!-- Main Content Grid -->
@@ -19,9 +22,11 @@
             </div>
           </div>
           <div class="profile-info">
-            <div class="model-name" id="data-model-id">
-              Maria Eugenia Quevedo
-              <div class="model-id">ID: MOD-2023-001</div>
+            <div class="model-name" id="nombre-perfil">
+              
+            </div>
+            <div>
+              <div id="id-perfil"></div>
             </div>
             <div class="model-status">
               <span class="status-badge active">
@@ -37,6 +42,7 @@
         >
           <i class="fas fa-edit"></i> Editar Modelo
         </button>
+
         <!-- Personal Details -->
         <div class="details-section mt-4">
           <h3 class="text-xl font-semibold mb-3">
@@ -44,23 +50,19 @@
           </h3>
           <div class="detail-item mb-2">
             <span class="detail-label font-medium">CI:</span>
-            <span class="detail-value" id="current-ci">12.345.678</span>
+            <span class="detail-value" id="cedula-perfil"></span>
           </div>
           <div class="detail-item mb-2">
             <span class="detail-label font-medium">Fecha Nacimiento:</span>
-            <span class="detail-value" id="current-birthdate"
-              >01/01/1990 (34 años)</span
-            >
+            <span class="detail-value" id="perfil-edad"></span>
           </div>
           <div class="detail-item mb-2">
             <span class="detail-label font-medium">Teléfono:</span>
-            <span class="detail-value" id="current-phone">+598 99 123 456</span>
+            <span class="" id="perfil-telefono"></span>
           </div>
           <div class="detail-item mb-2">
             <span class="detail-label font-medium">Email:</span>
-            <span class="detail-value" id="current-email"
-              >mquevedo@example.com</span
-            >
+            <span class="detail-value" id="perfil-email"></span>
           </div>
         </div>
 
@@ -88,12 +90,7 @@
                 <form id="formEditarModelo">
                   <div class="mb-3">
                     <label for="edit-ci" class="form-label">CI</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="edit-ci"
-                      value="12.345.678"
-                    />
+                    <input type="text" class="form-control" id="edit-ci" />
                   </div>
                   <div class="mb-3">
                     <label for="edit-birthdate" class="form-label"
@@ -107,21 +104,11 @@
                   </div>
                   <div class="mb-3">
                     <label for="edit-phone" class="form-label">Teléfono</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="edit-phone"
-                      value="+598 99 123 456"
-                    />
+                    <input type="tel" class="form-control" id="edit-phone" />
                   </div>
                   <div class="mb-3">
                     <label for="edit-email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="edit-email"
-                      value="mquevedo@example.com"
-                    />
+                    <input type="email" class="form-control" id="edit-email" />
                   </div>
                 </form>
               </div>
@@ -137,127 +124,12 @@
               </div>
             </div>
           </div>
-        </div>
-        <!-- Modal de Bootstrap -->
-        <div
-          class="modal fade"
-          id="editarModeloModal"
-          tabindex="-1"
-          aria-labelledby="editarModeloModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editarModeloModalLabel">
-                  Editar Información del Modelo
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form id="formEditarModelo">
-                  <div class="mb-3">
-                    <label for="edit-ci" class="form-label">CI</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="edit-ci"
-                      value="12.345.678"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="edit-birthdate" class="form-label"
-                      >Fecha de Nacimiento</label
-                    >
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="edit-birthdate"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="edit-phone" class="form-label">Teléfono</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="edit-phone"
-                      value="+598 99 123 456"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="edit-email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="edit-email"
-                      value="mquevedo@example.com"
-                    />
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal">Cancelar</button
-                >
-                <button type="button" class="btn btn-primary"
-                  >Guardar Cambios</button
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Wallet Summary -->
-        <div class="details-section wallet-summary">
-          <h3><i class="fas fa-wallet"></i> Resumen Billetera</h3>
-          <div class="wallet-balance">
-            <div class="balance-amount">$500.00</div>
-            <div class="balance-label">Saldo Actual</div>
-          </div>
-          <div class="wallet-stats">
-            <div class="stat-item">
-              <div class="stat-value credit">$250.00</div>
-              <div class="stat-label">Crédito</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value debit">$100.00</div>
-              <div class="stat-label">Débito</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">5</div>
-              <div class="stat-label">Movimientos</div>
-            </div>
-          </div>
-          <button class="btn btn-view-wallet">
-            <i class="fas fa-eye"></i> Ver detalle completo
-          </button>
-        </div>
-      </div>
-
-      <!-- QR Code Section -->
-      <div class="qr-card">
-        <h3><i class="fas fa-qrcode"></i> Identificación</h3>
-        <div class="qr-code-container">
-          <img src="/qr-code-placeholder.png" alt="Código QR" />
-          <div class="qr-text">ID: MOD-2023-001</div>
-        </div>
-        <div class="qr-actions">
-          <button class="btn btn-download">
-            <i class="fas fa-download"></i> Descargar
-          </button>
-          <button class="btn btn-print">
-            <i class="fas fa-print"></i> Imprimir
-          </button>
         </div>
       </div>
     </div>
 
+    
+    
     <!-- Column 2: Main Content -->
     <div class="content-column">
       <!-- Guidelines Section -->
@@ -569,28 +441,30 @@
 </div>
 
 <link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-rel="stylesheet"
-integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+  crossorigin="anonymous"
 />
 <link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
 <link
-rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
 />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Animate.css -->
 <link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"
 ></script>
 <script src="/modelo.js" defer></script>
+<script src="/modelo-apis.js" defer></script>
+<script src="/datos-model.js" defer></script>
