@@ -51,6 +51,9 @@
             <h3 class="card-title">Administración de Pautas</h3>
           </div>
           <div class="card-header-actions">
+            <button class="btn-reasignar-pauta" id="btnReasignar">
+              <i class="fas fa-sync-alt"></i> Reasignar Pauta
+            </button>
             <button class="btn-add-pauta" id="btnAddPauta">
               <i class="fas fa-plus"></i> Nueva Pauta
             </button>
@@ -253,6 +256,58 @@
       </div>
     </div>
 
+    <!-- Modal de Reasignación -->
+    <div id="modalReasignar" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title">
+            <i class="fas fa-sync-alt"></i>
+            Reasignación de Pauta Publicitaria
+          </h3>
+          <button class="modal-close" id="closeReasignarModal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-description">
+            Seleccione el modelo y la pauta publicitaria que desea reasignar.
+          </div>
+          
+          <form id="reasignarForm">
+            <div class="form-group">
+              <label for="selectModelo">Modelo</label>
+              <div class="select-container">
+                <select id="selectModelo" class="form-control custom-select" required>
+                  <option value="" selected disabled>Seleccionar modelo...</option>
+                  <!-- Las opciones se llenarán dinámicamente desde JS -->
+                </select>
+                <div class="select-arrow">
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="selectPauta">Pauta Publicitaria</label>
+              <div class="select-container">
+                <select id="selectPauta" class="form-control custom-select" required>
+                  <option value="" selected disabled>Seleccionar pauta...</option>
+                  <!-- Las opciones se llenarán dinámicamente desde JS -->
+                </select>
+                <div class="select-arrow">
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" id="cancelarReasignar">Cancelar</button>
+              <button type="submit" class="btn-save">Confirmar Reasignación</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 
 <script src="/pautas.js" defer></script>
