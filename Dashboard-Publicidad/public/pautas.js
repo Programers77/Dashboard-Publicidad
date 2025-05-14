@@ -659,6 +659,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'hidden';
         
         try {
+            // Mostrar notificación de carga
+            Swal.fire({
+                title: 'Cargando modelos',
+                html: 'Por favor espera mientras cargamos la lista de modelos...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
             elements.selectModelo.disabled = true;
             elements.selectModelo.innerHTML = '<option value="">Cargando modelos...</option>';
             
@@ -675,14 +685,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 elements.selectModelo.appendChild(option);
             });
             
-            cargarTodasLasPautas();
+            await cargarTodasLasPautas();
             elements.selectModelo.disabled = false;
+            
+            // Cerrar notificación de carga
+            Swal.close();
             
         } catch (error) {
             console.error('Error al cargar modelos:', error);
             elements.selectModelo.innerHTML = '<option value="">Error al cargar modelos</option>';
+            
+            // Mostrar notificación de error
+            mostrarNotificacion('error', 'Error al cargar modelos', error.message);
         }
     }
+
+// Función auxiliar para mostrar notificaciones (asegúrate de que existe)
+function mostrarNotificacion(tipo, titulo, mensaje = '') {
+    Swal.fire({
+        icon: tipo,
+        title: titulo,
+        text: mensaje,
+        confirmButtonColor: '#4361ee',
+        confirmButtonText: 'Entendido'
+    });
+}
 
     function closeReasignarModal() {
         elements.modalReasignar.classList.remove('active');
