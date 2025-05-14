@@ -28,7 +28,6 @@
           </div>
           <div class="card-value loading">Cargando...</div>
           <div class="card-label">Presupuesto actual</div>
-
         </div>
         
         <div id="PautasPendientes" class="card">
@@ -41,7 +40,20 @@
           <div class="card-value loading">Cargando...</div>
           <div class="card-label">Por autorizar</div>
         </div>
+
+        <div id="PautasProcesadas" class="card">
+        <div class="card-header">
+          <div class="card-title">Pautas Procesadas</div>
+          <div class="card-icon bg-danger">
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+        <div class="card-value loading">Cargando...</div>
+        <div class="card-label">Finalizadas</div> 
       </div>
+      </div>
+
+      
 
       <!-- Gestión de Pautas -->
       <div class="card pautas-management-card">
@@ -51,6 +63,9 @@
             <h3 class="card-title">Administración de Pautas</h3>
           </div>
           <div class="card-header-actions">
+            <button class="btn-reasignar-pauta" id="btnReasignar">
+              <i class="fas fa-sync-alt"></i> Reasignar Pauta
+            </button>
             <button class="btn-add-pauta" id="btnAddPauta">
               <i class="fas fa-plus"></i> Nueva Pauta
             </button>
@@ -146,10 +161,7 @@
               <select id="estadoPauta" class="form-control" required>
                 <option value="" selected disabled>Seleccionar estado</option>
                 <option value="Activa">Activa</option>
-                <option value="En Proceso">En Proceso</option>
-                <option value="En Espera">En Espera</option>
-                <option value="Completada">Completada</option>
-                <option value="Cancelada">Cancelada</option>
+                <option value="Pendiente">Pendiente</option>
               </select>
             </div>
             <div class="form-group">
@@ -169,6 +181,143 @@
     </div>
   </div>
 
+    <!-- Modal de Edición de Pautas -->
+    <div id="pauta-modal-edicion" class="pauta-modal">
+      <div class="pauta-modal-content">
+        <span class="pauta-close-modal">&times;</span>
+        <h2>Editar Pauta</h2>
+
+        <!-- Título del modelo (antes era un input) -->
+        <h3 id="pauta-modelo-titulo" class="pauta-modelo-titulo"></h3> <!-- Nuevo elemento -->
+
+        <!-- Spinner de carga -->
+        <div id="pauta-spinner" class="pauta-spinner" style="display: none;">
+          <div class="pauta-spinner-inner"></div>
+          <p>Cargando datos...</p>
+        </div>
+
+        <form id="pauta-form-editar">
+          <div class="pauta-form-group">
+            <label for="pauta-editar-fecha">Fecha:</label>
+            <input type="date" id="pauta-editar-fecha" class="pauta-form-control" required>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label for="pauta-editar-nombre">Nombre de Pauta:</label>
+            <input type="text" id="pauta-editar-nombre" class="pauta-form-control" required>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label for="pauta-editar-ubicacion">Ubicación:</label>
+            <input type="text" id="pauta-editar-ubicacion" class="pauta-form-control" required>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label for="pauta-editar-monto">Monto:</label>
+            <input type="number" id="pauta-editar-monto" class="pauta-form-control" step="0.01" required>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label>Autorización Comercial:</label>
+            <div class="pauta-radio-group">
+              <label class="pauta-radio-label">
+                <input type="radio" name="pauta-auth-comercial" value="true" class="pauta-radio-input"> 
+                <span class="pauta-radio-custom"></span>
+                Aprobada
+              </label>
+              <label class="pauta-radio-label">
+                <input type="radio" name="pauta-auth-comercial" value="false" class="pauta-radio-input">
+                <span class="pauta-radio-custom"></span>
+                Rechazada
+              </label>
+            </div>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label>Autorización Directiva:</label>
+            <div class="pauta-radio-group">
+              <label class="pauta-radio-label">
+                <input type="radio" name="pauta-auth-directiva" value="true" class="pauta-radio-input">
+                <span class="pauta-radio-custom"></span>
+                Aprobada
+              </label>
+              <label class="pauta-radio-label">
+                <input type="radio" name="pauta-auth-directiva" value="false" class="pauta-radio-input">
+                <span class="pauta-radio-custom"></span>
+                Rechazada
+              </label>
+            </div>
+          </div>
+          
+          <div class="pauta-form-group">
+            <label for="pauta-editar-estado">Estado de la Pauta:</label>
+            <select id="pauta-editar-estado" class="pauta-form-control" required>
+              <option value="PENDIENTE">Pendiente</option>
+              <option value="ACTIVA">Activa</option>
+              <option value="PROCESADA">Procesada</option>
+            </select>
+          </div>
+          
+          <div class="pauta-form-actions">
+            <button type="button" class="pauta-btn-cancelar">Cancelar</button>
+            <button type="submit" class="pauta-btn-guardar">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de Reasignación -->
+    <div id="modalReasignar" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title">
+            <i class="fas fa-sync-alt"></i>
+            Reasignación de Pauta Publicitaria
+          </h3>
+          <button class="modal-close" id="closeReasignarModal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-description">
+            Seleccione el modelo y la pauta publicitaria que desea reasignar.
+          </div>
+          
+          <form id="reasignarForm">
+            <div class="form-group">
+              <label for="selectModelo">Modelo</label>
+              <div class="select-container">
+                <select id="selectModelo" class="form-control custom-select" required>
+                  <option value="" selected disabled>Seleccionar modelo...</option>
+                  <!-- Las opciones se llenarán dinámicamente desde JS -->
+                </select>
+                <div class="select-arrow">
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="selectPauta">Pauta Publicitaria</label>
+              <div class="select-container">
+                <select id="selectPauta" class="form-control custom-select" required>
+                  <option value="" selected disabled>Seleccionar pauta...</option>
+                  <!-- Las opciones se llenarán dinámicamente desde JS -->
+                </select>
+                <div class="select-arrow">
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" id="cancelarReasignar">Cancelar</button>
+              <button type="submit" class="btn-save">Confirmar Reasignación</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 
 <script src="/pautas.js" defer></script>
