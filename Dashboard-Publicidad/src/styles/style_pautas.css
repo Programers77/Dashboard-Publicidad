@@ -431,15 +431,13 @@
   .pauta-status--active .pauta-status__circle {
     background-color: var(--success);
   }
-  
-  /* Estado: Cancelada */
-.pauta-status--canceled {
-    background-color: #FFEBEE;
-    color: #C62828;
-}
-.pauta-status--canceled .pauta-status__circle {
-    background-color: #F44336;
-}
+
+/* Estado: Pendiente */
+.pauta-status--pending {
+    background-color: rgba(67, 97, 238, 0.15);
+    color: var(--primary);
+    border-left: 3px solid var(--primary);
+}  
 
 /* Estado: Procesada */
 .pauta-status--processed {

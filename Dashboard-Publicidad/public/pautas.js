@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const pendientesElement = document.querySelector('#PautasPendientes .card-value');
             const activasElement = document.querySelector('#PautasActivas .card-value');
             const inversionElement = document.querySelector('#InversionTotal .card-value');
+            const procesadaElement = document.querySelector('#PautasProcesadas .card-value');
             
             if(pendientesElement) {
                 pendientesElement.textContent = data.pendientes;
@@ -137,6 +138,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 inversionElement.textContent = `$${data.inversion_Total.toLocaleString()}`;
                 inversionElement.className = 'card-value';
             }
+
+            if(procesadaElement) {
+                procesadaElement.textContent = data.total_procesadas;
+                procesadaElement.className = 'card-value';
+            }
+
+
             
             document.querySelectorAll('.card-trend').forEach(el => {
                 el.className = 'card-trend trend-neutral';
@@ -204,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         statusClass = 'pauta-status--active';
                         statusText = 'Activa';
                         break;
-                    case 'cancelada':
-                        statusClass = 'pauta-status--canceled';
-                        statusText = 'Cancelada';
-                        break;
+                    case 'pendiente':
+                        statusClass = 'pauta-status--pending';
+                        statusText = 'Pendiente';
+                        break;    
                     default:
                         statusClass = 'pauta-status--processed';
                         statusText = 'Procesada';
