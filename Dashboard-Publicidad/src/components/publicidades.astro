@@ -1,0 +1,318 @@
+<div class="main-content animate__animated animate__fadeIn">
+  <div class="header">
+    <h2><i class="fas fa-ad"></i> Gestión de Publicidades</h2>
+    <button class="btn btn-primary" id="new-ad-button">
+        <i class="fas fa-plus"></i> Nueva Publicidad
+    </button>
+  </div>
+
+  <!-- Resumen Estadístico -->
+  <div class="cards-row">
+    <div class="card animate__animated animate__fadeInUp">
+      <div class="card-header">
+        <div class="card-title">Campañas Activas</div>
+        <div class="card-icon bg-success">
+          <i class="fas fa-play-circle"></i>
+        </div>
+      </div>
+      <div class="card-value">24</div>
+      <div class="card-label">+5 este mes</div>
+      <div class="card-trend trend-up">
+        <i class="fas fa-arrow-up"></i> 12.5%
+      </div>
+    </div>
+
+    <div class="card animate__animated animate__fadeInUp animate__delay-1s">
+      <div class="card-header">
+        <div class="card-title">Presupuesto Total</div>
+        <div class="card-icon bg-primary">
+          <i class="fas fa-dollar-sign"></i>
+        </div>
+      </div>
+      <div class="card-value">$12,450</div>
+      <div class="card-label">80% del límite mensual</div>
+      <div class="progress-bar">
+        <div class="progress bg-warning" style="width: 80%"></div>
+      </div>
+    </div>
+
+    <div class="card animate__animated animate__fadeInUp animate__delay-2s">
+      <div class="card-header">
+        <div class="card-title">Campañas en Curso</div>
+        <div class="card-icon bg-info">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+      </div>
+      <div class="card-value">8</div>
+      <div class="card-label">3 finalizando esta semana</div>
+      <div class="card-trend trend-down">
+        <i class="fas fa-arrow-down"></i> 5.2%
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Publicidades -->
+  <div class="card animate__animated animate__fadeIn">
+    <div class="card-header">
+      <h3 class="card-title"><i class="fas fa-list-ul"></i> Listado de Campañas</h3>
+    </div>
+    
+    <table class="payment-table">
+      <thead>
+        <tr>
+          <th>Publicidad</th>
+          <th>Medio</th>
+          <th>Inversión</th>
+          <th>Periodo</th>
+          <th>Alcance</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="animate__animated animate__fadeIn">
+          <td>
+            <div class="model-profile">
+              <img src="https://via.placeholder.com/48/4361ee/ffffff?text=CV23" alt="Publicidad" class="model-avatar">
+              <div class="model-details">
+                <span class="model-name">Campaña Verano 2023</span>
+                <span class="model-handle">#PUB-001</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="media-tag social-media">Redes Sociales</span>
+          </td>
+          <td class="payment-amount">$2,500</td>
+          <td>
+            <div class="fecha-pago">
+              <span class="date">15 Jun - 30 Ago</span>
+              <span class="date-status upcoming">En curso</span>
+            </div>
+          </td>
+          <td>
+            <div class="reach-info">
+              <span class="reach-value">125K</span>
+              <span class="reach-change trend-up"><i class="fas fa-arrow-up"></i> 12%</span>
+            </div>
+          </td>
+          <td>
+            <span class="payment-status payment-status--completed">
+              <span class="payment-status__circle"></span>
+              <span class="payment-status__text">Activo</span>
+            </span>
+          </td>
+          <td class="action-cell">
+            <div class="action-buttons">
+              <button class="btn-action view-receipt" title="Ver detalles">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="btn-action edit" title="Editar">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-action confirm" title="Pausar">
+                <i class="fas fa-pause"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="animate__animated animate__fadeIn">
+          <td>
+            <div class="model-profile">
+              <img src="https://via.placeholder.com/48/3f37c9/ffffff?text=LPX" alt="Publicidad" class="model-avatar">
+              <div class="model-details">
+                <span class="model-name">Lanzamiento Producto X</span>
+                <span class="model-handle">#PUB-002</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="media-tag tv-media">TV</span>
+          </td>
+          <td class="payment-amount">$5,800</td>
+          <td>
+            <div class="fecha-pago">
+              <span class="date">01 Sep - 30 Sep</span>
+              <span class="date-status upcoming">Próximo</span>
+            </div>
+          </td>
+          <td>
+            <div class="reach-info">
+              <span class="reach-value">350K</span>
+              <span class="reach-change">-</span>
+            </div>
+          </td>
+          <td>
+            <span class="payment-status payment-status--pending">
+              <span class="payment-status__circle"></span>
+              <span class="payment-status__text">Pendiente</span>
+            </span>
+          </td>
+          <td class="action-cell">
+            <div class="action-buttons">
+              <button class="btn-action view-receipt" title="Ver detalles">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="btn-action edit" title="Editar">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-action confirm" title="Activar">
+                <i class="fas fa-play"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="animate__animated animate__fadeIn">
+          <td>
+            <div class="model-profile">
+              <img src="https://via.placeholder.com/48/4895ef/ffffff?text=ON23" alt="Publicidad" class="model-avatar">
+              <div class="model-details">
+                <span class="model-name">Oferta Navideña</span>
+                <span class="model-handle">#PUB-003</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="media-tag radio-media">Radio</span>
+          </td>
+          <td class="payment-amount">$1,200</td>
+          <td>
+            <div class="fecha-pago">
+              <span class="date">01 Dic - 25 Dic</span>
+              <span class="date-status completed">Finalizado</span>
+            </div>
+          </td>
+          <td>
+            <div class="reach-info">
+              <span class="reach-value">85K</span>
+              <span class="reach-change trend-down"><i class="fas fa-arrow-down"></i> 8%</span>
+            </div>
+          </td>
+          <td>
+            <span class="payment-status">
+              <span class="payment-status__circle"></span>
+              <span class="payment-status__text">Finalizado</span>
+            </span>
+          </td>
+          <td class="action-cell">
+            <div class="action-buttons">
+              <button class="btn-action view-receipt" title="Ver detalles">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="btn-action edit" title="Reutilizar">
+                <i class="fas fa-redo"></i>
+              </button>
+              <button class="btn-action" title="Reporte">
+                <i class="fas fa-chart-pie"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
+  </div>
+</div>
+
+<!-- Modal para Nombre de Publicidad -->
+<div class="modal fade" id="adNameModal" tabindex="-1" aria-labelledby="adNameModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-gradient-primary text-white">
+        <h5 class="modal-title" id="adNameModalLabel">
+          <i class="fas fa-ad me-2"></i>Nueva Campaña Publicitaria
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="adNameForm">
+          <div class="mb-4">
+            <label for="campaignName" class="form-label fw-semibold">Nombre de la Campaña</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="fas fa-heading text-primary"></i></span>
+              <input type="text" class="form-control py-2" id="campaignName" 
+                     placeholder="Ej: Lanzamiento Verano 2024" required>
+            </div>
+            <div class="form-text">Este nombre identificará tu campaña en el sistema</div>
+          </div>
+          
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <i class="fas fa-times me-2"></i>Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-arrow-right me-2"></i>Continuar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Detalles de Publicidad -->
+<div class="modal fade" id="adDetailsModal" tabindex="-1" aria-labelledby="adDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-gradient-primary text-white">
+        <h5 class="modal-title" id="adDetailsModalLabel">
+          <i class="fas fa-list-ul me-2"></i>Detalles de la Campaña
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex align-items-center mb-4">
+          <div class="flex-shrink-0">
+            <div class="avatar avatar-lg bg-light-primary rounded-circle d-flex align-items-center justify-content-center">
+              <i class="fas fa-ad text-primary fs-4"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h6 class="mb-0" id="displayCampaignName">Nombre de la Campaña</h6>
+            <small class="text-muted">Complete los detalles de la publicidad</small>
+          </div>
+        </div>
+        
+        <form id="adDetailsForm">
+          <div id="itemsContainer">
+            <!-- Primer conjunto de campos -->
+            <div class="item-group mb-3 border-bottom pb-3">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Concepto</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="fas fa-tag text-primary"></i></span>
+                    <input type="text" id="itemName" class="form-control item-name" placeholder="Ej: Espacio en revista" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Valor</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="fas fa-dollar-sign text-primary"></i></span>
+                    <input type="number" id="itemValue" class="form-control item-value" placeholder="0.00" min="0" step="0.01" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button type="button" id="addMoreItems" class="btn btn-outline-primary mb-4">
+            <i class="fas fa-plus-circle me-2"></i>Añadir Otro Concepto
+          </button> 
+
+          <div class="d-flex justify-content-between align-items-center border-top pt-4">
+            <button type="button" class="btn btn-outline-secondary" id="backToNameModal">
+              <i class="fas fa-arrow-left me-2"></i>Regresar
+            </button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-save me-2"></i>Guardar Campaña
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/publicidades.js" defer></script>

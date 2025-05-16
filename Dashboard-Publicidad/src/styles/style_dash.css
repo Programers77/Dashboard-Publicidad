@@ -146,6 +146,7 @@ body {
     padding: 20px;
     box-shadow: var(--card-shadow);
     transition: var(--transition);
+    width: 100%;
 }
 
 .card:hover {
