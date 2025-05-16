@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <div class="main-content animate__animated animate__fadeIn">
   <div class="header">
     <h2><i class="fas fa-ad"></i> Gestión de Publicidades</h2>
@@ -218,172 +215,104 @@
   </div>
 </div>
 
-<!-- Modal para nueva publicidad -->
-<div class="modal fade" id="adModal" tabindex="-1" aria-labelledby="adModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="adModalLabel"><i class="fas fa-plus-circle"></i> Nueva Campaña Publicitaria</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Paso 1: Nombre de la publicidad -->
-          <div id="step1">
-            <div class="mb-4 text-center">
-              <i class="fas fa-ad fa-3x mb-3" style="color: var(--primary-color);"></i>
-              <h4>Crear Nueva Campaña</h4>
-              <p class="text-muted">Comience ingresando los detalles básicos de su nueva campaña publicitaria</p>
+<!-- Modal para Nombre de Publicidad -->
+<div class="modal fade" id="adNameModal" tabindex="-1" aria-labelledby="adNameModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-gradient-primary text-white">
+        <h5 class="modal-title" id="adNameModalLabel">
+          <i class="fas fa-ad me-2"></i>Nueva Campaña Publicitaria
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="adNameForm">
+          <div class="mb-4">
+            <label for="campaignName" class="form-label fw-semibold">Nombre de la Campaña</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="fas fa-heading text-primary"></i></span>
+              <input type="text" class="form-control py-2" id="campaignName" 
+                     placeholder="Ej: Lanzamiento Verano 2024" required>
             </div>
-            
-            <div class="mb-3">
-              <label for="adName" class="form-label">Nombre de la Campaña</label>
-              <input type="text" class="form-control" id="adName" placeholder="Ej. Campaña Verano 2023 - Redes Sociales">
-            </div>
-            
-            <div class="mb-3">
-              <label for="campaignType" class="form-label">Tipo de Campaña</label>
-              <select class="form-control" id="campaignType">
-                <option value="">Seleccione un tipo</option>
-                <option value="branding">Branding</option>
-                <option value="performance">Performance</option>
-                <option value="promocional">Promocional</option>
-                <option value="lanzamiento">Lanzamiento de Producto</option>
-              </select>
-            </div>
+            <div class="form-text">Este nombre identificará tu campaña en el sistema</div>
           </div>
           
-          <!-- Paso 2: Detalles completos -->
-          <div id="step2" style="display: none;">
-            <div class="wizard-progress mb-4">
-              <div class="progress-step completed">1</div>
-              <div class="progress-bar"></div>
-              <div class="progress-step active">2</div>
-            </div>
-            
-            <form id="adForm">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="installationDate" class="form-label">Fecha de Inicio</label>
-                    <input type="date" class="form-control" id="installationDate">
-                  </div>
-                  <div class="mb-3">
-                    <label for="paymentDate" class="form-label">Fecha de Pago</label>
-                    <input type="date" class="form-control" id="paymentDate">
-                  </div>
-                  <div class="mb-3">
-                    <label for="uninstallationDate" class="form-label">Fecha de Finalización</label>
-                    <input type="date" class="form-control" id="uninstallationDate">
-                  </div>
-                  <div class="mb-3">
-                    <label for="location" class="form-label">Ubicación/Medio</label>
-                    <input type="text" class="form-control" id="location" placeholder="Ej. Facebook/Instagram o Dirección física">
-                  </div>
-                </div>
-                
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="mediaType" class="form-label">Tipo de Medio</label>
-                    <select class="form-control" id="mediaType">
-                      <option value="">Seleccione un medio</option>
-                      <option value="redes">Redes Sociales</option>
-                      <option value="tv">Televisión</option>
-                      <option value="radio">Radio</option>
-                      <option value="vallas">Vallas Publicitarias</option>
-                      <option value="prensa">Prensa</option>
-                      <option value="digital">Medios Digitales</option>
-                    </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="budget" class="form-label">Presupuesto Total</label>
-                    <div class="input-group">
-                      <span class="input-group-text">$</span>
-                      <input type="number" class="form-control" id="budget" step="0.01" placeholder="0.00">
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="objective" class="form-label">Objetivo Principal</label>
-                    <select class="form-control" id="objective">
-                      <option value="">Seleccione un objetivo</option>
-                      <option value="awareness">Awareness</option>
-                      <option value="consideration">Consideración</option>
-                      <option value="conversion">Conversión</option>
-                      <option value="traffic">Tráfico</option>
-                      <option value="engagement">Engagement</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mb-3">
-                <label for="campaignDescription" class="form-label">Descripción de la Campaña</label>
-                <textarea class="form-control" id="campaignDescription" rows="3" placeholder="Describa los detalles y objetivos específicos de esta campaña"></textarea>
-              </div>
-              
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Archivos Adjuntos</label>
-                    <div class="file-upload">
-                      <label for="fileUpload" class="file-upload-label">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <span>Arrastre archivos aquí o haga clic para seleccionar</span>
-                        <input type="file" id="fileUpload" style="display: none;">
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="campaignManager" class="form-label">Responsable</label>
-                    <select class="form-control" id="campaignManager">
-                      <option value="">Asignar responsable</option>
-                      <option value="1">María González</option>
-                      <option value="2">Carlos Mendoza</option>
-                      <option value="3">Ana Rodríguez</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </form>
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <i class="fas fa-times me-2"></i>Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-arrow-right me-2"></i>Continuar
+            </button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="backButton" style="display: none;">
-            <i class="fas fa-arrow-left"></i> Atrás
-          </button>
-          <button type="button" class="btn btn-primary" id="nextButton">
-            Siguiente <i class="fas fa-arrow-right"></i>
-          </button>
-          <button type="button" class="btn btn-success" id="submitButton" style="display: none;">
-            <i class="fas fa-save"></i> Guardar Campaña
-          </button>
-        </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
-  <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-  crossorigin="anonymous"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
+<!-- Modal para Detalles de Publicidad -->
+<div class="modal fade" id="adDetailsModal" tabindex="-1" aria-labelledby="adDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-gradient-primary text-white">
+        <h5 class="modal-title" id="adDetailsModalLabel">
+          <i class="fas fa-list-ul me-2"></i>Detalles de la Campaña
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex align-items-center mb-4">
+          <div class="flex-shrink-0">
+            <div class="avatar avatar-lg bg-light-primary rounded-circle d-flex align-items-center justify-content-center">
+              <i class="fas fa-ad text-primary fs-4"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h6 class="mb-0" id="displayCampaignName">Nombre de la Campaña</h6>
+            <small class="text-muted">Complete los detalles de la publicidad</small>
+          </div>
+        </div>
+        
+        <form id="adDetailsForm">
+          <div id="itemsContainer">
+            <!-- Primer conjunto de campos -->
+            <div class="item-group mb-3 border-bottom pb-3">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Concepto</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="fas fa-tag text-primary"></i></span>
+                    <input type="text" id="itemName" class="form-control item-name" placeholder="Ej: Espacio en revista" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Valor</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="fas fa-dollar-sign text-primary"></i></span>
+                    <input type="number" id="itemValue" class="form-control item-value" placeholder="0.00" min="0" step="0.01" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button type="button" id="addMoreItems" class="btn btn-outline-primary mb-4">
+            <i class="fas fa-plus-circle me-2"></i>Añadir Otro Concepto
+          </button> 
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<!-- Animate.css -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
+          <div class="d-flex justify-content-between align-items-center border-top pt-4">
+            <button type="button" class="btn btn-outline-secondary" id="backToNameModal">
+              <i class="fas fa-arrow-left me-2"></i>Regresar
+            </button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-save me-2"></i>Guardar Campaña
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="/publicidades.js" defer></script>
