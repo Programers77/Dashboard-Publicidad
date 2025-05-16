@@ -32,85 +32,156 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-document.querySelector('.modal-footer .btn-primary').addEventListener('click', function () {
-    // Obtener valores del formulario
-    const ci = document.getElementById('edit-ci').value;
-    const birthdate = document.getElementById('edit-birthdate').value;
-    const phone = document.getElementById('edit-phone').value;
-    const email = document.getElementById('edit-email').value;
+document.addEventListener("DOMContentLoaded", () => {
+    cargarTiposDeCuenta();
 
-    // Actualizar la vista
-    document.getElementById('current-ci').textContent = ci;
-    document.getElementById('current-phone').textContent = phone;
-    document.getElementById('current-email').textContent = email;
+    // Guardar modelo
+    document.getElementById("guardarModelo").addEventListener("click", async function () {
+        const nombres = document.getElementById("nombres").value.trim();
+        const apellidos = document.getElementById("apellidos").value.trim();
+        const correo = document.getElementById("correo-model").value.trim();
+        const cedula = document.getElementById("cedula").value.trim();
+        const telefono = document.getElementById("numero_tlf").value.trim();
+        const edad = parseInt(document.getElementById("edad-model").value.trim(), 10);
+        const tipoCuenta = parseInt(document.getElementById("edit-tipo-cuenta").value);
 
-    // Opcional: formatear la fecha de nacimiento si es necesario
-    if (birthdate) {
-        const birthDate = new Date(birthdate);
-        const age = new Date().getFullYear() - birthDate.getFullYear();
-        document.getElementById('current-birthdate').textContent =
-            `${birthDate.toLocaleDateString()} (${age} años)`;
-    }
-
-    // Cerrar el modal
-    const modal = bootstrap.Modal.getInstance(document.getElementById('editarModeloModal'));
-    modal.hide();
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Contador para el número de modelos
-    let contadorModelos = 0;
-
-    // Función para agregar un modelo a la tabla
-    function agregarModeloATabla(modelo) {
-        contadorModelos++;
-        const fila = document.createElement('tr');
-        fila.setAttribute('data-model-id', contadorModelos);
-
-        fila.innerHTML = `
-        <td>${contadorModelos}</td>
-        <td>${modelo.nombreApellido}</td>
-        <td>${modelo.camisaFranela ? `<span class="size-tag">${modelo.camisaFranela.split(' ')[0]}</span> ${modelo.camisaFranela.substring(modelo.camisaFranela.indexOf(' ') + 1)}` : '-'}</td>
-        <td>${modelo.pantalon ? `<span class="size-tag">${modelo.pantalon.split(' ')[0]}</span> ${modelo.pantalon.substring(modelo.pantalon.indexOf(' ') + 1)}` : '-'}</td>
-        <td>${modelo.vestidoTraje || '-'}</td>
-        <td>${modelo.zapatos || '-'}</td>
-        <td>${modelo.numOutfits || '1'}</td>
-    `;  // ← El "1" que sobraba ha sido eliminado
-
-        document.getElementById('tablaModelos').appendChild(fila);
-    }
-
-    // Manejar el clic en el botón Guardar
-    document.getElementById('guardarModelo').addEventListener('click', function () {
-        // Obtener los valores del formulario
-        const modelo = {
-            nombreApellido: document.getElementById('nombreApellido').value,
-            camisaFranela: document.getElementById('camisaFranela').value,
-            pantalon: document.getElementById('pantalon').value,
-            vestidoTraje: document.getElementById('vestidoTraje').value,
-            zapatos: document.getElementById('zapatos').value,
-            numOutfits: document.getElementById('numOutfits').value
-        };
-
-        // Validar que el nombre no esté vacío
-        if (!modelo.nombreApellido) {
-            alert('El nombre y apellido son obligatorios');
-            return;
+        // Validación
+        if (!nombres || !apellidos || !correo || !cedula || !telefono || !edad || !tipoCuenta) {
+            return alert("Por favor, completa todos los campos correctamente.");
         }
 
-        // Agregar el modelo a la tabla
-        agregarModeloATabla(modelo);
+        const nuevoModelo = {
+            nombres,
+            apellidos,
+            correo,
+            cedula,
+            numero_tlf: telefono,
+            edad,
+            tipo_de_cuenta: tipoCuenta,
+        };
 
-        // Limpiar el formulario
-        document.getElementById('formAgregarModelo').reset();
+        try {
+            const response = await fetch("http://10.100.39.23:8000/modelos/api/head/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(nuevoModelo)
+            });
 
-        // Cerrar el modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('agregarModeloModal'));
-        modal.hide();
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Error al guardar el modelo: ${errorText}`);
+            }
+
+            const { id: modeloId } = await response.json();
+
+            // Oculta el modal del modelo
+            const modal1 = bootstrap.Modal.getInstance(document.getElementById("agregarModeloModal"));
+            modal1.hide();
+
+            // Limpia formulario de modelo
+            document.getElementById("formAgregarModelo").reset();
+
+            // Asigna modeloId al campo oculto
+            document.getElementById("modeloIdOutfit").value = modeloId;
+
+            // Muestra el modal del outfit
+            new bootstrap.Modal(document.getElementById("agregarOutfitModal")).show();
+            
+        } catch (error) {
+            console.error(error);
+            alert("Hubo un error al guardar el modelo. Revisa la consola.");
+        }
+    });
+
+    // Guardar outfit
+    document.getElementById("guardarOutfit").addEventListener("click", async function () {
+        const camisa = document.getElementById("camisa").value.trim();
+        const pantalon = document.getElementById("pantalonOutfit").value.trim();
+        const zapatos = document.getElementById("zapatos").value.trim();
+        const vestimentaAdicional = document.getElementById("vestimenta").value.trim();
+        const modeloId = parseInt(document.getElementById("modeloIdOutfit").value);
+        console.log("ID del modelo:", modeloId);
+
+        if (!camisa || !pantalon || !zapatos) {
+            return alert("Por favor, completa al menos los campos de camisa, pantalón y zapatos.");
+        }
+
+        const outfit = {
+            modelo_id: modeloId,
+            camisa: camisa,
+            pantalon:pantalon,
+            zapatos:zapatos,
+            vestimenta: vestimentaAdicional
+        };
+        
+        const btn = this;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Guardando...';
+        btn.disabled = true;
+
+        try {
+            const response = await fetch(`http://10.100.39.23:8000/modelos/api/tallas/`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(outfit)
+            });
+            console.log("Payload:", outfit);
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || "Error al guardar el outfit");
+            }
+ 
+            // Éxito
+            btn.innerHTML = 'Guardar Outfit';
+            btn.disabled = false;
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById("agregarOutfitModal"));
+            modal.hide();
+
+            // Limpia el formulario
+            document.getElementById("formAgregarOutfit").reset();
+
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'Modelo y outfit guardados correctamente',
+                timer: 2000,
+                showConfirmButton: false
+            });
+
+        } catch (error) {
+            console.error("Error al guardar outfit:", error);
+            btn.innerHTML = 'Guardar Outfit';
+            btn.disabled = false;
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message || 'Error desconocido al guardar el outfit'
+            });
+        }
     });
 });
 
+// Cargar tipos de cuenta
+async function cargarTiposDeCuenta() {
+    try {
+        const response = await fetch("http://10.100.39.23:8000/modelos/api/cuenta/");
+        const data = await response.json();
+
+        const select = document.getElementById("tipo-cuenta");
+        select.innerHTML = '<option value="" disabled selected>Seleccione una opción</option>';
+
+        data.forEach(cuenta => {
+            const option = document.createElement("option");
+            option.value = cuenta.id;
+            option.textContent = cuenta.cuenta;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al cargar tipos de cuenta:", error);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     const pautaModal = new bootstrap.Modal('#agregarPautaModal');

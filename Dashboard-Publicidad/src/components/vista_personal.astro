@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
 <div class="container">
   <!-- Main Content Grid -->
@@ -19,9 +22,9 @@
             </div>
           </div>
           <div class="profile-info">
-            <div class="model-name" id="data-model-id">
-              Maria Eugenia Quevedo
-              <div class="model-id">ID: MOD-2023-001</div>
+            <div class="model-name" id="nombre-perfil"></div>
+            <div>
+              <div id="id-perfil"></div>
             </div>
             <div class="model-status">
               <span class="status-badge active">
@@ -34,9 +37,11 @@
           class="btn btn-edit"
           data-bs-toggle="modal"
           data-bs-target="#editarModeloModal"
+          id="guardarCambiosBtn"
         >
           <i class="fas fa-edit"></i> Editar Modelo
         </button>
+
         <!-- Personal Details -->
         <div class="details-section mt-4">
           <h3 class="text-xl font-semibold mb-3">
@@ -44,24 +49,24 @@
           </h3>
           <div class="detail-item mb-2">
             <span class="detail-label font-medium">CI:</span>
-            <span class="detail-value" id="current-ci">12.345.678</span>
+            <span class="detail-value" id="cedula-perfil"></span>
           </div>
           <div class="detail-item mb-2">
-            <span class="detail-label font-medium">Fecha Nacimiento:</span>
-            <span class="detail-value" id="current-birthdate"
-              >01/01/1990 (34 años)</span
-            >
+            <span class="detail-label font-medium">Edad</span>
+            <span class="detail-value" id="perfil-edad"></span>
           </div>
           <div class="detail-item mb-2">
             <span class="detail-label font-medium">Teléfono:</span>
-            <span class="detail-value" id="current-phone">+598 99 123 456</span>
+            <span class="" id="perfil-telefono"></span>
           </div>
           <div class="detail-item mb-2">
             <span class="detail-label font-medium">Email:</span>
-            <span class="detail-value" id="current-email"
-              >mquevedo@example.com</span
-            >
+            <span class="detail-value" id="perfil-email"></span>
           </div>
+          <!-- <div class="detail-item mb-2">
+            <span class="detail-label font-medium">Tipo de cuenta:</span>
+            <span class="detail-value" id="tipo-cuenta-perfil"></span>
+          </div> -->
         </div>
 
         <!-- Modal de Bootstrap -->
@@ -88,40 +93,35 @@
                 <form id="formEditarModelo">
                   <div class="mb-3">
                     <label for="edit-ci" class="form-label">CI</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="edit-ci"
-                      value="12.345.678"
-                    />
+                    <input type="text" class="form-control" id="edit-ci" />
                   </div>
                   <div class="mb-3">
-                    <label for="edit-birthdate" class="form-label"
-                      >Fecha de Nacimiento</label
-                    >
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="edit-birthdate"
-                    />
+                    <label for="edit-edad" class="form-label">Edad</label>
+                    <input type="text" class="form-control" id="edit-edad" />
                   </div>
                   <div class="mb-3">
                     <label for="edit-phone" class="form-label">Teléfono</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="edit-phone"
-                      value="+598 99 123 456"
-                    />
+                    <input type="tel" class="form-control" id="edit-phone" />
                   </div>
                   <div class="mb-3">
                     <label for="edit-email" class="form-label">Email</label>
-                    <input
-                      type="email"
+                    <input type="email" class="form-control" id="edit-email" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-tipo-cuenta" class="form-label"
+                      >Tipo de Cuenta</label
+                    >
+                    <select
+                      id="edit-tipo-cuenta"
                       class="form-control"
-                      id="edit-email"
-                      value="mquevedo@example.com"
-                    />
+                      style="padding: 0.6rem 1rem; border-radius: 0.375rem; border: 1px solid #ced4da"
+                    >
+                      <option value="" disabled selected
+                        >Seleccione una opción</option
+                      >
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
                   </div>
                 </form>
               </div>
@@ -138,114 +138,39 @@
             </div>
           </div>
         </div>
-        <!-- Modal de Bootstrap -->
-        <div
-          class="modal fade"
-          id="editarModeloModal"
-          tabindex="-1"
-          aria-labelledby="editarModeloModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editarModeloModalLabel">
-                  Editar Información del Modelo
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form id="formEditarModelo">
-                  <div class="mb-3">
-                    <label for="edit-ci" class="form-label">CI</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="edit-ci"
-                      value="12.345.678"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="edit-birthdate" class="form-label"
-                      >Fecha de Nacimiento</label
-                    >
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="edit-birthdate"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="edit-phone" class="form-label">Teléfono</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="edit-phone"
-                      value="+598 99 123 456"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="edit-email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="edit-email"
-                      value="mquevedo@example.com"
-                    />
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal">Cancelar</button
-                >
-                <button type="button" class="btn btn-primary"
-                  >Guardar Cambios</button
-                >
-              </div>
-            </div>
+      </div>
+      <!-- Wallet Summary -->
+      <div class="details-section wallet-summary">
+        <h3><i class="fas fa-wallet"></i> Resumen Billetera</h3>
+        <div class="wallet-balance">
+          <div id="saldo" class="balance-amount"></div>
+          <div class="balance-label">Saldo Actual</div>
+        </div>
+        <div class="wallet-stats">
+          <div class="stat-item">
+            <div class="stat-value credit">$250.00</div>
+            <div class="stat-label">Crédito</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value debit">$100.00</div>
+            <div class="stat-label">Débito</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Movimientos</div>
           </div>
         </div>
-
-        <!-- Wallet Summary -->
-        <div class="details-section wallet-summary">
-          <h3><i class="fas fa-wallet"></i> Resumen Billetera</h3>
-          <div class="wallet-balance">
-            <div class="balance-amount">$500.00</div>
-            <div class="balance-label">Saldo Actual</div>
-          </div>
-          <div class="wallet-stats">
-            <div class="stat-item">
-              <div class="stat-value credit">$250.00</div>
-              <div class="stat-label">Crédito</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value debit">$100.00</div>
-              <div class="stat-label">Débito</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">5</div>
-              <div class="stat-label">Movimientos</div>
-            </div>
-          </div>
-          <button class="btn btn-view-wallet">
-            <i class="fas fa-eye"></i> Ver detalle completo
-          </button>
-        </div>
+        <button class="btn btn-view-wallet">
+          <i class="fas fa-eye"></i> Ver detalle completo
+        </button>
       </div>
 
       <!-- QR Code Section -->
       <div class="qr-card">
         <h3><i class="fas fa-qrcode"></i> Identificación</h3>
         <div class="qr-code-container">
-          <img src="/qr-code-placeholder.png" alt="Código QR" />
-          <div class="qr-text">ID: MOD-2023-001</div>
+          <img id="img-qr" src="/qr-code-placeholder.png" alt="Código QR" />
+          <div id="id-qr" class="qr-text"></div>
         </div>
         <div class="qr-actions">
           <button class="btn btn-download">
@@ -264,24 +189,8 @@
       <div class="section-card">
         <div class="section-header">
           <h2><i class="fas fa-tags"></i> Pautas Asignadas</h2>
-          <button class="btn btn-add">
-            <i class="fas fa-plus"></i> Añadir Pauta
-          </button>
         </div>
-        <div class="tags-container">
-          <span class="tag tag-gala">
-            <i class="fas fa-star"></i> Gala y Formal
-            <button class="tag-remove"><i class="fas fa-times"></i></button>
-          </span>
-          <span class="tag tag-casual">
-            <i class="fas fa-tshirt"></i> Casual
-            <button class="tag-remove"><i class="fas fa-times"></i></button>
-          </span>
-          <span class="tag tag-sport">
-            <i class="fas fa-running"></i> Deportivo
-            <button class="tag-remove"><i class="fas fa-times"></i></button>
-          </span>
-        </div>
+        <div class="tags-container"></div>
       </div>
       <!-- Modal para Añadir Pauta -->
 
@@ -348,212 +257,6 @@
         </div>
       </div>
       <!-- Outfits Section -->
-      <div class="section-card">
-        <div class="section-header">
-          <h2><i class="fas fa-tshirt"></i> Outfits Asignados</h2>
-          <button class="btn btn-add" id="abrirModalOutfit">
-            <i class="fas fa-plus"></i> Añadir Outfit
-          </button>
-        </div>
-
-        <div class="outfit-filters">
-          <div class="filter-group">
-            <label for="outfit-type">Filtrar por:</label>
-            <select id="outfit-type" class="filter-select">
-              <option value="all">Todos los outfits</option>
-              <option value="gala">Gala y Formal</option>
-              <option value="casual">Casual</option>
-              <option value="sport">Deportivo</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="outfit-size">Talla:</label>
-            <select id="outfit-size" class="filter-select">
-              <option value="all">Todas</option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="outfits-grid" id="outfitsContainer">
-          <!-- Outfits will be dynamically added here -->
-          <div class="outfit-card featured">
-            <div class="outfit-image">
-              <img src="/placeholder-outfit.jpg" alt="Outfit 1" />
-            </div>
-            <div class="outfit-info">
-              <div class="outfit-header">
-                <h4 class="outfit-name">Vestido de Gala</h4>
-                <div class="outfit-actions">
-                  <button class="btn-icon" title="Vista rápida">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                  <button class="btn-icon" title="Editar">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button class="btn-icon" title="Eliminar">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="outfit-details">
-                <div class="detail-row">
-                  <span><i class="fas fa-ruler"></i> Talla: S</span>
-                  <span><i class="fas fa-palette"></i> Color: Negro</span>
-                </div>
-                <div class="detail-row">
-                  <span><i class="fas fa-barcode"></i> #4512</span>
-                  <span
-                    ><i class="fas fa-calendar"></i> Asignado: 15/03/2023</span
-                  >
-                </div>
-                <div class="outfit-guidelines">
-                  <span class="guideline-tag tag-gala">Gala</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="outfit-card">
-            <div class="outfit-image">
-              <img src="/placeholder-outfit.jpg" alt="Outfit 2" />
-            </div>
-            <div class="outfit-info">
-              <div class="outfit-header">
-                <h4 class="outfit-name">Conjunto Casual</h4>
-                <div class="outfit-actions">
-                  <button class="btn-icon" title="Vista rápida">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                  <button class="btn-icon" title="Editar">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button class="btn-icon" title="Eliminar">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="outfit-details">
-                <div class="detail-row">
-                  <span><i class="fas fa-ruler"></i> Talla: M</span>
-                  <span><i class="fas fa-palette"></i> Color: Azul</span>
-                </div>
-                <div class="detail-row">
-                  <span><i class="fas fa-barcode"></i> #6789</span>
-                  <span
-                    ><i class="fas fa-calendar"></i> Asignado: 10/03/2023</span
-                  >
-                </div>
-                <div class="outfit-guidelines">
-                  <span class="guideline-tag tag-casual">Casual</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal para Añadir Outfit -->
-      <div
-        class="modal fade"
-        id="agregarOutfitModal"
-        tabindex="-1"
-        aria-labelledby="agregarOutfitModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="agregarOutfitModalLabel">
-                <i class="fas fa-tshirt"></i> Agregar Nuevo Outfit
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="formAgregarOutfit">
-                <div class="row mb-3">
-                  <div class="col-md-8">
-                    <label for="outfitNombre" class="form-label"
-                      >Nombre del Outfit</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="outfitNombre"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-4">
-                    <label for="outfitTipo" class="form-label">Tipo</label>
-                    <select class="form-select" id="outfitTipo" required>
-                      <option value="">Seleccionar...</option>
-                      <option value="gala">Gala y Formal</option>
-                      <option value="casual">Casual</option>
-                      <option value="sport">Deportivo</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <div class="col-md-4">
-                    <label for="outfitTalla" class="form-label">Talla</label>
-                    <select class="form-select" id="outfitTalla" required>
-                      <option value="">Seleccionar...</option>
-                      <option value="s">S</option>
-                      <option value="m">M</option>
-                      <option value="l">L</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4">
-                    <label for="outfitColor" class="form-label">Color</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="outfitColor"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-4">
-                    <label for="outfitCodigo" class="form-label">Código</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="outfitCodigo"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="outfitImagen" class="form-label"
-                    >Imagen (URL)</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="outfitImagen"
-                    placeholder="Pega la URL de la imagen"
-                  />
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal">Cancelar</button
-              >
-              <button type="button" class="btn btn-primary" id="guardarOutfit"
-                >Guardar Outfit</button
-              >
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Transactions Section (Hidden by default, shown when clicking "Ver detalle completo") -->
       <div class="section-card transactions-section" style="display: none;">
@@ -569,28 +272,30 @@
 </div>
 
 <link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-rel="stylesheet"
-integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+  crossorigin="anonymous"
 />
 <link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
 <link
-rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
 />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Animate.css -->
 <link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"
 ></script>
 <script src="/modelo.js" defer></script>
+<script src="/modelo-apis.js" defer></script>
+<script src="/datos-model.js" defer></script>

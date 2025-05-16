@@ -618,3 +618,107 @@
     align-items: flex-start;
   }
 }
+@media (max-width: 992px) {
+  .model-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-edit {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .header-content {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-left: 0;
+  }
+
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .wallet-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .outfit-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .outfits-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title h1 {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .balance-amount {
+    font-size: 22px;
+  }
+
+  .wallet-balance {
+    padding-bottom: 12px;
+  }
+
+  .wallet-summary {
+    padding: 12px;
+  }
+
+  .profile-image-container {
+    align-items: center;
+  }
+
+  .image-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  .outfit-name {
+    font-size: 14px;
+  }
+
+  .outfit-details {
+    font-size: 12px;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .outfit-card {
+    font-size: 13px;
+  }
+
+  .btn-edit {
+    margin-left: 0;
+    width: 100%;
+  }
+}
