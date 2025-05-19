@@ -13,13 +13,14 @@
         <div class="profile-image-container">
           <div class="image-wrapper">
             <img
+              id="foto-perfill"
               src="/descarga.png"
               alt="Foto del modelo"
               class="model-photo"
             />
-            <div class="photo-badge">
+            <!-- <div class="photo-badge">
               <i class="fas fa-camera"></i> Cambiar foto
-            </div>
+            </div> -->
           </div>
           <div class="profile-info">
             <div class="model-name" id="nombre-perfil"></div>
@@ -139,34 +140,41 @@
           </div>
         </div>
       </div>
+
       <!-- Wallet Summary -->
-      <div class="details-section wallet-summary">
-        <h3><i class="fas fa-wallet"></i> Resumen Billetera</h3>
-        <div class="wallet-balance">
-          <div id="saldo" class="balance-amount"></div>
-          <div class="balance-label">Saldo Actual</div>
-        </div>
-        <div class="wallet-stats">
-          <div class="stat-item">
-            <div class="stat-value credit">$250.00</div>
+    
+      <div class="balance-card wallet-summary">
+        <h3 class="balance-title">
+          <i class="fas fa-wallet"></i> Resumen Billetera
+        </h3>
+
+        <div id="saldo" class="balance-amount">$0.00</div>
+        <div class="balance-label">Saldo Actual</div>
+
+        <div class="balance-details wallet-stats">
+          <div id="balance-ingresos" class="stat-item balance-detail income">
+            <i class="fas fa-arrow-up"></i>
+            <span class="stat-value credit" id="Tipo_movimiento">$0.00</span>
             <div class="stat-label">Crédito</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-value debit">$100.00</div>
+          <div id="balance-gastos" class="stat-item balance-detail expense">
+            <i class="fas fa-arrow-down"></i>
+            <span class="stat-value debit">$0.00</span>
             <div class="stat-label">Débito</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-value">5</div>
+          <div class="stat-item stat-movimientos">
+            <span class="stat-value">0</span>
             <div class="stat-label">Movimientos</div>
           </div>
         </div>
-        <button class="btn btn-view-wallet">
+
+        <!-- <button class="btn btn-view-wallet">
           <i class="fas fa-eye"></i> Ver detalle completo
-        </button>
+        </button> -->
       </div>
 
       <!-- QR Code Section -->
-      <div class="qr-card">
+      <div class="qr-card" style="flex: 1;">
         <h3><i class="fas fa-qrcode"></i> Identificación</h3>
         <div class="qr-code-container">
           <img id="img-qr" src="/qr-code-placeholder.png" alt="Código QR" />
@@ -261,7 +269,9 @@
       <!-- Transactions Section (Hidden by default, shown when clicking "Ver detalle completo") -->
       <div class="section-card transactions-section" style="display: none;">
         <div class="section-header">
-          <h2><i class="fas fa-exchange-alt"></i> Historial de Movimientos</h2>
+          <h2>
+            <i class="fas fa-exchange-alt"></i> Historial de Movimientos
+          </h2>
         </div>
         <div class="transactions-table">
           <!-- Table content would be dynamically loaded -->
