@@ -9,7 +9,6 @@ Una aplicación web moderna para la gestión de ADS, construida con [Astro](http
 - 🔐 **[Clerk](https://clerk.dev/)** – Autenticación y gestión de usuarios sin complicaciones.
 - 🔗 **API Backend** – Conexión a un backend para obtener, enviar y procesar datos de manera segura y eficiente.
 
-## 📦 Estructura del proyecto
 
 
 ## 🔐 Autenticación con Clerk
