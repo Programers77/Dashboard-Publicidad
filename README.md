@@ -32,3 +32,9 @@ Las peticiones al backend se realizan utilizando `fetch`, centralizadas en utili
 
 PD: Todos los datos que existen en el proyecto actualmente, son meramente ficticios, no se usan nombre de personas reales. 
 
+
+
+🌐 **Producción:** [https://steady-dolphin-63317e.netlify.app](https://steady-dolphin-63317e.netlify.app)
+
+
+
