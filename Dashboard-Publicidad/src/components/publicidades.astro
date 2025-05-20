@@ -8,45 +8,39 @@
 
   <!-- Resumen Estadístico -->
   <div class="cards-row">
-    <div class="card animate__animated animate__fadeInUp">
+    <div id="active-campaigns" class="card stat-card animate__animated animate__fadeInUp">
       <div class="card-header">
-        <div class="card-title">Campañas Activas</div>
-        <div class="card-icon bg-success">
-          <i class="fas fa-play-circle"></i>
+        <div class="card-icon-container">
+          <div class="card-icon bg-success">
+            <i class="fas fa-play-circle"></i>
+          </div>
         </div>
-      </div>
-      <div class="card-value">24</div>
-      <div class="card-label">+5 este mes</div>
-      <div class="card-trend trend-up">
-        <i class="fas fa-arrow-up"></i> 12.5%
+        <div class="card-info">
+          <div class="card-title">Publicidades Activas</div>
+          <div class="card-value shimmer">-</div>
+        </div>
+        <div class="card-decoration">
+          <div class="decoration-circle"></div>
+          <div class="decoration-circle"></div>
+        </div>
       </div>
     </div>
 
-    <div class="card animate__animated animate__fadeInUp animate__delay-1s">
+    <div id="pending-campaigns" class="card stat-card animate__animated animate__fadeInUp animate__delay-1s">
       <div class="card-header">
-        <div class="card-title">Presupuesto Total</div>
-        <div class="card-icon bg-primary">
-          <i class="fas fa-dollar-sign"></i>
+        <div class="card-icon-container">
+          <div class="card-icon bg-info">
+            <i class="fas fa-clock-rotate-left"></i>
+          </div>
         </div>
-      </div>
-      <div class="card-value">$12,450</div>
-      <div class="card-label">80% del límite mensual</div>
-      <div class="progress-bar">
-        <div class="progress bg-warning" style="width: 80%"></div>
-      </div>
-    </div>
-
-    <div class="card animate__animated animate__fadeInUp animate__delay-2s">
-      <div class="card-header">
-        <div class="card-title">Campañas en Curso</div>
-        <div class="card-icon bg-info">
-          <i class="fas fa-bullhorn"></i>
+        <div class="card-info">
+          <div class="card-title">Publicidades Pendientes</div>
+          <div class="card-value shimmer">-</div>
         </div>
-      </div>
-      <div class="card-value">8</div>
-      <div class="card-label">3 finalizando esta semana</div>
-      <div class="card-trend trend-down">
-        <i class="fas fa-arrow-down"></i> 5.2%
+        <div class="card-decoration">
+          <div class="decoration-circle"></div>
+          <div class="decoration-circle"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -61,10 +55,6 @@
       <thead>
         <tr>
           <th>Publicidad</th>
-          <th>Medio</th>
-          <th>Inversión</th>
-          <th>Periodo</th>
-          <th>Alcance</th>
           <th>Estado</th>
           <th>Acciones</th>
         </tr>
@@ -73,45 +63,24 @@
         <tr class="animate__animated animate__fadeIn">
           <td>
             <div class="model-profile">
-              <img src="https://via.placeholder.com/48/4361ee/ffffff?text=CV23" alt="Publicidad" class="model-avatar">
               <div class="model-details">
                 <span class="model-name">Campaña Verano 2023</span>
-                <span class="model-handle">#PUB-001</span>
               </div>
-            </div>
-          </td>
-          <td>
-            <span class="media-tag social-media">Redes Sociales</span>
-          </td>
-          <td class="payment-amount">$2,500</td>
-          <td>
-            <div class="fecha-pago">
-              <span class="date">15 Jun - 30 Ago</span>
-              <span class="date-status upcoming">En curso</span>
-            </div>
-          </td>
-          <td>
-            <div class="reach-info">
-              <span class="reach-value">125K</span>
-              <span class="reach-change trend-up"><i class="fas fa-arrow-up"></i> 12%</span>
             </div>
           </td>
           <td>
             <span class="payment-status payment-status--completed">
               <span class="payment-status__circle"></span>
-              <span class="payment-status__text">Activo</span>
+              <span class="payment-status__text">Aprobado</span>
             </span>
           </td>
           <td class="action-cell">
             <div class="action-buttons">
-              <button class="btn-action view-receipt" title="Ver detalles">
-                <i class="fas fa-eye"></i>
-              </button>
               <button class="btn-action edit" title="Editar">
                 <i class="fas fa-edit"></i>
               </button>
-              <button class="btn-action confirm" title="Pausar">
-                <i class="fas fa-pause"></i>
+              <button class="btn-action" title="Detalles">
+                <i class="fas fa-chart-pie"></i>
               </button>
             </div>
           </td>
@@ -119,99 +88,30 @@
         <tr class="animate__animated animate__fadeIn">
           <td>
             <div class="model-profile">
-              <img src="https://via.placeholder.com/48/3f37c9/ffffff?text=LPX" alt="Publicidad" class="model-avatar">
               <div class="model-details">
                 <span class="model-name">Lanzamiento Producto X</span>
-                <span class="model-handle">#PUB-002</span>
               </div>
-            </div>
-          </td>
-          <td>
-            <span class="media-tag tv-media">TV</span>
-          </td>
-          <td class="payment-amount">$5,800</td>
-          <td>
-            <div class="fecha-pago">
-              <span class="date">01 Sep - 30 Sep</span>
-              <span class="date-status upcoming">Próximo</span>
-            </div>
-          </td>
-          <td>
-            <div class="reach-info">
-              <span class="reach-value">350K</span>
-              <span class="reach-change">-</span>
             </div>
           </td>
           <td>
             <span class="payment-status payment-status--pending">
               <span class="payment-status__circle"></span>
-              <span class="payment-status__text">Pendiente</span>
+              <span class="payment-status__text">Por Aprobar</span>
             </span>
           </td>
           <td class="action-cell">
             <div class="action-buttons">
-              <button class="btn-action view-receipt" title="Ver detalles">
-                <i class="fas fa-eye"></i>
-              </button>
               <button class="btn-action edit" title="Editar">
                 <i class="fas fa-edit"></i>
               </button>
-              <button class="btn-action confirm" title="Activar">
-                <i class="fas fa-play"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr class="animate__animated animate__fadeIn">
-          <td>
-            <div class="model-profile">
-              <img src="https://via.placeholder.com/48/4895ef/ffffff?text=ON23" alt="Publicidad" class="model-avatar">
-              <div class="model-details">
-                <span class="model-name">Oferta Navideña</span>
-                <span class="model-handle">#PUB-003</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <span class="media-tag radio-media">Radio</span>
-          </td>
-          <td class="payment-amount">$1,200</td>
-          <td>
-            <div class="fecha-pago">
-              <span class="date">01 Dic - 25 Dic</span>
-              <span class="date-status completed">Finalizado</span>
-            </div>
-          </td>
-          <td>
-            <div class="reach-info">
-              <span class="reach-value">85K</span>
-              <span class="reach-change trend-down"><i class="fas fa-arrow-down"></i> 8%</span>
-            </div>
-          </td>
-          <td>
-            <span class="payment-status">
-              <span class="payment-status__circle"></span>
-              <span class="payment-status__text">Finalizado</span>
-            </span>
-          </td>
-          <td class="action-cell">
-            <div class="action-buttons">
-              <button class="btn-action view-receipt" title="Ver detalles">
-                <i class="fas fa-eye"></i>
-              </button>
-              <button class="btn-action edit" title="Reutilizar">
-                <i class="fas fa-redo"></i>
-              </button>
-              <button class="btn-action" title="Reporte">
-                <i class="fas fa-chart-pie"></i>
+              <button class="btn btn-sm btn-info btn-details" data-id="123">
+                <i class="fas fa-chart-pie"></i> Detalles
               </button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
-    
-    
   </div>
 </div>
 
@@ -228,13 +128,13 @@
       <div class="modal-body">
         <form id="adNameForm">
           <div class="mb-4">
-            <label for="campaignName" class="form-label fw-semibold">Nombre de la Campaña</label>
+            <label for="campaignName" class="form-label fw-semibold">Nombre de la Publicidad</label>
             <div class="input-group">
               <span class="input-group-text bg-light"><i class="fas fa-heading text-primary"></i></span>
               <input type="text" class="form-control py-2" id="campaignName" 
                      placeholder="Ej: Lanzamiento Verano 2024" required>
             </div>
-            <div class="form-text">Este nombre identificará tu campaña en el sistema</div>
+            <div class="form-text">Este nombre identificará tu publicidad en el sistema</div>
           </div>
           
           <div class="d-flex justify-content-between align-items-center mt-4">
@@ -310,6 +210,102 @@
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Editar Solo Estado -->
+<div class="modal fade" id="editAdModal" tabindex="-1" aria-labelledby="editAdModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-gradient-primary text-white">
+        <h5 class="modal-title" id="editAdModalLabel">
+          <i class="fas fa-edit me-2"></i>Cambiar Estado de Campaña
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editAdForm">      
+          <!-- Selector de estado -->
+          <div class="mb-4">
+            <label for="editCampaignStatus" class="form-label fw-semibold">Estado</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="fas fa-circle-check text-primary"></i></span>
+              <select class="form-select" id="editCampaignStatus" required>
+                <option value="" disabled selected>Seleccione un estado</option>
+                <option value="active">Activo</option>
+                <option value="pending">Pendiente</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <i class="fas fa-times me-2"></i>Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-save me-2"></i>Actualizar Estado
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Detalles - Versión Mejorada -->
+<div class="modal fade" id="detailsAdModal" tabindex="-1" aria-labelledby="detailsAdModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title d-flex align-items-center" id="detailsAdModalLabel">
+          <i class="fas fa-analytics me-2"></i>
+          <span>Detalles de Campaña Publicitaria</span>
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <!-- Nombre de la campaña -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fas fa-tag text-primary me-2"></i>
+            <h6 class="mb-0 text-uppercase text-muted small fw-bold">Nombre de Campaña Publicitaria</h6>
+          </div>
+          <div class="p-3 bg-light rounded-3 border-start border-primary border-4">
+            <h4 class="mb-0 fw-bold" id="detailsCampaignName">Cargando...</h4>
+          </div>
+        </div>
+        
+        <!-- Listado de conceptos -->
+        <div class="mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fas fa-list-check text-primary me-2"></i>
+            <h6 class="mb-0 text-uppercase text-muted small fw-bold">Detalles Técnicos</h6>
+          </div>
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+              <div class="table-responsive rounded">
+                <table class="table table-hover mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th width="50%" class="py-3 ps-4">Concepto</th>
+                      <th width="50%" class="py-3">Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody id="conceptsList">
+                    <!-- Los conceptos se cargarán dinámicamente aquí -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          <i class="fas fa-times me-2"></i>Cerrar
+        </button>
       </div>
     </div>
   </div>
