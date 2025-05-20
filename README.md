@@ -31,11 +31,5 @@ Las peticiones al backend se realizan utilizando `fetch`, centralizadas en utili
 - Enviar formularios o datos de manera segura
 - Manejar errores y respuestas de forma estandarizada
 
-Ejemplo básico de consumo:
+PD: Todos los datos que existen en el proyecto actualmente, son meramente ficticios, no se usan nombre de personas reales. 
 
-```ts
-import { fetchWithAuth } from '../lib/api';
-
-const data = await fetchWithAuth('/api/ads', {
-  method: 'GET'
-});
