@@ -121,6 +121,9 @@ async function cargarDatosDelModelo(modeloId) {
   }
 }
 
+//funcionalidad qr
+
+
 function configurarModalEdicion() {
   // Precargar datos en el modal
   document
