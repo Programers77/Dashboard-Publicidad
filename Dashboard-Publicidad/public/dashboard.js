@@ -29,10 +29,25 @@ function setupFilterListeners() {
 function loadDashboardData() {
   isFetching = true;
   
-  // Estado inicial mínimo
+  // Estado inicial de carga para todas las secciones
   document.querySelectorAll('.card-value, .summary-amount').forEach(el => {
-    el.textContent = '--';
+    if (el.textContent !== 'Error') { // No sobrescribir mensajes de error
+      el.textContent = 'Cargando...';
+      el.style.color = ''; // Resetear color si había error previo
+    }
   });
+
+  // Mostrar estado de carga en la tabla
+  const tablaBody = document.querySelector('.payment-table tbody');
+  if (tablaBody) {
+    tablaBody.innerHTML = `
+      <tr>
+        <td colspan="4" class="text-center text-muted py-3">
+          Cargando datos de modelos...
+        </td>
+      </tr>
+    `;
+  }
 
   fetch('http://10.100.39.23:8000/inicio/api/dashboard')
     .then(response => {
@@ -43,7 +58,7 @@ function loadDashboardData() {
       if (!data) throw new Error('Datos no válidos');
       
       cachedData = data;
-      currentFilteredData = data; // Inicialmente mostrar todos los datos
+      currentFilteredData = data;
       hasData = true;
       isFetching = false;
       
@@ -208,7 +223,7 @@ function showErrorState() {
       <tr>
         <td colspan="4" class="text-center text-muted py-3">
           <i class="fas fa-exclamation-circle me-2"></i>
-          Error al cargar datos
+          Error al cargar datos. Intente recargar la página.
         </td>
       </tr>
     `;
