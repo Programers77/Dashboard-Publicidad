@@ -3,55 +3,7 @@ const FRONTEND_API = "fair-mastodon-60.clerk.accounts.dev";
 let globalToken = null;
 
 // Espera a que Clerk esté disponible
-async function waitForClerk() {
-  return new Promise((resolve) => {
-    const interval = setInterval(() => {
-      if (window.Clerk) {
-        clearInterval(interval);
-        resolve();
-      }
-    }, 50);
-  });
-}
 
-// Inicializa Clerk y obtiene el token
-export async function initClerk() {
-  await waitForClerk();
-  try {
-    await window.Clerk.load();
-    const session = window.Clerk.session;
-
-    if (!session) {
-      console.error('❌ No hay sesión activa');
-      return;
-    }
-
-    const token = await session.getToken();
-    console.log('✅ Token obtenido:', token);
-    globalToken = token;
-  } catch (error) {
-    console.error('Error en initClerk:', error);
-  }
-}
-
-// Función fetch segura con token
-export async function secureFetch(url, opciones = {}) {
-  if (!globalToken) {
-    console.error('❌ Token no disponible todavía');
-    throw new Error('Token no disponible');
-  }
-
-  const headers = {
-    ...(opciones.headers || {}),
-    Authorization: `Bearer ${globalToken}`,
-    'Content-Type': 'application/json'
-  };
-
-  return window.fetch(url, {
-    ...opciones,
-    headers
-  });
-}
 
 document.addEventListener("DOMContentLoaded", function () {
   // Añadir funcionalidad para resaltar filas al pasar el ratón
@@ -136,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const response = await secureFetch(
+        const response = await fetch(
           `${API_BASE_URL}/modelos/api/head/`,
           {
             method: "POST",

@@ -48,6 +48,7 @@
   color: var(--gray-dark);
   text-decoration: none;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .menu-item i {
@@ -55,20 +56,19 @@
   font-size: 18px;
 }
 
-.menu-item:hover, 
+.menu-item:hover,
 .menu-item.active {
   background-color: #e8f0fe;
   color: var(--primary);
 }
 
-/* Contenido principal ajusta su margen para no quedar debajo del sidebar */
 .main-content {
   margin-left: var(--sidebar-width-expanded);
-  padding: 20px;
+  padding: 80px 20px 20px 20px; /* 80px arriba para evitar solapamiento */
   transition: margin-left 0.3s ease;
 }
 
-/* Estilos responsivos */
+/* Responsivo: colapsa sidebar en pantallas pequeñas */
 @media (max-width: 768px) {
   .sidebar {
     width: var(--sidebar-width-collapsed);
@@ -89,23 +89,21 @@
     margin-right: 0;
   }
 
-  /* Ajustamos margen del contenido para el sidebar colapsado */
   .main-content {
     margin-left: var(--sidebar-width-collapsed);
   }
 }
 
-/* Opcional: en pantallas muy pequeñas el sidebar puede esconderse para no tapar nada */
+/* En pantallas muy pequeñas, sidebar fijo pero no invade */
 @media (max-width: 400px) {
   .sidebar {
-    position: fixed;
-    width: 0;
+    width: var(--sidebar-width-collapsed);
     overflow: hidden;
-    padding: 0;
+    padding: 15px 5px;
   }
 
   .main-content {
-    margin-left: 0;
+    margin-left: var(--sidebar-width-collapsed);
     padding: 15px;
   }
 }

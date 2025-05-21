@@ -333,6 +333,14 @@
                 overflow-x: auto;
                 padding-bottom: 0.5rem;
             }
+
+            .wallet-container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 3rem;
+                width: 100%;
+                margin-left: 40px;
+              }
         }
 
         .wallet-container {

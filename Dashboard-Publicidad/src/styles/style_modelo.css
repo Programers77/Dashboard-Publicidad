@@ -29,10 +29,10 @@ body {
 }
 
 /* ==== Layout principal ==== */
-.container {
+.containerr {
   width: calc(100% - 240px);
-  margin-left: 240px;
-  padding: 20px;
+  margin-left: 242px;
+
   max-width: none;
 }
 
@@ -241,8 +241,7 @@ td:hover {
   .table-wrapper {
     overflow-x: auto;
   }
-
-  table {
+   table {
     min-width: 800px;
   }
 }
@@ -251,4 +250,9 @@ td:hover {
   table {
     font-size: 0.8rem;
   }
+  .containerr{
+    width: calc(100% - 60px);
+    margin-left: 70px;
+  }
 }
+

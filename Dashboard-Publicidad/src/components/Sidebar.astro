@@ -1,34 +1,45 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
 
 <div class="sidebar">
-    <div class="logo">
-        <h1>Ad<span>Panel</span></h1>
-    </div>
-    <a href="/" class="menu-item">
-        <i class="fas fa-chart-line"></i>
-        <span>Dashboard</span>
-    </a>
-    <a href="/pautas" class="menu-item">
-        <i class="fas fa-file-alt"></i>
-        <span>Pautas</span>
-    </a>
-    <a href="/campana" class="menu-item">
-        <i class="fas fa-bullhorn"></i>
-        <span>Campañas</span>
-    </a>
-    <a href="/modelo" class="menu-item">
-        <i class="fas fa-users"></i>
-        <span>Modelos</span>
-    </a>
-    <a href="/wallet" class="menu-item">
-      <i class="fa-solid fa-wallet"></i>
-        <span>Wallet</span>
-    </a>
-    <a href="/Presupuesto" class="menu-item">
-      <i class="fa-solid fa-circle-dollar-to-slot"></i>
-        <span>Presupuesto</span>
-    </a>
-    <a href="/publicidades" class="menu-item">
-      <i class="fa-solid fa-bullhorn"></i>
-        <span>Publicidades</span>
+  <div class="logo">
+    <h1>Ad<span>Panel</span></h1>
+  </div>
+  <a href="/" class="menu-item">
+    <i class="fas fa-chart-line"></i>
+    <span>Dashboard</span>
+  </a>
+  <a href="/pautas" class="menu-item">
+    <i class="fas fa-file-alt"></i>
+    <span>Pautas</span>
+  </a>
+  <a href="/campana" class="menu-item">
+    <i class="fas fa-bullhorn"></i>
+    <span>Campañas</span>
+  </a>
+  <a href="/modelo" class="menu-item">
+    <i class="fas fa-users"></i>
+    <span>Modelos</span>
+  </a>
+  <a href="/wallet" class="menu-item">
+    <i class="fa-solid fa-wallet"></i>
+    <span>Wallet</span>
+  </a>
+  <a href="/Presupuesto" class="menu-item">
+    <i class="fa-solid fa-circle-dollar-to-slot"></i>
+    <span>Presupuesto</span>
+  </a>
+  <a href="/publicidades" class="menu-item">
+    <i class="fa-solid fa-bullhorn"></i>
+    <span>Publicidades</span>
+  </a>
 </div>
+
+<script defer>
+  document.querySelector(".sidebar-toggle").addEventListener("click", () => {
+    document.querySelector(".sidebar").classList.toggle("active");
+  });
+</script>
