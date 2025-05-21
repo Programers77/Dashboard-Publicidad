@@ -1,20 +1,17 @@
 .model-profile {
   max-width: 1200px;
-
 }
 
 .profile-column {
   flex: 1 1 100%;
   min-width: 800px;
   max-width: 400px;
-  
 }
 
 .content-column {
   flex: 2;
   min-width: 300px;
 }
-
 
 /* Card del perfil */
 .profile-card {
@@ -124,11 +121,11 @@
   color: #ffffff;
 }
 
-.stat-label{
+.stat-label {
   color: #fff;
 }
 
-.stat-value{
+.stat-value {
   color: #fff;
 }
 

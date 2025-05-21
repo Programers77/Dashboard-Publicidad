@@ -1,3 +1,58 @@
+const API_BASE_URL = "http://10.100.39.23:8000";
+const FRONTEND_API = "fair-mastodon-60.clerk.accounts.dev";
+let globalToken = null;
+
+// Espera a que Clerk esté disponible
+async function waitForClerk() {
+  return new Promise((resolve) => {
+    const interval = setInterval(() => {
+      if (window.Clerk) {
+        clearInterval(interval);
+        resolve();
+      }
+    }, 50);
+  });
+}
+
+// Inicializa Clerk y obtiene el token
+export async function initClerk() {
+  await waitForClerk();
+  try {
+    await window.Clerk.load();
+    const session = window.Clerk.session;
+
+    if (!session) {
+      console.error('❌ No hay sesión activa');
+      return;
+    }
+
+    const token = await session.getToken();
+    console.log('✅ Token obtenido:', token);
+    globalToken = token;
+  } catch (error) {
+    console.error('Error en initClerk:', error);
+  }
+}
+
+// Función fetch segura con token
+export async function secureFetch(url, opciones = {}) {
+  if (!globalToken) {
+    console.error('❌ Token no disponible todavía');
+    throw new Error('Token no disponible');
+  }
+
+  const headers = {
+    ...(opciones.headers || {}),
+    Authorization: `Bearer ${globalToken}`,
+    'Content-Type': 'application/json'
+  };
+
+  return window.fetch(url, {
+    ...opciones,
+    headers
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   // Añadir funcionalidad para resaltar filas al pasar el ratón
   const rows = document.querySelectorAll("tbody tr");
@@ -49,9 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("edad-model").value.trim(),
         10
       );
-      const tipoCuenta = parseInt(
-        document.getElementById("tipo-cuenta").value
-      );
+      const tipoCuenta = parseInt(document.getElementById("tipo-cuenta").value);
 
       const inputFoto = document.getElementById("foto_de_Perfil");
       const archivoFoto = inputFoto.files[0];
@@ -83,11 +136,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const response = await fetch(
-          "http://10.100.39.23:8000/modelos/api/head/",
+        const response = await secureFetch(
+          `${API_BASE_URL}/modelos/api/head/`,
           {
             method: "POST",
-            body: formData, // 👈 sin headers, se colocan automáticamente al usar FormData
+            body: formData, // No se especifican headers, ya que FormData los gestiona automáticamente
           }
         );
 
@@ -118,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(error);
         alert("Hubo un error al guardar el modelo. Revisa la consola.");
       }
+      
     });
 
   // Guardar outfit
