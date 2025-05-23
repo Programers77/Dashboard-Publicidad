@@ -87,3 +87,24 @@
       margin-left: 70px;
     }
   }
+
+  .logout-container {
+        margin-top: auto; /* Empuja el botón hacia abajo */
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    #logoutBtn {
+        color: #000000;
+        transition: all 0.3s ease;
+    }
+
+    #logoutBtn:hover {
+        background: rgba(255, 107, 107, 0.1);
+        color: #ff5252;
+        transform: translateX(5px);
+    }
+
+    #logoutBtn i {
+        margin-right: 10px;
+    }
