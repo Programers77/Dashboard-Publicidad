@@ -70,6 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const storage = rememberMe ? localStorage : sessionStorage;
                 storage.setItem('user_id', data.user_id);
                 storage.setItem('username', data.username);
+                storage.setItem('token', data.token); // Guardar el token
+    
+                // Mostrar el token por consola
+                console.log('Token guardado:', data.token);
                 
                 // Mostrar pantalla de bienvenida
                 showWelcome(data.username);
@@ -82,13 +86,49 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 5. Verificar sesión existente al cargar
+    // 5. Verificar sesión existente al cargar - VERSIÓN MODIFICADA
     function checkSession() {
-        const userId = localStorage.getItem('user_id') || sessionStorage.getItem('user_id');
-        if (userId) {
-            const username = localStorage.getItem('username') || sessionStorage.getItem('username');
-            showWelcome(username);
+        // Primero verificar si viene de un logout
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('logout')) {
+            // Limpieza adicional por si acaso
+            localStorage.clear();
+            sessionStorage.clear();
+            // Eliminar parámetros de la URL
+            history.replaceState(null, null, window.location.pathname);
+            return;
         }
+        
+        // Verificar token de forma más estricta
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        if (!token) return;
+        
+        // Si hay token, verificar su validez con el backend
+        fetch('http://10.100.39.23:8000/api/verified/', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Token ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                const userId = localStorage.getItem('user_id') || sessionStorage.getItem('user_id');
+                if (userId) {
+                    const username = localStorage.getItem('username') || sessionStorage.getItem('username');
+                    showWelcome(username);
+                }
+            } else {
+                // Token inválido, limpiar
+                localStorage.clear();
+                sessionStorage.clear();
+            }
+        })
+        .catch(() => {
+            // Error de conexión, no auto-login
+            localStorage.clear();
+            sessionStorage.clear();
+        });
     }
     
     checkSession();
