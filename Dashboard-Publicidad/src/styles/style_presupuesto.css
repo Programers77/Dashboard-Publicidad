@@ -371,6 +371,18 @@ body {
     flex: 1;
     justify-content: center;
   }
+
+  .budget-container {
+    max-width: 300px;     
+    padding: 2rem;   
+  }
+
+  .allocation-section{
+    min-width: 300px;
+  }
+  .card.shadow-sm{
+    min-width: 300px;
+  }
 }
 .bg-gradient-primary {
   background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);

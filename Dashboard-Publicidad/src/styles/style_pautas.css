@@ -33,7 +33,7 @@
     flex: 1;
     padding: 20px;
     max-width: 1400px;
-    margin: 0 auto;
+    
   }
   
   .header {
@@ -730,7 +730,7 @@
     }
   
     .modal-container {
-      width: 95%;
+      width: 50%;
     }
   }
   

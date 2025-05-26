@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const token = localStorage.getItem('token') || sessionStorage.getItem('token');
         if (!token) return;
         
-        fetch('http://10.100.39.23:8000/api/verifed/', {
+        // Si hay token, verificar su validez con el backend
+        fetch('http://10.100.39.23:8000/api/verified/', {
             method: 'POST',
             headers: {
                 'Authorization': `Token ${token}`,
