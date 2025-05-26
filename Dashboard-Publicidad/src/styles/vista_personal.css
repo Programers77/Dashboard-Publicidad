@@ -1,6 +1,12 @@
 .model-profile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
+
 
 .profile-column {
   flex: 1 1 100%;
@@ -212,7 +218,7 @@
 }
 
 /* Responsivo */
-@media (max-width: 768px) {
+@media (max-width: 1068px) {
   .model-profile {
     flex-direction: column;
   }
@@ -221,3 +227,4 @@
     width: 100%;
   }
 }
+
