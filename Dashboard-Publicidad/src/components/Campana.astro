@@ -1,33 +1,32 @@
 <div class="container-campana">
  
-  <!-- OVERLAY DE CARGA PREMIUM -->
-    <div id="loadingOverlay" class="loading-overlay">
-        <div class="floating-element float-1"></div>
-        <div class="floating-element float-2"></div>
-        <div class="floating-element float-3"></div>
-        
-        <div class="loading-container">
-            <div class="orbital-system">
-                <div class="orbit orbit-1">
-                    <div class="orbital-particle particle-1"></div>
-                </div>
-                <div class="orbit orbit-2">
-                    <div class="orbital-particle particle-2"></div>
-                </div>
-                <div class="orbit orbit-3">
-                    <div class="orbital-particle particle-3"></div>
-                </div>
-                <div class="core-sphere"></div>
-            </div>
-            
-            <div class="loading-text">Procesando</div>
-            <div class="loading-subtitle">Sincronizando datos empresariales<br>Un momento por favor...</div>
-            
-            <div class="progress-container">
-                <div class="progress-bar"></div>
-            </div>
-        </div>
+  <div id="loadingOverlay" class="pub-loader-overlay">
+    <div class="pub-loader-container">
+      <!-- Círculo de colores giratorio -->
+      <div class="color-wheel">
+        <div class="color-segment" style="--color: #FF3E4D; --i: 0"></div>
+        <div class="color-segment" style="--color: #FF9F1C; --i: 1"></div>
+        <div class="color-segment" style="--color: #F8D210; --i: 2"></div>
+        <div class="color-segment" style="--color: #2BDE73; --i: 3"></div>
+        <div class="color-segment" style="--color: #1E90FF; --i: 4"></div>
+        <div class="color-segment" style="--color: #9B59B6; --i: 5"></div>
+      </div>
+      
+      <!-- Texto animado -->
+      <div class="pub-loader-text">
+        <span>C</span>
+        <span>R</span>
+        <span>E</span>
+        <span>A</span>
+        <span>T</span>
+        <span>I</span>
+        <span>V</span>
+        <span>O</span>
+      </div>
+      
+      <div class="pub-loader-subtext">Cargando campañas...</div>
     </div>
+  </div>
 
   <header>
     <div class="header-title">
