@@ -9,4 +9,7 @@ export default defineConfig({
       strictPort: true, // Evita que Vite cambie el puerto si está ocupado
     },
   },
+  devToolbar: {
+    enabled: false
+  }, 
 });

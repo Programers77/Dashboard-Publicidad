@@ -657,13 +657,12 @@ tbody tr:hover {
         align-items: flex-start;
         gap: 15px;
     }
+    .dashboard{
+        width: 100%;
+        justify-content: center;
+        
+    }
 }
-
-
-
-
-
-
 
 
 /* Payment Management Section Styles */
@@ -1088,6 +1087,36 @@ tbody tr:hover {
 
     .action-buttons {
         flex-direction: column;
+    }
+    .main-content{
+        margin-left: 10px;
+    }
+}
+
+
+@media (min-width: 330px) {
+    .payment-summary-grid {
+        grid-template-columns: 1fr;
+    }
+    .payment-table-container{
+        overflow: scroll;
+      
+    }
+    .payment-table {
+        font-size: 12px;
+    }
+
+    .model-avatar {
+        width: 36px;
+        height: 36px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .main-content{
+        width: 10%;
     }
 }
 

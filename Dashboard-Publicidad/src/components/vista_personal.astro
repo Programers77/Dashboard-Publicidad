@@ -30,7 +30,7 @@
 
       <!-- Botón editar -->
       <button
-        class="btn btn-edit"
+        class="btn-prueba"
         data-bs-toggle="modal"
         data-bs-target="#editarModeloModal"
         id="guardarCambiosBtn"
@@ -157,19 +157,22 @@
         <!-- Pautas -->
         <div class="section-card">
           <div class="section-header">
-            <h2><i class="fas fa-tags"></i> Pautas Asignadas</h2>
+            <h2><i class="fas fa-tags"></i>Pautas Asignadas</h2>
           </div>
-          <div class="tags-container"></div>
+          <div class="tags-container">
+            <span class="tag"></span>
+          </div>
         </div>
+      </div>
 
-        <!-- Código QR -->
-        <div class="qr-card">
-          <h3><i class="fas fa-qrcode"></i> Identificación</h3>
-          <div class="qr-code-container">
-            <img id="img-qr" src="" alt="Código QR" />
-            <div id="id-qr" class="qr-text"></div>
-          </div>
-          <!-- <div class="qr-actions">
+      <!-- Código QR -->
+      <div class="qr-card">
+        <h3><i class="fas fa-qrcode"></i> Identificación</h3>
+        <div class="qr-code-container">
+          <img id="img-qr" src="" alt="Código QR" />
+          <div id="id-qr" class="qr-text"></div>
+        </div>
+        <!-- <div class="qr-actions">
             <button class="btn btn-download">
               <i class="fas fa-download"></i> Descargar
             </button>
@@ -177,19 +180,18 @@
               <i class="fas fa-print"></i> Imprimir
             </button>
           </div> -->
-        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Columna 2: Otros detalles (Historial, etc.) -->
-    <div class="content-column">
-      <div class="section-card transactions-section" style="display: none;">
-        <div class="section-header">
-          <h2><i class="fas fa-exchange-alt"></i> Historial de Movimientos</h2>
-        </div>
-        <div class="transactions-table">
-          <!-- Contenido dinámico aquí -->
-        </div>
+  <!-- Columna 2: Otros detalles (Historial, etc.) -->
+  <div class="content-column">
+    <div class="section-card transactions-section" style="display: none;">
+      <div class="section-header">
+        <h2><i class="fas fa-exchange-alt"></i> Historial de Movimientos</h2>
+      </div>
+      <div class="transactions-table">
+        <!-- Contenido dinámico aquí -->
       </div>
     </div>
   </div>
