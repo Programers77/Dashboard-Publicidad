@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const welcomeUser = document.getElementById('welcomeUser');
     const errorMessage = document.getElementById('errorMessage');
     
-    // 1. Función para mostrar/ocultar contraseña (sin cambios)
+    // 1. Función para mostrar/ocultar contraseña
     togglePassword.addEventListener('click', function() {
         const isPassword = passwordInput.type === 'password';
         passwordInput.type = isPassword ? 'text' : 'password';
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.setAttribute('aria-label', isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña');
     });
     
-    // 2. Función para mostrar pantalla de carga (sin cambios)
+    // 2. Función para mostrar pantalla de carga (solo para login exitoso)
     function showWelcome(username) {
         welcomeUser.textContent = username;
         loadingOverlay.classList.add('active');
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1500);
     }
     
-    // 3. Función para mostrar errores elegantes (sin cambios)
+    // 3. Función para mostrar errores elegantes
     function showError(message) {
         errorMessage.textContent = message;
         errorMessage.style.display = 'block';
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
-    // 4. Función para manejar el login (sin cambios)
+    // 4. Función para manejar el login
     loginForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -70,9 +70,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const storage = rememberMe ? localStorage : sessionStorage;
                 storage.setItem('user_id', data.user_id);
                 storage.setItem('username', data.username);
-                storage.setItem('token', data.token);
-                
+                storage.setItem('token', data.token); // Guardar el token
+    
+                // Mostrar el token por consola
                 console.log('Token guardado:', data.token);
+                
+                // Mostrar pantalla de bienvenida
                 showWelcome(data.username);
             } else {
                 showError('Credenciales incorrectas. Por favor verifica tus datos.');
@@ -83,16 +86,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 5. Verificar sesión existente al cargar (modificado solo para exportar funciones)
+    // 5. Verificar sesión existente al cargar - VERSIÓN MODIFICADA
     function checkSession() {
+        // Primero verificar si viene de un logout
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('logout')) {
+            // Limpieza adicional por si acaso
             localStorage.clear();
             sessionStorage.clear();
+            // Eliminar parámetros de la URL
             history.replaceState(null, null, window.location.pathname);
             return;
         }
         
+        // Verificar token de forma más estricta
         const token = localStorage.getItem('token') || sessionStorage.getItem('token');
         if (!token) return;
         
@@ -112,17 +119,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     showWelcome(username);
                 }
             } else {
+                // Token inválido, limpiar
                 localStorage.clear();
                 sessionStorage.clear();
             }
         })
         .catch(() => {
+            // Error de conexión, no auto-login
             localStorage.clear();
             sessionStorage.clear();
         });
     }
     
-    // 6. Limpiar error al empezar a escribir (sin cambios)
+    checkSession();
+    
+    // 6. Limpiar error al empezar a escribir
     const inputs = document.querySelectorAll('input[type="text"], input[type="password"]');
     inputs.forEach(input => {
         input.addEventListener('input', () => {
@@ -131,37 +142,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // Verificar sesión al cargar (sin cambios)
-    checkSession();
-    
-    // 7. Nuevo: Exportar funciones para protección de rutas (única adición)
-    window.authUtils = {
-        verifySession: async function() {
-            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-            if (!token) return false;
-            
-            try {
-                const response = await fetch('http://10.100.39.23:8000/api/verifed/', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Token ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-                return response.ok;
-            } catch (error) {
-                console.error('Error verifying token:', error);
-                return false;
-            }
-        },
-        redirectIfNotAuthenticated: async function() {
-            const isAuthenticated = await this.verifySession();
-            if (!isAuthenticated) {
-                localStorage.clear();
-                sessionStorage.clear();
-                window.location.href = '/dashboard';
-            }
-        }
-    };
 });

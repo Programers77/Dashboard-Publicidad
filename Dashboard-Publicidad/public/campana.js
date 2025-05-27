@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
+    
+    
     // 1. Funciones para manejar datos de la API
     function formatCurrency(value) {
         return '$' + parseFloat(value).toLocaleString('en-US', {
@@ -43,26 +46,35 @@ document.addEventListener('DOMContentLoaded', function() {
         const tableBody = document.querySelector('#tablaCampanas tbody');
         tableBody.innerHTML = ''; // Limpiar tabla existente
 
+        // Mapeo de meses (posición del array -> nombre del mes)
+        const meses = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
         // Procesar cada tipo de campaña
-        Object.entries(campanasData).forEach(([nombre, meses], index) => {
+        Object.entries(campanasData).forEach(([nombre, datosCampana], index) => {
             const row = document.createElement('tr');
             row.style.setProperty('--row-order', index);
+            row.dataset.campanaId = datosCampana.id; // Guardar el ID en el dataset de la fila
 
             // Calcular el total de la campaña
-            const total = meses.reduce((sum, value) => sum + value, 0);
+            const total = datosCampana.valores.reduce((sum, value) => sum + value, 0);
 
             // Crear celda de descripción
             const descCell = document.createElement('td');
             descCell.innerHTML = `
                 <div class="category-wrapper">
                     <i class="fab fa-${nombre.toLowerCase()} icon-category"></i>
-                    CAMPAÑAS ${nombre.toUpperCase()}
+                    ${nombre.toUpperCase()}
                 </div>
             `;
 
             // Crear celdas de meses
-            const monthCells = meses.map(value => {
+            const monthCells = datosCampana.valores.map((value, monthIndex) => {
                 const cell = document.createElement('td');
+                cell.dataset.mes = meses[monthIndex]; // Agregar atributo data-mes
+                
                 if (value === 0) {
                     cell.className = 'amount-cell zero';
                     cell.textContent = '$0.00';
@@ -70,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     cell.className = 'amount-cell';
                     cell.innerHTML = `
                         ${formatCurrency(value)}
-                        <div class="value-bar" style="width: ${(value / Math.max(...meses.filter(v => v > 0)) * 100 || 0)}%"></div>
+                        <div class="value-bar" style="width: ${(value / Math.max(...datosCampana.valores.filter(v => v > 0)) * 100 || 0)}%"></div>
                     `;
                 }
                 return cell;
@@ -99,16 +111,21 @@ document.addEventListener('DOMContentLoaded', function() {
         addRowInteractivity();
     }
 
+    // Función addTotalRow también necesita ser actualizada para trabajar con la nueva estructura
     function addTotalRow(campanasData) {
         const tableBody = document.querySelector('#tablaCampanas tbody');
         const row = document.createElement('tr');
         row.className = 'total-row';
         row.style.setProperty('--row-order', Object.keys(campanasData).length);
 
+        // Mapeo de meses
+        const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
         // Calcular totales por mes
         const mesesTotales = Array(12).fill(0);
-        Object.values(campanasData).forEach(meses => {
-            meses.forEach((value, index) => {
+        Object.values(campanasData).forEach(campana => {
+            campana.valores.forEach((value, index) => {
                 mesesTotales[index] += value;
             });
         });
@@ -227,25 +244,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Funciones mejoradas
+    function showLoading() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.add('active');
+        }
+    }
+
+    function hideLoading() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+    }
+
     // Función para cargar datos de la API
     function cargarDatosAPI() {
-        return fetch('http://10.100.39.23:8000/campanas/apidescrip/resumencampanas/')
-            .then(response => {
-                if (!response.ok) throw new Error('Error en la respuesta del servidor');
-                return response.json();
-            })
-            .then(data => {
-                updateCards(data);
-                
-                if (data.campanas) {
-                    updateCampanasTable(data.campanas);
-                }
-                return data; // Devuelve los datos para poder encadenar
-            })
-            .catch(error => {
-                console.error('Error al obtener datos de la API:', error);
-                throw error; // Propaga el error
-            });
+            showLoading();
+            
+            return fetch('http://10.100.39.23:8000/campanas/apidescrip/resumencampanas/')
+                .then(response => {
+                    if (!response.ok) throw new Error('Error en la respuesta del servidor');
+                    return response.json();
+                })
+                .then(data => {
+                     updateCards(data);
+                     if (data.campanas) {
+                         updateCampanasTable(data.campanas);
+                    }
+                    hideLoading();
+                    return data;
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos de la API:', error);
+                    hideLoading();
+                    throw error;
+                });
     }
     
     // Variable para guardar el ID de la campaña recién creada
@@ -303,20 +338,57 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    function registrarGastos() {
-        // Verificar que SweetAlert está disponible
-        if (typeof Swal === 'undefined') {
-            console.error('SweetAlert2 no está cargado correctamente');
-            alert('Error de configuración del sistema');
+    // Función para cargar SweetAlert2 dinámicamente
+    function loadSweetAlert() {
+        return new Promise((resolve, reject) => {
+            if (typeof Swal !== 'undefined') {
+                resolve(); // Ya está cargado
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+            script.onload = resolve;
+            script.onerror = () => reject(new Error('Error al cargar SweetAlert2'));
+            document.head.appendChild(script);
+        });
+    }
+
+    // Función para mostrar alertas que maneja la carga dinámica
+    async function showAlert(config) {
+        try {
+            await loadSweetAlert();
+            return Swal.fire(config);
+        } catch (error) {
+            console.error('Error con SweetAlert:', error);
+            // Fallback básico con alert nativo
+            alert(config.title + '\n\n' + (config.text || ''));
+            return { isConfirmed: true }; // Simulamos confirmación para continuar el flujo
+        }
+    }
+
+    // Modificar todas las llamadas a Swal.fire() en tu código
+    // Ejemplo de modificación en registrarGastos():
+    async function registrarGastos() {
+        // Verificar SweetAlert
+        try {
+            await loadSweetAlert();
+        } catch (error) {
+            console.error('Error al cargar SweetAlert:', error);
+            alert('Error en el sistema: No se pudo cargar el módulo de notificaciones');
             return;
         }
-    
+
         const formGastos = document.getElementById('formGastos');
         if (!formGastos) {
-            console.error('No se encontró el formulario de gastos');
+            await showAlert({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se encontró el formulario de gastos'
+            });
             return;
         }
-    
+
         if (!formGastos.checkValidity()) {
             formGastos.reportValidity();
             return;
@@ -417,15 +489,149 @@ document.addEventListener('DOMContentLoaded', function() {
         agregarNuevaCampana(nombreCampana);
     });
     
-    document.getElementById('guardarGastosBtn').addEventListener('click', function() {
-        // Validación básica
+    // Modificar el evento click del botón guardarGastosBtn
+    document.getElementById('guardarGastosBtn').addEventListener('click', async function() {
         if (!document.getElementById('formGastos').checkValidity()) {
-            alert('Por favor completa todos los campos requeridos');
+            await showAlert({
+                icon: 'warning',
+                title: 'Campos requeridos',
+                text: 'Por favor completa todos los campos requeridos'
+            });
             return;
         }
         
-        registrarGastos();
+        await registrarGastos();
     });
     // Cargar datos iniciales
     cargarDatosAPI();
+
+    function llenarNuevoSelectCampanas() {
+        const select = document.getElementById('nuevaCampanaSelect');
+        
+        // Limpiar opciones existentes (excepto la primera opción por defecto)
+        while (select.options.length > 1) {
+            select.remove(1);
+        }
+        
+        // Obtener todas las filas de la tabla (excepto la fila de totales)
+        const filas = document.querySelectorAll('#tablaCampanas tbody tr:not(.total-row)');
+        
+        // Crear un conjunto para evitar duplicados
+        const nombresCampanas = new Set();
+        
+        filas.forEach(fila => {
+            // Obtener el ID de la campaña del atributo data-campana-id
+            const campanaId = fila.dataset.campanaId;
+            
+            // Obtener el div que contiene el nombre de la campaña
+            const categoryWrapper = fila.querySelector('.category-wrapper');
+            if (categoryWrapper && campanaId) {
+                // Extraer el texto y limpiarlo
+                let nombreCampana = categoryWrapper.textContent.trim();
+                
+                // Eliminar "CAMPAÑAS " del inicio si existe y cualquier texto después (como íconos)
+                nombreCampana = nombreCampana.replace(/^CAMPAÑAS\s+/i, '')
+                                            .replace(/\s+/g, ' ')
+                                            .trim();
+                
+                // Solo agregar si no está vacío y no es un duplicado
+                if (nombreCampana && !nombresCampanas.has(nombreCampana)) {
+                    nombresCampanas.add(nombreCampana);
+                    
+                    const option = document.createElement('option');
+                    option.value = campanaId; // Usamos el ID como valor
+                    option.textContent = nombreCampana; // Mostramos el nombre
+                    option.dataset.nombre = nombreCampana; // Almacenamos el nombre en dataset
+                    select.appendChild(option);
+                }
+            }
+        });
+        
+        // Si no hay campañas, agregar un mensaje
+        if (nombresCampanas.size === 0) {
+            const option = document.createElement('option');
+            option.value = '';
+            option.textContent = 'No hay campañas disponibles';
+            option.disabled = true;
+            option.selected = true;
+            select.appendChild(option);
+        }
+    }
+
+    // Evento cuando se abre el NUEVO modal
+    document.getElementById('nuevoGastosModal').addEventListener('show.bs.modal', llenarNuevoSelectCampanas);
+
+   // Manejar el envío del NUEVO formulario de gastos
+    document.getElementById('nuevoGuardarGastosBtn').addEventListener('click', async function() {
+        const form = document.getElementById('nuevoFormGastos');
+        
+        if (form.checkValidity()) {
+            const datosGasto = {
+                fecha_pago: document.getElementById('nuevaFechaPago').value,
+                tipo_evento: document.getElementById('nuevoTipoEvento').value,
+                tipo_contendido: document.getElementById('nuevoTipoContenido').value,
+                duracion: parseInt(document.getElementById('nuevaDuracion').value),
+                alcance: parseInt(document.getElementById('nuevoAlcance').value),
+                inversion: parseFloat(document.getElementById('nuevaInversion').value),
+                head_id: parseInt(document.getElementById('nuevaCampanaSelect').value)
+            };
+            
+            try {
+                // Verificar si SweetAlert2 está disponible
+                const showAlert = (config) => {
+                    if (typeof Swal !== 'undefined') {
+                        return Swal.fire(config);
+                    } else {
+                        console.warn('SweetAlert2 no cargado:', config);
+                        alert(config.text || 'Operación completada');
+                    }
+                };
+                
+                await showAlert({
+                    title: 'Enviando datos...',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    willOpen: () => {
+                        if (typeof Swal !== 'undefined') Swal.showLoading();
+                    }
+                });
+                
+                const response = await fetch('http://10.100.39.23:8000/campanas/apidescrip/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(datosGasto)
+                });
+                
+                if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+                
+                const modal = bootstrap.Modal.getInstance(document.getElementById('nuevoGastosModal'));
+                modal.hide();
+                form.reset();
+                
+                await showAlert({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'Los gastos se han registrado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                
+            } catch (error) {
+                console.error('Error:', error);
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Hubo un problema al registrar los gastos'
+                    });
+                } else {
+                    alert('Error: ' + error.message);
+                }
+            }
+        } else {
+            form.reportValidity();
+        }
+    });   
 });
