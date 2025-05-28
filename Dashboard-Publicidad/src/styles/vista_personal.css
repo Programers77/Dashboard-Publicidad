@@ -1,346 +1,138 @@
-.model-profile {
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+.main-content {
+  margin-left: var(--sidebar-width-expanded);
+  padding: 80px 20px 20px 20px;
+  width: calc(100% - var(--sidebar-width-expanded));
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+  overflow-x: hidden;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  max-width: 1200px;
+  justify-content: center;
+}
+
+.container.main-content {
+  max-width: 1200px; /* Ajusta este valor según necesites */
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container{
   width: 100%;
-  margin: 0 auto;
-  justify-content: center;
- 
 }
 
 
-.profile-column {
-
-  min-width: 800px;
-  max-width: 400px;
-  justify-content: center;
-  margin-left: 350px;
-    
-}
-
+.profile-column,
 .content-column {
-  flex: 2;
-  min-width: 300px;
-}
-
-/* Card del perfil */
-.profile-card {
-  background-color: #fff;
-  border-radius: 16px;
-  width: 100%;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
-}
-
-.profile-image-container {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
-
-.image-wrapper {
-  position: relative;
-  width: 90px;
-  height: 90px;
-  overflow: hidden;
-  border-radius: 50%;
-  border: 2px solid #0080ff;
-}
-
-.tag {
-  background-color: #17a9ec; /* fondo celeste claro */
-  color: #ffffff; /* texto verde oscuro */
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  display: inline-block;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: background-color 0.3s ease;
-}
-
-.tag:hover {
-  background-color: #0467e9;
-  cursor: default;
+  max-width: 1000px; /* Aumentar el ancho máximo */
+  width: 100%; /* Permitir que el ancho se ajuste al contenedor */
+  margin: 0 auto; /* Centrar el contenedor */
+  padding: 1rem; /* Espaciado interno */
 }
 
 .model-photo {
-  width: 100%;
-  height: 100%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   object-fit: cover;
 }
 
-.model-name {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.model-status .status-badge {
-  display: inline-block;
-  margin-top: 0.3rem;
-  padding: 0.2rem 0.5rem;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  background-color: #ebfaf3;
-  color: #16d67c;
-}
-
-.status-badge i {
-  margin-right: 5px;
-}
-
-/* Botón de editar */
-.btn-prueba {
-  background-color: #0d6efd;
-  color: #ffffff;
-  border-radius: 8px;
-  padding: 0.5rem 1.2rem;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  display: inline-flex;
-  transition: background-color 0.3s ease;
-  
-}
-
-
-.btn-prueba:hover {
-  background-color: #0b5ed7;
-}
-
-/* Sección de detalles */
-.details-section {
-  margin-top: 2rem;
-}
-
-.detail-item {
-  display: flex;
-  justify-content: space-between;
-}
-
-.detail-label {
-  color: #495057;
-}
-
-.detail-value {
-  font-weight: 500;
-}
-
-/* Tarjeta de billetera */
-.wallet-summary {
-  background: linear-gradient(135deg, #7f92e7 0%, #534be0 100%);
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
-  margin-bottom: 2rem;
-}
-
-.balance-title {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.balance-amount {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #ffffff;
-}
-
-.stat-label {
-  color: #fff;
-}
-
-.stat-value {
-  color: #fff;
-}
-
-.balance-label {
-  color: #ffffff;
-  font-size: 1.95rem;
-  margin-bottom: 1rem;
-}
-
-.wallet-stats {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.stat-item {
-  text-align: center;
-  flex: 1;
-}
-
-.credit {
-  color: #20f08f;
-  font-size: 28px;
+.status-badge.active {
+  color: green;
   font-weight: bold;
 }
 
-.debit {
-  color: #fa495b;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-
-}
-/* QR card */
+.balance-card,
+.section-card,
 .qr-card {
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 1.5rem;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+}
+
+.wallet-summary .stat-item {
+  display: inline-block;
+  margin-right: 1rem;
   text-align: center;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
-  margin-top: 2rem;
-  margin-bottom: 50px;
 }
 
-.qr-code-container img {
-  width: 130px;
-  height: 130px;
-  margin-bottom: 1rem;
+.btn-prueba {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
 }
 
-.qr-text {
-  font-weight: 600;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.qr-actions .btn {
-  margin: 0.25rem;
-  width: 48%;
-}
-
-/* Secciones generales */
-.section-card {
-  background-color: #f0efef;
-  border-radius: 16px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.section-header h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.tags-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-/* Responsivo */
-@media (min-width: 1068px) {
-  .model-profile {
-    flex-direction: column;
-    max-width: 500px;
-    
+@media (max-width: 769px) {
+  .sidebar {
+    width: var(--sidebar-width-collapsed);
   }
-
-  .qr-actions .btn {
-    width: 100%;
+  .main-content {
+    margin-left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
   }
 }
 
-@media (min-width: 330px) {
-  
-  
-}
-
-@media (min-width: 600px) {
-  .profile-column{
-    
-    width: 100%; /* o un ancho fijo como 600px */
- 
-
-  } 
-  .btn-prueba {
-    background-color: #0d6efd;
-    color: #ffffff;
-    border-radius: 8px;
-    padding: 0.4rem 0.2rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    display: inline-flex;
-    transition: background-color 0.3s ease;
-    
-  }
-  
-  
-}
-
-@media (max-width: 991px) {
-  .model-profile {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-right: -80px;
-   
-  }
-
+@media (max-width: 768px) {
   .profile-column,
   .content-column {
-    min-width: 80% !important;
-    max-width: 100% !important;
-    flex: unset !important;
-   
+    max-width: 100%; /* Permitir que ocupe todo el ancho en pantallas pequeñas */
+    padding: 0 10px; /* Añadir un poco de padding */
   }
-
-  .wallet-stats {
-    flex-direction: column;
-    align-items: center;
+}
+/* Estilos generales para pantallas medianas */
+@media (min-width: 760px) and (max-width: 992px) {
+  .profile-column,
+  .content-column {
+    max-width: 600px; /* Ajustar el ancho máximo para pantallas medianas */
+    width: 100%; /* Asegurarse de que ocupe el 100% del contenedor */
+    padding-left: 15rem; /* Espaciado interno */
     
   }
 
-  .stat-item {
-    width: 100%;
-    margin-bottom: 1rem;
+  .balance-card,
+  .section-card,
+  .qr-card {
+    margin-top: 1.5rem; /* Espaciado superior */
+    padding: 1.5rem; /* Espaciado interno */
   }
 
-  .profile-image-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .model-photo {
+    width: 100px; /* Ajustar el tamaño de la imagen */
+    height: 100px; /* Ajustar el tamaño de la imagen */
   }
 
-  .detail-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
+  .btn-prueba {
+    padding: 0.5rem 1rem; /* Ajustar el padding del botón */
   }
+}
 
-  .btn-edit {
-    width: 100%;
-    text-align: center;
-    margin-top: 1rem;
+
+@media (min-width: 992px) {
+  .profile-column,
+  .content-column {
+    padding-left: 15rem; /* Aumentar el padding en pantallas grandes */
   }
+}
 
-  .qr-code-container img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .wallet-summary,
-  .qr-card,
-  .section-card {
-    width: 100%;
+@media (max-width: 768px) {
+  .profile-column,
+  .content-column {
+    max-width: 100%; /* Permitir que ocupe todo el ancho en pantallas pequeñas */
+    padding: 0 10px; /* Añadir un poco de padding */
   }
 }

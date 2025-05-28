@@ -32,7 +32,7 @@ body {
 .containerr {
   width: calc(100% - 240px);
   margin-left: 242px;
-  max-width: none;
+ 
 }
 
 header {
@@ -251,6 +251,7 @@ td:hover {
     min-width: 800px;
   }
 }
+
 @media (min-width: 330px) {
   .table-wrapper {
     width: 75%;
@@ -265,10 +266,18 @@ td:hover {
     margin-bottom: 30px;
     margin-left: 50px;
   }
+
+    
+  .containerr {
+    max-width: 1200px;    /* limite máximo para no pasarse */
+    width: 95%;           /* ancho responsivo */
+    margin: 0 auto;       /* centrado horizontal */
+    padding-left: 20px;   /* padding en lugar de margin para que no haga scroll horizontal */
+    padding-right: 20px;
+   margin-left: auto;   /* centrado horizontal */
+  }
   
 }
-
-/* Desde 600px en adelante - escritorio pequeño y tablet */
 @media (min-width: 600px) {
   .table-wrapper {
     width: 100%;
@@ -281,16 +290,7 @@ td:hover {
     width: 60%;
     margin-bottom: 30px;
     margin-right: auto;  /* para alinearlo a la izquierda sin tanto margen fijo */
-    margin-left: auto;   /* centrado horizontal */
-  }
-  .containerr {
-    max-width: 1200px;    /* limite máximo para no pasarse */
-    width: 95%;           /* ancho responsivo */
-    margin: 0 auto;       /* centrado horizontal */
-    padding-left: 20px;   /* padding en lugar de margin para que no haga scroll horizontal */
-    padding-right: 20px;
-  }
-}
+
 
 /* Pantallas menores a 768px - móviles */
 @media (max-width: 768px) {
@@ -298,10 +298,8 @@ td:hover {
     font-size: 0.8rem;
   }
   .containerr {
-    width: 95%;
-    margin: 0 auto;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: calc(100% - 60px);
+    
   }
   .table-wrapper {
     width: 100%;
