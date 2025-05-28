@@ -153,7 +153,7 @@
             height: 5px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--success), var(--warning), var(--primary));
             background-size: 400%;
-            animation: gradient 8s linear infinite;
+            animation: gradient 6s linear infinite;
         }
         
         @keyframes gradient {

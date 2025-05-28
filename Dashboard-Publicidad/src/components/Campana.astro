@@ -1,4 +1,33 @@
 <div class="container-campana">
+ 
+  <div id="loadingOverlay" class="pub-loader-overlay">
+    <div class="pub-loader-container">
+      <!-- Círculo de colores giratorio -->
+      <div class="color-wheel">
+        <div class="color-segment" style="--color: #FF3E4D; --i: 0"></div>
+        <div class="color-segment" style="--color: #FF9F1C; --i: 1"></div>
+        <div class="color-segment" style="--color: #F8D210; --i: 2"></div>
+        <div class="color-segment" style="--color: #2BDE73; --i: 3"></div>
+        <div class="color-segment" style="--color: #1E90FF; --i: 4"></div>
+        <div class="color-segment" style="--color: #9B59B6; --i: 5"></div>
+      </div>
+      
+      <!-- Texto animado -->
+      <div class="pub-loader-text">
+        <span>C</span>
+        <span>R</span>
+        <span>E</span>
+        <span>A</span>
+        <span>T</span>
+        <span>I</span>
+        <span>V</span>
+        <span>O</span>
+      </div>
+      
+      <div class="pub-loader-subtext">Cargando campañas...</div>
+    </div>
+  </div>
+
   <header>
     <div class="header-title">
       <h1>Dashboard de Gastos Publicitarios</h1>
@@ -11,6 +40,13 @@
         data-bs-target="#agregarCampanaModal"
       >
         <i class="fas fa-plus"></i> Agregar Campaña
+      </button>
+      <button
+        class="btn btn-secondary ms-2"
+        data-bs-toggle="modal"
+        data-bs-target="#nuevoGastosModal"
+      >
+        <i class="fas fa-cash-register"></i> Registrar Gastos
       </button>
     </div>
   </header>
@@ -235,6 +271,131 @@
       </div>
     </div>
   </div>
-</div>
 
+  <!-- Nuevo Modal para Registrar Gastos -->
+  <div
+    class="modal fade"
+    id="nuevoGastosModal"
+    tabindex="-1"
+    aria-labelledby="nuevoGastosModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content border-0">
+        <!-- Header con azul oscuro profesional -->
+        <div class="modal-header text-white" style="background-color: #0d6efd; border-bottom: 2px solid #1a252f;">
+          <h5 class="modal-title" id="nuevoGastosModalLabel">
+            <i class="fas fa-file-invoice-dollar me-2"></i> Registro de Gastos Publicitarios
+          </h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        
+        <!-- Cuerpo del modal -->
+        <div class="modal-body">
+          <form id="nuevoFormGastos">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nuevaCampanaSelect" class="form-label fw-bold">Campaña</label>
+                <select class="form-select border-secondary" id="nuevaCampanaSelect" required>
+                  <option value="" selected disabled>Seleccione una campaña</option>
+                  <!-- Las opciones se llenarán con JavaScript -->
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="nuevaFechaPago" class="form-label fw-bold">Fecha de Pago</label>
+                <input
+                  type="date"
+                  class="form-control border-secondary"
+                  id="nuevaFechaPago"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nuevoTipoEvento" class="form-label fw-bold">Tipo de Evento</label>
+                <input
+                  type="text"
+                  class="form-control border-secondary"
+                  id="nuevoTipoEvento"
+                  placeholder="Ej: Evento, Publicidad, Otros"
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="nuevoTipoContenido" class="form-label fw-bold">Tipo de Contenido</label>
+                <input
+                  type="text"
+                  class="form-control border-secondary"
+                  id="nuevoTipoContenido"
+                  placeholder="Ej: Video, Imagen, Texto"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="nuevaDuracion" class="form-label fw-bold">Duración (días)</label>
+                <input
+                  type="number"
+                  class="form-control border-secondary"
+                  id="nuevaDuracion"
+                  min="1"
+                  required
+                />
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="nuevoAlcance" class="form-label fw-bold">Alcance estimado</label>
+                <div class="input-group">
+                  <input
+                    type="number"
+                    class="form-control border-secondary"
+                    id="nuevoAlcance"
+                    min="1"
+                    required
+                  />
+                  <span class="input-group-text bg-light">personas</span>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="nuevaInversion" class="form-label fw-bold">Inversión</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    class="form-control border-secondary"
+                    id="nuevaInversion"
+                    min="0.01"
+                    step="0.01"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Footer con estilo profesional -->
+        <div class="modal-footer" style="background-color: #f8f9fa; border-top: 1px solid #dee2e6;">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-bs-dismiss="modal">
+            <i class="fas fa-times me-1"></i> Cancelar
+          </button>
+          <button type="button" class="btn text-white" style="background-color: #0d6efd;" id="nuevoGuardarGastosBtn">
+            <i class="fas fa-save me-1"></i> Guardar Registro
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/campana.js" defer></script>
