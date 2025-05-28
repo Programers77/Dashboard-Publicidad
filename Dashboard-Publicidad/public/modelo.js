@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://10.100.39.23:8000";
+const API_BASE_URL = "http://172.21.250.10:8000";
 const FRONTEND_API = "fair-mastodon-60.clerk.accounts.dev";
 let globalToken = null;
 
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const response = await fetch(
-          `http://10.100.39.23:8000/modelos/api/tallas/`,
+          `http://172.21.250.10:8000/modelos/api/tallas/`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function cargarTiposDeCuenta() {
   try {
     const response = await fetch(
-      "http://10.100.39.23:8000/modelos/api/cuenta/"
+      "http://172.21.250.10:8000/modelos/api/cuenta/"
     );
     const data = await response.json();
 

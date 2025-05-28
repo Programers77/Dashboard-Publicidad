@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Variables globales
     let listaPautasGlobal = [];
     let pautasDataGlobal = {};
-    const API_BASE_URL = 'http://10.100.39.23:8000';
+    const API_BASE_URL = "http://172.21.250.10:8000";
 
     // 1. Referencias a elementos del DOM
     const elements = {

@@ -32,8 +32,7 @@ body {
 .containerr {
   width: calc(100% - 240px);
   margin-left: 242px;
-
-  max-width: none;
+ 
 }
 
 header {
@@ -97,8 +96,9 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  width: 100%;
+  width: 90%;
   margin-bottom: 30px;
+  margin-left: 100px;
 }
 
 .card {
@@ -169,8 +169,12 @@ header {
 /* ==== Tablas ==== */
 .table-wrapper {
   width: 100%;
-  overflow-x: auto;
+  overflow-x: auto; /* Para scroll horizontal en móvil */
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
 }
+
 
 table {
   width: 100%;
@@ -178,7 +182,9 @@ table {
   border-spacing: 0;
   font-size: 0.9rem;
   min-width: 800px;
+  cursor:pointer;
 }
+
 
 th,
 td {
@@ -213,7 +219,7 @@ tr:hover {
 }
 
 td:hover {
-  background-color: rgba(67, 97, 238, 0.05);
+  background-color: rgba(8, 42, 192, 0.05);
 }
 
 /* ==== Etiquetas de talla ==== */
@@ -241,18 +247,109 @@ td:hover {
   .table-wrapper {
     overflow-x: auto;
   }
-   table {
+  table {
     min-width: 800px;
   }
 }
 
+@media (min-width: 330px) {
+  .table-wrapper {
+    width: 75%; /* Ancho de la tabla */
+    overflow-x: auto; /* Permitir desplazamiento horizontal si es necesario */
+    margin: 0 auto; /* Centrar la tabla */
+  } 
+  
+  .summary-cards {
+    display: grid;
+    gap: 20px;
+    width: 80%; /* Ancho de los cards */
+    margin: 0 auto; /* Centrar los cards */
+    margin-bottom: 30px; /* Espaciado inferior */
+  }
+
+  .containerr {
+    max-width: 1200px; /* Límite máximo para no pasarse */
+    width: 95%; /* Ancho responsivo */
+    margin: 0 auto; /* Centrado horizontal */
+    padding-left: 20px; /* Padding en lugar de margin para que no haga scroll horizontal */
+    padding-right: 20px;
+  }
+}
+
+@media (min-width: 600px) {
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 0 auto;
+  }
+  .summary-cards {
+    display: grid;
+    gap: 20px;
+    width: 60%;
+    margin-bottom: 30px;
+    margin-right: auto;  /* para alinearlo a la izquierda sin tanto margen fijo */
+
+
+/* Pantallas menores a 768px - móviles */
 @media (max-width: 768px) {
   table {
     font-size: 0.8rem;
   }
-  .containerr{
+  .containerr {
     width: calc(100% - 60px);
-    margin-left: 70px;
+    
+  }
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 0 auto;
+  }
+ 
+  .summary-cards {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: column;  /* para que el botón quede debajo del texto */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;  /* espacio entre texto y botón */
+  }
+
+  .header-title {
+    text-align: center;
+  }
+
+  .header-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* botón centrado horizontalmente */
+  }
+  .modal-pequeno {
+    max-width: 400px;
+    width: 70%;
+  }
+  
+}
+  }}
+
+  /* Centrado en pantallas grandes */
+@media (min-width: 1024px) {
+  .wallet-container {
+    max-width: 800px; /* o el ancho que prefieras */
+    margin: 0 auto;    /* centra horizontalmente */
+    padding-left: 0;   /* evita desplazamiento si hay sidebar */
   }
 }
 
+/* Espaciado general en pantallas pequeñas (mantiene responsive) */
+.wallet-container {
+  padding: 1rem;
+}

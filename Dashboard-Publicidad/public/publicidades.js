@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Configuración base
-  const apiBaseUrl = 'http://10.100.39.23:8000/publicidad/api/';
+  const apiBaseUrl = "http://172.21.250.10:8000/publicidad/api/";
   let publicidadData = [];
   let currentCampaignId = null;
   let currentCampaignStatus = null;

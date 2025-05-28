@@ -1,56 +1,78 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
-</head>
+<!-- Bootstrap 5 CDN (asegúrate de incluirlo si aún no lo has hecho) -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
 
-    <body>
-    <div class="wallet-container">
-        <!-- Loading Overlay - Ahora dentro del contenedor -->
-        <div class="loading-overlay" id="loading-overlay">
-            <div class="spinner">
-                <div class="spinner-inner"></div>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <!-- Loading Overlay -->
+      <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner">
+          <div class="spinner-inner"></div>
+        </div>
+        <p class="loading-text">Cargando datos financieros...</p>
+      </div>
+
+      <!-- Header -->
+      <div class="wallet-header text-center mb-4">
+        <h1 class="wallet-title">
+          <i class="fas fa-wallet"></i>
+          Billetera Digital
+        </h1>
+      </div>
+
+      <!-- Balance Card -->
+      <div class="balance-card card mb-4 p-3">
+        <h3 class="balance-title">Balance Disponible</h3>
+        <div class="balance-amount h2 text-white" id="balance-amount">
+          $0.00
+        </div>
+        <div class="balance-details d-flex justify-content-between mt-3">
+          <div id="balance-ingresos" class="balance-detail income">
+            <i class="fas fa-arrow-up"></i>
+            <span>Ingresos: $0</span>
+          </div>
+          <div id="balance-gastos" class="balance-detail expense">
+            <i class="fas fa-arrow-down"></i>
+            <span>Gastos: $0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions Section -->
+      <div class="transactions-section">
+        <div
+          class="section-header d-flex justify-content-between align-items-center mb-3"
+        >
+          <h2 class="section-title">Últimas Transacciones</h2>
+          <div class="filter-tabs d-flex gap-2">
+            <div
+              class="tab active btn btn-outline-secondary btn-sm"
+              data-filter="all"
+            >
+              Todas
             </div>
-            <p class="loading-text">Cargando datos financieros...</p>
+            <div
+              class="tab btn btn-outline-success btn-sm"
+              data-filter="CREDITO"
+            >
+              Ingresos
+            </div>
+            <div class="tab btn btn-outline-danger btn-sm" data-filter="DEBITO">
+              Gastos
+            </div>
+          </div>
         </div>
 
-        <!-- Header -->
-        <div class="wallet-header">
-            <h1 class="wallet-title">
-                <i class="fas fa-wallet"></i>
-                Billetera Digital
-            </h1>
+        <div class="transaction-list" id="transaction-list">
+          <!-- Las transacciones se cargarán dinámicamente aquí -->
         </div>
-        
-        <!-- Balance Card -->
-        <div class="balance-card">
-            <h3 class="balance-title">Balance Disponible</h3>
-            <div class="balance-amount" id="balance-amount">$0.00</div>
-            <div class="balance-details">
-                <div id="balance-ingresos" class="balance-detail income">
-                    <i class="fas fa-arrow-up"></i>
-                    <span>Ingresos: $0</span>
-                </div>
-                <div id="balance-gastos" class="balance-detail expense">
-                    <i class="fas fa-arrow-down"></i>
-                    <span>Gastos: $0</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Transactions Section -->
-        <div class="transactions-section">
-            <div class="section-header">
-                <h2 class="section-title">Últimas Transacciones</h2>
-                <div class="filter-tabs">
-                    <div class="tab active" data-filter="all">Todas</div>
-                    <div class="tab" data-filter="CREDITO">Ingresos</div>
-                    <div class="tab" data-filter="DEBITO">Gastos</div>
-                </div>
-            </div>
-            
-            <div class="transaction-list" id="transaction-list">
-                <!-- Las transacciones se cargarán dinámicamente aquí -->
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+</div>
 
+<!-- JS script -->
 <script src="/wallet.js" defer></script>

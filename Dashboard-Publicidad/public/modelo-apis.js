@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     
     try {
-        const res = await fetch('http://10.100.39.23:8000/modelos/api/head/modelos');
+        const res = await fetch(
+          "http://172.21.250.10:8000/modelos/api/head/modelos"
+        );
         const data = await res.json();
 
         // Resumen

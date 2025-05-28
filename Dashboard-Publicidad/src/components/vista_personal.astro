@@ -3,192 +3,178 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
-<div class="container">
-  <div class="model-profile">
-    <!-- Columna 1: Perfil -->
-    <div class="profile-column">
-      <!-- Sección de Imagen + Información -->
-      <div class="profile-image-container">
-        <div class="image-wrapper">
+<div class="container py-4">
+  <div class="row justify-content-center align-items-start g-4">
+    <!-- Columna izquierda: Perfil -->
+    <div class="">
+      <div class="profile-column">
+        <!-- Imagen + Información -->
+        <div class="profile-image-container text-center">
           <img
             id="foto-perfill"
             src="/descarga.png"
             alt="Foto del modelo"
-            class="model-photo"
+            class="model-photo mb-2"
           />
-        </div>
-        <div class="profile-info">
-          <div class="model-name" id="nombre-perfil"></div>
-          <div><div id="id-perfil"></div></div>
-          <div class="model-status">
+          <div class="profile-info">
+            <div class="model-name fw-bold fs-4" id="nombre-perfil"></div>
+            <div id="id-perfil" class="mb-2"></div>
             <span class="status-badge active">
               <i class="fas fa-circle"></i> Activo
             </span>
           </div>
         </div>
-      </div>
 
-      <!-- Botón editar -->
-      <button
-        class="btn btn-edit"
-        data-bs-toggle="modal"
-        data-bs-target="#editarModeloModal"
-        id="guardarCambiosBtn"
-      >
-        <i class="fas fa-edit"></i> Editar Modelo
-      </button>
+        <!-- Botón editar -->
+        <button
+          class="btn-prueba"
+          data-bs-toggle="modal"
+          data-bs-target="#editarModeloModal"
+          id="guardarCambiosBtn"
+        >
+          <i class="fas fa-edit"></i> Editar Modelo
+        </button>
 
-      <!-- Información personal -->
-      <div class="details-section mt-4">
-        <h3 class="text-xl font-semibold mb-3">
-          <i class="fas fa-id-card mr-2"></i>Información Personal
-        </h3>
-        <div class="detail-item mb-2">
-          <span class="detail-label font-medium">CI:</span>
-          <span class="detail-value" id="cedula-perfil"></span>
+        <!-- Información personal -->
+        <div class="details-section mt-4 w-100">
+          <h3><i class="fas fa-id-card me-2"></i>Información Personal</h3>
+          <div class="mb-2">
+            <strong>CI:</strong>
+            <span id="cedula-perfil"></span>
+          </div>
+          <div class="mb-2">
+            <strong>Edad:</strong>
+            <span id="perfil-edad"></span>
+          </div>
+          <div class="mb-2">
+            <strong>Teléfono:</strong>
+            <span id="perfil-telefono"></span>
+          </div>
+          <div class="mb-2">
+            <strong>Email:</strong>
+            <span id="perfil-email"></span>
+          </div>
         </div>
-        <div class="detail-item mb-2">
-          <span class="detail-label font-medium">Edad:</span>
-          <span class="detail-value" id="perfil-edad"></span>
-        </div>
-        <div class="detail-item mb-2">
-          <span class="detail-label font-medium">Teléfono:</span>
-          <span class="detail-value" id="perfil-telefono"></span>
-        </div>
-        <div class="detail-item mb-2">
-          <span class="detail-label font-medium">Email:</span>
-          <span class="detail-value" id="perfil-email"></span>
-        </div>
-      </div>
 
-      <!-- Modal de edición -->
-      <div
-        class="modal fade"
-        id="editarModeloModal"
-        tabindex="-1"
-        aria-labelledby="editarModeloModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editarModeloModalLabel">
-                Editar Información del Modelo
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="formEditarModelo">
-                <div class="mb-3">
-                  <label for="edit-ci" class="form-label">CI</label>
-                  <input type="text" class="form-control" id="edit-ci" />
-                </div>
-                <div class="mb-3">
-                  <label for="edit-edad" class="form-label">Edad</label>
-                  <input type="text" class="form-control" id="edit-edad" />
-                </div>
-                <div class="mb-3">
-                  <label for="edit-phone" class="form-label">Teléfono</label>
-                  <input type="tel" class="form-control" id="edit-phone" />
-                </div>
-                <div class="mb-3">
-                  <label for="edit-email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="edit-email" />
-                </div>
-                <div class="mb-3">
-                  <label for="edit-tipo-cuenta" class="form-label"
-                    >Tipo de Cuenta</label
-                  >
-                  <select id="edit-tipo-cuenta" class="form-control">
-                    <option value="" disabled selected
-                      >Seleccione una opción</option
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="editarModeloModal"
+          tabindex="-1"
+          aria-labelledby="editarModeloModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editarModeloModalLabel">
+                  Editar Información del Modelo
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="formEditarModelo">
+                  <div class="mb-3">
+                    <label for="edit-ci" class="form-label">CI</label>
+                    <input type="text" class="form-control" id="edit-ci" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-edad" class="form-label">Edad</label>
+                    <input type="text" class="form-control" id="edit-edad" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-phone" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="edit-phone" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="edit-email" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit-tipo-cuenta" class="form-label"
+                      >Tipo de Cuenta</label
                     >
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                  </select>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal">Cancelar</button
-              >
-              <button type="button" class="btn btn-primary"
-                >Guardar Cambios</button
-              >
+                    <select id="edit-tipo-cuenta" class="form-control">
+                      <option value="" disabled selected
+                        >Seleccione una opción</option
+                      >
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal">Cancelar</button
+                >
+                <button type="button" class="btn btn-primary"
+                  >Guardar Cambios</button
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Secciones tipo tarjeta -->
-      <div class="wallet-qr-container">
-        <!-- Resumen Billetera -->
+        <!-- Billetera -->
         <div class="balance-card wallet-summary">
-          <h3 class="balance-title">
-            <i class="fas fa-wallet"></i> Resumen Billetera
-          </h3>
-          <div id="saldo" class="balance-amount">$0.00</div>
-          <div class="balance-label">Saldo Actual</div>
-          <div class="balance-details wallet-stats">
-            <div id="balance-ingresos" class="stat-item balance-detail income">
-              <i class="fas fa-arrow-up"></i>
-              <span class="stat-value credit" id="Tipo_movimiento">$0.00</span>
-              <div class="stat-label">Crédito</div>
+          <h3><i class="fas fa-wallet"></i> Resumen Billetera</h3>
+          <div id="saldo" class="fs-4 fw-bold">$0.00</div>
+          <div class="text-muted mb-2">Saldo Actual</div>
+          <div class="wallet-stats">
+            <div id="balance-ingresos" class="stat-item">
+              <i class="fas fa-arrow-up text-success"></i>
+              <div id="Tipo_movimiento">$0.00</div>
+              <small>Crédito</small>
             </div>
-            <div id="balance-gastos" class="stat-item balance-detail expense">
-              <i class="fas fa-arrow-down"></i>
-              <span class="stat-value debit">$0.00</span>
-              <div class="stat-label">Débito</div>
+            <div id="balance-gastos" class="stat-item">
+              <i class="fas fa-arrow-down text-danger"></i>
+              <div>$0.00</div>
+              <small>Débito</small>
             </div>
-            <div class="stat-item stat-movimientos">
-              <span class="stat-value">0</span>
-              <div class="stat-label">Movimientos</div>
+            <div class="stat-item">
+              <div>0</div>
+              <small>Movimientos</small>
             </div>
           </div>
         </div>
 
         <!-- Pautas -->
         <div class="section-card">
-          <div class="section-header">
-            <h2><i class="fas fa-tags"></i> Pautas Asignadas</h2>
+          <h4><i class="fas fa-tags"></i> Pautas Asignadas</h4>
+          <div class="tags-container">
+            <span class="tag"></span>
           </div>
-          <div class="tags-container"></div>
         </div>
 
         <!-- Código QR -->
-        <div class="qr-card">
-          <h3><i class="fas fa-qrcode"></i> Identificación</h3>
+        <div class="qr-card text-center">
+          <h4><i class="fas fa-qrcode"></i> Identificación</h4>
           <div class="qr-code-container">
-            <img id="img-qr" src="" alt="Código QR" />
-            <div id="id-qr" class="qr-text"></div>
+            <img id="img-qr" src="" alt="Código QR" class="img-fluid" />
+            <div id="id-qr" class="qr-text mt-2"></div>
           </div>
-          <!-- <div class="qr-actions">
-            <button class="btn btn-download">
-              <i class="fas fa-download"></i> Descargar
-            </button>
-            <button class="btn btn-print">
-              <i class="fas fa-print"></i> Imprimir
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
 
-    <!-- Columna 2: Otros detalles (Historial, etc.) -->
-    <div class="content-column">
-      <div class="section-card transactions-section" style="display: none;">
-        <div class="section-header">
-          <h2><i class="fas fa-exchange-alt"></i> Historial de Movimientos</h2>
-        </div>
-        <div class="transactions-table">
-          <!-- Contenido dinámico aquí -->
+    <!-- Columna derecha -->
+    <div class="col-12 col-md-6 col-lg-8">
+      <div class="content-column">
+        <div
+          class="section-card transactions-section w-100"
+          style="display: none;"
+        >
+          <h4><i class="fas fa-exchange-alt"></i> Historial de Movimientos</h4>
+          <div class="transactions-table">
+            <!-- Contenido dinámico aquí -->
+          </div>
         </div>
       </div>
     </div>
