@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function cargarDatosDelModelo(modeloId) {
   try {
     const response = await fetch(
-      `http://10.100.39.23:8000/modelos/api/head/detallespersonales/?id=${modeloId}`
+      `http://172.21.250.10:8000/modelos/api/head/detallespersonales/?id=${modeloId}`
     );
     if (!response.ok) throw new Error("Error en la respuesta del servidor");
 
@@ -172,7 +172,7 @@ function configurarModalEdicion() {
 
       try {
         const response = await fetch(
-          `http://10.100.39.23:8000/modelos/api/head/${modeloId}/`,
+          `http://172.21.250.10:8000/modelos/api/head/${modeloId}/`,
           {
             method: "PUT",
             headers: {
@@ -226,7 +226,7 @@ function configurarModalEdicion() {
 async function cargarTiposDeCuenta() {
   try {
     const response = await fetch(
-      "http://10.100.39.23:8000/modelos/api/cuenta/"
+      "http://172.21.250.10:8000/modelos/api/cuenta/"
     );
     const data = await response.json();
 

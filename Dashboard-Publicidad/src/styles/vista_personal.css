@@ -3,7 +3,6 @@ body {
   padding: 0;
 }
 
-
 .main-content {
   margin-left: var(--sidebar-width-expanded);
   padding: 80px 20px 20px 20px;
@@ -23,10 +22,9 @@ body {
   padding-right: 20px;
 }
 
-.container{
+.container {
   width: 100%;
 }
-
 
 .profile-column,
 .content-column {
@@ -59,7 +57,7 @@ body {
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 0.5rem;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 .wallet-summary .stat-item {
@@ -101,7 +99,6 @@ body {
     max-width: 600px; /* Ajustar el ancho máximo para pantallas medianas */
     width: 100%; /* Asegurarse de que ocupe el 100% del contenedor */
     padding-left: 15rem; /* Espaciado interno */
-    
   }
 
   .balance-card,
@@ -120,7 +117,6 @@ body {
     padding: 0.5rem 1rem; /* Ajustar el padding del botón */
   }
 }
-
 
 @media (min-width: 992px) {
   .profile-column,

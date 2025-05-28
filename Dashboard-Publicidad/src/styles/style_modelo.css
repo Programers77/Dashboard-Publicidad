@@ -338,3 +338,18 @@ td:hover {
   }
   
 }
+  }}
+
+  /* Centrado en pantallas grandes */
+@media (min-width: 1024px) {
+  .wallet-container {
+    max-width: 800px; /* o el ancho que prefieras */
+    margin: 0 auto;    /* centra horizontalmente */
+    padding-left: 0;   /* evita desplazamiento si hay sidebar */
+  }
+}
+
+/* Espaciado general en pantallas pequeñas (mantiene responsive) */
+.wallet-container {
+  padding: 1rem;
+}

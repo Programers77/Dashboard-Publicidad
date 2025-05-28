@@ -49,7 +49,7 @@ function loadDashboardData() {
     `;
   }
 
-  fetch('http://10.100.39.23:8000/inicio/api/dashboard')
+  fetch('http://172.21.250.10:8000/inicio/api/dashboard')
     .then(response => {
       if (!response.ok) throw new Error(`Error ${response.status}`);
       return response.json();
