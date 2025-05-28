@@ -254,30 +254,28 @@ td:hover {
 
 @media (min-width: 330px) {
   .table-wrapper {
-    width: 75%;
-    overflow-x: auto;
-  
+    width: 75%; /* Ancho de la tabla */
+    overflow-x: auto; /* Permitir desplazamiento horizontal si es necesario */
+    margin: 0 auto; /* Centrar la tabla */
   } 
   
   .summary-cards {
     display: grid;
     gap: 20px;
-    width: 80%;
-    margin-bottom: 30px;
-    margin-left: 50px;
+    width: 80%; /* Ancho de los cards */
+    margin: 0 auto; /* Centrar los cards */
+    margin-bottom: 30px; /* Espaciado inferior */
   }
 
-    
   .containerr {
-    max-width: 1200px;    /* limite máximo para no pasarse */
-    width: 95%;           /* ancho responsivo */
-    margin: 0 auto;       /* centrado horizontal */
-    padding-left: 20px;   /* padding en lugar de margin para que no haga scroll horizontal */
+    max-width: 1200px; /* Límite máximo para no pasarse */
+    width: 95%; /* Ancho responsivo */
+    margin: 0 auto; /* Centrado horizontal */
+    padding-left: 20px; /* Padding en lugar de margin para que no haga scroll horizontal */
     padding-right: 20px;
-   margin-left: auto;   /* centrado horizontal */
   }
-  
 }
+
 @media (min-width: 600px) {
   .table-wrapper {
     width: 100%;
