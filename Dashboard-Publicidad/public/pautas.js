@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Variables globales
     let listaPautasGlobal = [];
     let pautasDataGlobal = {};
-    const API_BASE_URL = 'http://10.100.39.23:8000';
+    const API_BASE_URL = "http://172.21.250.10:8000";
 
     // 1. Referencias a elementos del DOM
     const elements = {
@@ -654,11 +654,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    async function loadSweetAlert() {
+        return new Promise((resolve, reject) => {
+            // Si ya está cargado, resolvemos inmediatamente
+            if (typeof Swal !== 'undefined') {
+              return resolve();
+            }
+
+            // Creamos el elemento script
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+
     async function openReasignarModal() {
-        elements.modalReasignar.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-        try {
+            try {
+                // Cargar SweetAlert2 si no está disponible
+                await loadSweetAlert();
+            
+            elements.modalReasignar.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
             // Mostrar notificación de carga
             Swal.fire({
                 title: 'Cargando modelos',
@@ -666,8 +685,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 allowOutsideClick: false,
                 didOpen: () => {
                     Swal.showLoading();
-                }
-            });
+            }
+        });
 
             elements.selectModelo.disabled = true;
             elements.selectModelo.innerHTML = '<option value="">Cargando modelos...</option>';
@@ -695,8 +714,17 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error al cargar modelos:', error);
             elements.selectModelo.innerHTML = '<option value="">Error al cargar modelos</option>';
             
-            // Mostrar notificación de error
-            mostrarNotificacion('error', 'Error al cargar modelos', error.message);
+            // Mostrar notificación de error (usando SweetAlert si está disponible)
+            if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al cargar modelos',
+                text: error.message
+            });
+            } else {
+            // Fallback a alert básico si SweetAlert no se cargó
+            alert(`Error al cargar modelos: ${error.message}`);
+            }
         }
     }
 

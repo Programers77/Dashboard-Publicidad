@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
             "activa": true
         };
         
-        fetch('http://10.100.39.23:8000/campanas/apihead/', {
+        fetch('http://172.21.250.10:8000/campanas/apihead/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -229,23 +229,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para cargar datos de la API
     function cargarDatosAPI() {
-        return fetch('http://10.100.39.23:8000/campanas/apidescrip/resumencampanas/')
-            .then(response => {
-                if (!response.ok) throw new Error('Error en la respuesta del servidor');
-                return response.json();
-            })
-            .then(data => {
-                updateCards(data);
-                
-                if (data.campanas) {
-                    updateCampanasTable(data.campanas);
-                }
-                return data; // Devuelve los datos para poder encadenar
-            })
-            .catch(error => {
-                console.error('Error al obtener datos de la API:', error);
-                throw error; // Propaga el error
-            });
+        return fetch(
+          "http://172.21.250.10:8000/campanas/apidescrip/resumencampanas/"
+        )
+          .then((response) => {
+            if (!response.ok)
+              throw new Error("Error en la respuesta del servidor");
+            return response.json();
+          })
+          .then((data) => {
+            updateCards(data);
+
+            if (data.campanas) {
+              updateCampanasTable(data.campanas);
+            }
+            return data; // Devuelve los datos para poder encadenar
+          })
+          .catch((error) => {
+            console.error("Error al obtener datos de la API:", error);
+            throw error; // Propaga el error
+          });
     }
     
     // Variable para guardar el ID de la campaña recién creada
@@ -275,32 +278,37 @@ document.addEventListener('DOMContentLoaded', function() {
             "activa": true
         };
         
-        fetch('http://10.100.39.23:8000/campanas/apihead/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(datos)
+        fetch("http://172.21.250.10:8000/campanas/apihead/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(datos),
         })
-        .then(response => {
-            if (!response.ok) throw new Error('Error en la respuesta del servidor');
+          .then((response) => {
+            if (!response.ok)
+              throw new Error("Error en la respuesta del servidor");
             return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
+          })
+          .then((data) => {
+            console.log("Success:", data);
             nuevaCampanaId = data.id; // Guardamos el ID de la nueva campaña
-            
+
             // Cierra el modal de campaña y abre el de gastos
-            const modalCampana = bootstrap.Modal.getInstance(document.getElementById('agregarCampanaModal'));
+            const modalCampana = bootstrap.Modal.getInstance(
+              document.getElementById("agregarCampanaModal")
+            );
             modalCampana.hide();
-            
-            const modalGastos = new bootstrap.Modal(document.getElementById('agregarGastosModal'));
+
+            const modalGastos = new bootstrap.Modal(
+              document.getElementById("agregarGastosModal")
+            );
             modalGastos.show();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al registrar la campaña: ' + error.message);
-        });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Error al registrar la campaña: " + error.message);
+          });
     }
     
     function registrarGastos() {

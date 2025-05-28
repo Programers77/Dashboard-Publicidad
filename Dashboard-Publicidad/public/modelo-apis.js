@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     
     try {
-        const res = await fetch('http://10.100.39.23:8000/modelos/api/head/modelos');
+        const res = await fetch(
+          "http://172.21.250.10:8000/modelos/api/head/modelos"
+        );
         const data = await res.json();
 
         // Resumen
@@ -97,13 +99,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function calcularEdad(fechaNacimiento) {
-    const hoy = new Date();
-    const nacimiento = new Date(fechaNacimiento);
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const mes = hoy.getMonth() - nacimiento.getMonth();
-    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
-        edad--;
-    }
-    return edad;
-}
+// function calcularEdad(fechaNacimiento) {
+//     const hoy = new Date();
+//     const nacimiento = new Date(fechaNacimiento);
+//     let edad = hoy.getFullYear() - nacimiento.getFullYear();
+//     const mes = hoy.getMonth() - nacimiento.getMonth();
+//     if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+//         edad--;
+//     }
+//     return edad;
+// }

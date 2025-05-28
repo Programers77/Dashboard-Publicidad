@@ -106,40 +106,48 @@
             // Mostrar loading
             document.getElementById('loading-overlay').style.display = 'flex';
             
-            fetch('http://10.100.39.23:8000/wallet/apiwallet/')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Actualizar balance
-                    document.getElementById('balance-amount').textContent = formatCurrency(data.balance);
-                    document.querySelector('#balance-ingresos span').textContent = `Ingresos: ${formatCurrency(data.total_ingresos)}`;
-                    document.querySelector('#balance-gastos span').textContent = `Gastos: ${formatCurrency(data.total_gastos)}`;
-                    
-                    // Guardar y mostrar transacciones
-                    window.allTransactions = data.registros;
-                    renderTransactions(data.registros);
-                    setupFilterTabs();
-                })
-                .catch(error => {
-                    console.error('Error al obtener los datos:', error);
-                    // Mostrar mensaje de error
-                    document.getElementById('transaction-list').innerHTML = `
+            fetch("http://172.21.250.10:8000/wallet/apiwallet/")
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                return response.json();
+              })
+              .then((data) => {
+                // Actualizar balance
+                document.getElementById("balance-amount").textContent =
+                  formatCurrency(data.balance);
+                document.querySelector(
+                  "#balance-ingresos span"
+                ).textContent = `Ingresos: ${formatCurrency(
+                  data.total_ingresos
+                )}`;
+                document.querySelector(
+                  "#balance-gastos span"
+                ).textContent = `Gastos: ${formatCurrency(data.total_gastos)}`;
+
+                // Guardar y mostrar transacciones
+                window.allTransactions = data.registros;
+                renderTransactions(data.registros);
+                setupFilterTabs();
+              })
+              .catch((error) => {
+                console.error("Error al obtener los datos:", error);
+                // Mostrar mensaje de error
+                document.getElementById("transaction-list").innerHTML = `
                         <div class="transaction-error">
                             <i class="fas fa-exclamation-circle"></i>
                             <span>Error al cargar los datos. Intente nuevamente más tarde.</span>
                         </div>
                     `;
-                })
-                .finally(() => {
-                    // Ocultar loading después de 1 segundo (para que se aprecie la animación)
-                    setTimeout(() => {
-                        document.getElementById('loading-overlay').style.display = 'none';
-                    }, 1000);
-                });
+              })
+              .finally(() => {
+                // Ocultar loading después de 1 segundo (para que se aprecie la animación)
+                setTimeout(() => {
+                  document.getElementById("loading-overlay").style.display =
+                    "none";
+                }, 1000);
+              });
         }
 
         // Iniciar la carga cuando el DOM esté listo

@@ -1,0 +1,73 @@
+<div class="ad-bubbles">
+    <!-- Burbujas existentes -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+</div>
+
+<div class="login-container">
+    <div class="logo">
+        <div class="ad-icon">📊</div>
+        <h1>Publicidad</h1>
+        <p>Accede a las métricas de tus campañas publicitarias</p>
+    </div>
+    
+    <form id="loginForm">
+        <!-- Mensaje de error elegante -->
+        <div class="error-message" id="errorMessage"></div>
+        
+        <div class="input-group">
+            <i>👤</i>
+            <input type="text" placeholder="Usuario o Email" required id="username">
+        </div>
+        
+        <div class="input-group password-wrapper">
+            <i>🔒</i>
+            <input 
+                type="password" 
+                placeholder="Contraseña" 
+                required 
+                id="password"
+                class="password-input"
+            >
+            <button 
+                type="button" 
+                class="toggle-password" 
+                aria-label="Mostrar contraseña"
+            >
+                <span class="eye-icon">👀</span>
+            </button>
+        </div>
+        
+        <div class="remember-forgot">
+            <label>
+                <input type="checkbox" id="remember"> Recordar sesión
+            </label>
+            <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+        
+        <button type="submit" class="btn-login">Iniciar Sesión</button>
+    </form>
+
+    <!-- Pantalla de carga (solo para credenciales correctas) -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-circle"></div>
+                <div class="spinner-circle"></div>
+                <div class="spinner-circle"></div>
+            </div>
+            <div class="loading-text">Acceso confirmado</div>
+            <div class="welcome-message">
+                Bienvenido, <span id="welcomeUser"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/login.js" defer></script>

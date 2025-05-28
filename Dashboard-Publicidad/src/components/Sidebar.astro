@@ -1,34 +1,63 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
-<div class="sidebar">
-    <div class="logo">
-        <h1>Ad<span>Panel</span></h1>
-    </div>
-    <a href="/" class="menu-item">
-        <i class="fas fa-chart-line"></i>
-        <span>Dashboard</span>
+<!-- Botón de hamburguesa -->
+<button id="toggleSidebar" class="hamburger">
+  <i class="fas fa-bars"></i>
+</button>
+
+<div class="sidebar hidden" id="sidebar">
+  <div class="logo">
+    <h1>Ad<span>Panel</span></h1>
+  </div>
+  <a href="/dashboard" class="menu-item">
+    <i class="fas fa-chart-line"></i>
+    <span>Dashboard</span>
+  </a>
+  <a href="/pautas" class="menu-item">
+    <i class="fas fa-file-alt"></i>
+    <span>Pautas</span>
+  </a>
+  <a href="/campana" class="menu-item">
+    <i class="fas fa-bullhorn"></i>
+    <span>Campañas</span>
+  </a>
+  <a href="/modelo" class="menu-item">
+    <i class="fas fa-users"></i>
+    <span>Modelos</span>
+  </a>
+  <a href="/wallet" class="menu-item">
+    <i class="fa-solid fa-wallet"></i>
+    <span>Wallet</span>
+  </a>
+  <!-- <a href="/presupuesto" class="menu-item">
+    <i class="fa-solid fa-circle-dollar-to-slot"></i>
+    <span>Presupuesto</span>
+  </a> -->
+  <a href="/publicidades" class="menu-item">
+    <i class="fa-solid fa-bullhorn"></i>
+    <span>Publicidades</span>
+  </a>
+
+  <hr>
+  <!-- Botón de Cerrar Sesión -->
+  <div class="logout-container">
+    <a href="/" id="logoutBtn" class="menu-item">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Cerrar sesión</span>
     </a>
-    <a href="/pautas" class="menu-item">
-        <i class="fas fa-file-alt"></i>
-        <span>Pautas</span>
-    </a>
-    <a href="/campana" class="menu-item">
-        <i class="fas fa-bullhorn"></i>
-        <span>Campañas</span>
-    </a>
-    <a href="/modelo" class="menu-item">
-        <i class="fas fa-users"></i>
-        <span>Modelos</span>
-    </a>
-    <a href="/wallet" class="menu-item">
-      <i class="fa-solid fa-wallet"></i>
-        <span>Wallet</span>
-    </a>
-    <a href="/Presupuesto" class="menu-item">
-      <i class="fa-solid fa-circle-dollar-to-slot"></i>
-        <span>Presupuesto</span>
-    </a>
-    <a href="/publicidades" class="menu-item">
-      <i class="fa-solid fa-bullhorn"></i>
-        <span>Publicidades</span>
+  </div>
+
+  <script type="module" src="/public/auth.js"></script>
 </div>
+
+<script defer>
+  const toggleBtn = document.getElementById("toggleSidebar");
+  const sidebar = document.getElementById("sidebar");
+
+  toggleBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("hidden");
+  });
+</script>
