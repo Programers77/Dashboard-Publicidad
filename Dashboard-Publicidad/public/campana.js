@@ -261,28 +261,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para cargar datos de la API
     function cargarDatosAPI() {
-<<<<<<< HEAD
-            showLoading();
-            
-            return fetch('http://10.100.39.23:8000/campanas/apidescrip/resumencampanas/')
-                .then(response => {
-                    if (!response.ok) throw new Error('Error en la respuesta del servidor');
-                    return response.json();
-                })
-                .then(data => {
-                     updateCards(data);
-                     if (data.campanas) {
-                         updateCampanasTable(data.campanas);
-                    }
-                    hideLoading();
-                    return data;
-                })
-                .catch(error => {
-                    console.error('Error al obtener datos de la API:', error);
-                    hideLoading();
-                    throw error;
-                });
-=======
         return fetch(
           "http://172.21.250.10:8000/campanas/apidescrip/resumencampanas/"
         )
@@ -303,7 +281,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error al obtener datos de la API:", error);
             throw error; // Propaga el error
           });
->>>>>>> cd7e2f9e086549188f11724ecb99c051128e1ff8
     }
     
     // Variable para guardar el ID de la campaña recién creada
@@ -456,48 +433,54 @@ document.addEventListener('DOMContentLoaded', function() {
             didOpen: () => Swal.showLoading()
         });
     
-        fetch('http://10.100.39.23:8000/campanas/apidescrip/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(datosGastos)
+        fetch("http://172.21.250.10:8000/campanas/apidescrip/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(datosGastos),
         })
-        .then(response => {
+          .then((response) => {
             if (!response.ok) {
-                return response.json().then(err => {
-                    throw new Error(err.message || `Error del servidor: ${response.status}`);
-                });
+              return response.json().then((err) => {
+                throw new Error(
+                  err.message || `Error del servidor: ${response.status}`
+                );
+              });
             }
             return response.json();
-        })
-        .then(data => {
+          })
+          .then((data) => {
             Swal.fire({
-                icon: 'success',
-                title: '¡Éxito!',
-                text: 'Gastos registrados correctamente',
-                confirmButtonClass: 'btn btn-primary'
+              icon: "success",
+              title: "¡Éxito!",
+              text: "Gastos registrados correctamente",
+              confirmButtonClass: "btn btn-primary",
             }).then(() => {
-                // Cerrar modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('agregarGastosModal'));
-                if (modal) modal.hide();
-                
-                // Limpiar backdrop
-                document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                document.body.classList.remove('modal-open');
-                
-                // Recargar datos
-                cargarDatosAPI();
+              // Cerrar modal
+              const modal = bootstrap.Modal.getInstance(
+                document.getElementById("agregarGastosModal")
+              );
+              if (modal) modal.hide();
+
+              // Limpiar backdrop
+              document
+                .querySelectorAll(".modal-backdrop")
+                .forEach((el) => el.remove());
+              document.body.classList.remove("modal-open");
+
+              // Recargar datos
+              cargarDatosAPI();
             });
-        })
-        .catch(error => {
+          })
+          .catch((error) => {
             Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: error.message,
-                confirmButtonClass: 'btn btn-primary'
+              icon: "error",
+              title: "Error",
+              text: error.message,
+              confirmButtonClass: "btn btn-primary",
             });
-        });
+          });
     }
     
     // Event listener para el botón de guardar campaña
@@ -613,6 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.warn('SweetAlert2 no cargado:', config);
                         alert(config.text || 'Operación completada');
                     }
+                
                 };
                 
                 await showAlert({
@@ -624,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
                 
-                const response = await fetch('http://10.100.39.23:8000/campanas/apidescrip/', {
+                const response = await fetch('http://172.21.250.10:8000/campanas/apidescrip/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

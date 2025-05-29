@@ -124,8 +124,21 @@ async function cargarDatosDelModelo(modeloId) {
 //funcionalidad qr
 
 
+// Función para cargar SweetAlert2 dinámicamente si no está cargado
+async function cargarSweetAlert() {
+  if (typeof Swal === "undefined") {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("No se pudo cargar SweetAlert2"));
+      document.head.appendChild(script);
+    });
+  }
+  return Promise.resolve();
+}
+
 function configurarModalEdicion() {
-  // Precargar datos en el modal
   document
     .getElementById("editarModeloModal")
     .addEventListener("show.bs.modal", function () {
@@ -136,11 +149,9 @@ function configurarModalEdicion() {
       document.getElementById("edit-email").value = detalles.correo || "";
       document.getElementById("edit-phone").value = detalles.numero_tlf || "";
       document.getElementById("edit-edad").value = detalles.edad || "";
-      document.getElementById("edit-tipo-cuenta").value =
-        detalles.tipo_de_cuenta || "";
+      document.getElementById("edit-tipo-cuenta").value = detalles.tipo_de_cuenta || "";
     });
 
-  // Configurar el botón de guardar
   document
     .querySelector(".modal-footer .btn-primary")
     .addEventListener("click", async function () {
@@ -154,9 +165,9 @@ function configurarModalEdicion() {
 
       const updatedData = {
         cedula: document.getElementById("edit-ci").value.trim(),
-        correo: document.getElementById("edit-email").value,
-        numero_tlf: document.getElementById("edit-phone").value,
-        edad: document.getElementById("edit-edad").value,
+        correo: document.getElementById("edit-email").value.trim(),
+        numero_tlf: document.getElementById("edit-phone").value.trim(),
+        edad: document.getElementById("edit-edad").value.trim(),
         tipo_de_cuenta: document.getElementById("edit-tipo-cuenta").value,
       };
 
@@ -195,19 +206,15 @@ function configurarModalEdicion() {
         detalles.numero_tlf = updatedData.numero_tlf;
         detalles.edad = updatedData.edad;
         detalles.tipo_de_cuenta = updatedData.tipo_de_cuenta;
-        console.log("Detalles actualizados:", detalles);
 
         // Reflejar cambios en la UI
         document.getElementById("cedula-perfil").innerText = detalles.cedula;
         document.getElementById("perfil-email").innerText = detalles.correo;
-        document.getElementById("perfil-telefono").innerText =
-          detalles.numero_tlf;
+        document.getElementById("perfil-telefono").innerText = detalles.numero_tlf;
         document.getElementById("perfil-edad").innerText = detalles.edad;
-        document.getElementById("edit-tipo-cuenta").value =
-          detalles.tipo_de_cuenta;
-        const imgQr = document.getElementById("img-qr");
+
         if (detalles.qr) {
-          imgQr.src = detalles.qr;
+          document.getElementById("img-qr").src = detalles.qr;
         }
 
         // Cerrar el modal
@@ -216,13 +223,22 @@ function configurarModalEdicion() {
         );
         modal.hide();
 
-        alert("Datos actualizados correctamente");
+        // Mostrar alerta con SweetAlert2
+        await cargarSweetAlert();
+        Swal.fire({
+          icon: "success",
+          title: "¡Éxito!",
+          text: "Datos actualizados correctamente",
+          timer: 2000,
+          showConfirmButton: false,
+        });
       } catch (error) {
         console.error("Error:", error);
         alert(`Error al actualizar: ${error.message}`);
       }
     });
 }
+
 async function cargarTiposDeCuenta() {
   try {
     const response = await fetch(

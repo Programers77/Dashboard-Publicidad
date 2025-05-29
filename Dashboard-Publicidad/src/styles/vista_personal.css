@@ -60,6 +60,69 @@ body {
   background-color: #ffffff;
 }
 
+.details-section {
+  background-color: #f8f9fa; /* Color de fondo claro */
+  border: 1px solid #dee2e6; /* Borde suave */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+  margin-top: 20px; /* Margen superior */
+}
+
+.details-section h3 {
+  font-size: 1.5rem; /* Tamaño de fuente para el encabezado */
+  color: #343a40; /* Color del texto del encabezado */
+  margin-bottom: 15px; /* Margen inferior */
+  display: flex; /* Para alinear el icono y el texto */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.details-section h3 i {
+  color: #007bff; /* Color del icono */
+}
+
+.details-section div {
+  display: flex; /* Usar flexbox para alinear el contenido */
+  justify-content: space-between; /* Espacio entre el título y el valor */
+  margin-bottom: 10px; /* Margen inferior entre las filas */
+}
+
+.details-section strong {
+  color: #495057; /* Color del texto fuerte */
+}
+
+.details-section span {
+  color: #6c757d; /* Color del texto normal */
+  text-align: right; /* Alinear el texto a la derecha */
+  flex: 1; /* Permitir que el span ocupe el espacio disponible */
+}
+
+
+.balance-card {
+  background-color: #007bff; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para efectos */
+  text-align: center; /* Centrar el texto */
+}
+
+.balance-card:hover {
+  transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el mouse */
+}
+
+.balance-card h2 {
+  margin: 0; /* Eliminar margen */
+  font-size: 1.5rem; /* Tamaño de fuente para el título */
+}
+
+.balance-card p {
+  margin: 10px 0 0; /* Margen para el párrafo */
+  font-size: 1rem; /* Tamaño de fuente para el texto */
+}
+
 .wallet-summary .stat-item {
   display: inline-block;
   margin-right: 1rem;
@@ -74,6 +137,49 @@ body {
   border: none;
   border-radius: 0.3rem;
 }
+
+
+.section-card {
+  background-color: #f8f9fa; /* Color de fondo claro */
+  border: 1px solid #dee2e6; /* Borde suave */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+  margin: 20px 0; /* Margen superior e inferior */
+}
+
+.section-card h4 {
+  font-size: 1.25rem; /* Tamaño de fuente para el encabezado */
+  color: #343a40; /* Color del texto del encabezado */
+  margin-bottom: 15px; /* Margen inferior */
+  display: flex; /* Para alinear el icono y el texto */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.section-card h4 i {
+  margin-right: 10px; /* Espaciado entre el icono y el texto */
+  color: #007bff; /* Color del icono */
+}
+
+.tags-container {
+  display: flex; /* Usar flexbox para alinear las etiquetas */
+  flex-wrap: wrap; /* Permitir que las etiquetas se envuelvan */
+}
+
+.tag {
+  background-color: #007bff; /* Color de fondo de la etiqueta */
+  color: #ffffff; /* Color del texto de la etiqueta */
+  border-radius: 15px; /* Bordes redondeados para las etiquetas */
+  padding: 8px 12px; /* Espaciado interno de las etiquetas */
+  margin: 5px; /* Margen entre etiquetas */
+  font-size: 0.9rem; /* Tamaño de fuente para las etiquetas */
+  transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+.tag:hover {
+  background-color: #0056b3; /* Color de fondo más oscuro al pasar el mouse */
+}
+
 
 @media (max-width: 769px) {
   .sidebar {

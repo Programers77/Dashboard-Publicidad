@@ -44,6 +44,29 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarTiposDeCuenta();
 
   // Guardar modelo
+  // Cargar SweetAlert2 dinámicamente si no está definido
+  if (typeof Swal === "undefined") {
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+    script.onload = () => console.log("SweetAlert2 cargado correctamente");
+    script.onerror = () => console.error("Error al cargar SweetAlert2");
+    document.head.appendChild(script);
+  }
+
+  // Esperar a que Swal esté disponible antes de usarlo
+  async function mostrarNotificacion(tipo, mensaje) {
+    while (typeof Swal === "undefined") {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+
+    Swal.fire({
+      icon: tipo, // 'success' | 'error' | 'info' | 'warning'
+      title: mensaje,
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
   document
     .getElementById("guardarModelo")
     .addEventListener("click", async function () {
@@ -71,7 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
         !edad ||
         !tipoCuenta
       ) {
-        return alert("Por favor, completa todos los campos correctamente.");
+        return mostrarNotificacion(
+          "warning",
+          "Por favor, completa todos los campos correctamente."
+        );
       }
 
       const formData = new FormData();
@@ -88,13 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const response = await fetch(
-          `${API_BASE_URL}/modelos/api/head/`,
-          {
-            method: "POST",
-            body: formData, // No se especifican headers, ya que FormData los gestiona automáticamente
-          }
-        );
+        const response = await fetch(`${API_BASE_URL}/modelos/api/head/`, {
+          method: "POST",
+          body: formData,
+        });
 
         if (!response.ok) {
           const errorText = await response.text();
@@ -119,12 +142,17 @@ document.addEventListener("DOMContentLoaded", () => {
         new bootstrap.Modal(
           document.getElementById("agregarOutfitModal")
         ).show();
+
+        await mostrarNotificacion("success", "¡Modelo guardado exitosamente!");
       } catch (error) {
         console.error(error);
-        alert("Hubo un error al guardar el modelo. Revisa la consola.");
+        await mostrarNotificacion(
+          "error",
+          "Hubo un error al guardar el modelo."
+        );
       }
-      
     });
+  
 
   // Guardar outfit
   document

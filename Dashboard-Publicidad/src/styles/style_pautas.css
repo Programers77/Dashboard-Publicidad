@@ -192,7 +192,7 @@
   .card-header-actions {
   display: flex; /* Añade esto para que los botones estén en línea */
   gap: 10px; /* Espacio entre los botones */
-  align-items: center; /* Alinea verticalmente los botones */
+  align-items: flex-end; 
 }
 
   .btn-reasignar-pauta {
@@ -737,10 +737,8 @@
     }
   }
   
-  @media (min-width: 336px) {
-    .cards-row {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 336px) {
+    
        .card-header {
     flex-direction: column;
     align-items: flex-start;
@@ -753,7 +751,6 @@
   }
 
   .card-header-actions button {
-    width: 100%;
     justify-content: center;
   }
    
