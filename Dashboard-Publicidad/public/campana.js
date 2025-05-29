@@ -364,48 +364,54 @@ document.addEventListener('DOMContentLoaded', function() {
             didOpen: () => Swal.showLoading()
         });
     
-        fetch('http://10.100.39.23:8000/campanas/apidescrip/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(datosGastos)
+        fetch("http://172.21.250.10:8000/campanas/apidescrip/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(datosGastos),
         })
-        .then(response => {
+          .then((response) => {
             if (!response.ok) {
-                return response.json().then(err => {
-                    throw new Error(err.message || `Error del servidor: ${response.status}`);
-                });
+              return response.json().then((err) => {
+                throw new Error(
+                  err.message || `Error del servidor: ${response.status}`
+                );
+              });
             }
             return response.json();
-        })
-        .then(data => {
+          })
+          .then((data) => {
             Swal.fire({
-                icon: 'success',
-                title: '¡Éxito!',
-                text: 'Gastos registrados correctamente',
-                confirmButtonClass: 'btn btn-primary'
+              icon: "success",
+              title: "¡Éxito!",
+              text: "Gastos registrados correctamente",
+              confirmButtonClass: "btn btn-primary",
             }).then(() => {
-                // Cerrar modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('agregarGastosModal'));
-                if (modal) modal.hide();
-                
-                // Limpiar backdrop
-                document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                document.body.classList.remove('modal-open');
-                
-                // Recargar datos
-                cargarDatosAPI();
+              // Cerrar modal
+              const modal = bootstrap.Modal.getInstance(
+                document.getElementById("agregarGastosModal")
+              );
+              if (modal) modal.hide();
+
+              // Limpiar backdrop
+              document
+                .querySelectorAll(".modal-backdrop")
+                .forEach((el) => el.remove());
+              document.body.classList.remove("modal-open");
+
+              // Recargar datos
+              cargarDatosAPI();
             });
-        })
-        .catch(error => {
+          })
+          .catch((error) => {
             Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: error.message,
-                confirmButtonClass: 'btn btn-primary'
+              icon: "error",
+              title: "Error",
+              text: error.message,
+              confirmButtonClass: "btn btn-primary",
             });
-        });
+          });
     }
     
     // Event listener para el botón de guardar campaña
