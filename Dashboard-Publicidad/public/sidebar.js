@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 4. Notificar al backend (pero no esperar si falla)
             if (token) {
-                fetch('http://10.100.39.23:8000/api/logout/', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Token ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                }).catch(e => console.error('Error en logout API:', e));
+                fetch("http://172.21.250.10:8000/api/logout/", {
+                  method: "POST",
+                  headers: {
+                    Authorization: `Token ${token}`,
+                    "Content-Type": "application/json",
+                  },
+                }).catch((e) => console.error("Error en logout API:", e));
             }
             
             // 5. Redirigir con parámetros para evitar cache

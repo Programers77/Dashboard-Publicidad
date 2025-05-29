@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
-            const response = await fetch('http://10.100.39.23:8000/api/login/', {
+            const response = await fetch('http://172.21.250.10:8000/api/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,31 +104,35 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!token) return;
         
         // Si hay token, verificar su validez con el backend
-        fetch('http://10.100.39.23:8000/api/verified/', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Token ${token}`,
-                'Content-Type': 'application/json'
-            }
+        fetch("http://172.21.250.10:8000/api/verified/", {
+          method: "POST",
+          headers: {
+            Authorization: `Token ${token}`,
+            "Content-Type": "application/json",
+          },
         })
-        .then(response => {
+          .then((response) => {
             if (response.ok) {
-                const userId = localStorage.getItem('user_id') || sessionStorage.getItem('user_id');
-                if (userId) {
-                    const username = localStorage.getItem('username') || sessionStorage.getItem('username');
-                    showWelcome(username);
-                }
+              const userId =
+                localStorage.getItem("user_id") ||
+                sessionStorage.getItem("user_id");
+              if (userId) {
+                const username =
+                  localStorage.getItem("username") ||
+                  sessionStorage.getItem("username");
+                showWelcome(username);
+              }
             } else {
-                // Token inválido, limpiar
-                localStorage.clear();
-                sessionStorage.clear();
+              // Token inválido, limpiar
+              localStorage.clear();
+              sessionStorage.clear();
             }
-        })
-        .catch(() => {
+          })
+          .catch(() => {
             // Error de conexión, no auto-login
             localStorage.clear();
             sessionStorage.clear();
-        });
+          });
     }
     
     checkSession();

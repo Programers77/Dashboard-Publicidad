@@ -508,7 +508,7 @@ body {
 }
 
 
-@media (min-width: 375px) {
+@media (max-width: 375px) {
   .main-content {
     padding: 15px;
     width: 80%;

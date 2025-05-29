@@ -137,9 +137,7 @@ table {
     width: 90%;
     
   }
-  .btn-primary{
-    margin-right: 200px;
-  }
+  
 }
 
 @media (max-width: 768px) {

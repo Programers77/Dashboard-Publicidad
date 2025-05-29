@@ -30,9 +30,9 @@ body {
 
 /* ==== Layout principal ==== */
 .containerr {
-  width: calc(100% - 240px);
-  margin-left: 242px;
- 
+  width: 1500px;
+  margin-left: 300px;
+  max-width: none;
 }
 
 header {
@@ -94,11 +94,10 @@ header {
 /* ==== Tarjetas resumen ==== */
 .summary-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  width: 90%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  width: 100%;
   margin-bottom: 30px;
-  margin-left: 100px;
+  gap: 50px;
+
 }
 
 .card {
@@ -173,18 +172,20 @@ header {
   margin-top: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
 }
-
 
 table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.9rem;
-  min-width: 800px;
-  cursor:pointer;
-}
+  min-width: 700px;
 
+
+ 
+}
 
 th,
 td {
@@ -251,32 +252,23 @@ td:hover {
     min-width: 800px;
   }
 }
-
-@media (min-width: 330px) {
+@media (max-width: 330px) {
   .table-wrapper {
-    width: 75%; /* Ancho de la tabla */
-    overflow-x: auto; /* Permitir desplazamiento horizontal si es necesario */
-    margin: 0 auto; /* Centrar la tabla */
-  } 
-  
+    width: 5%;
+    overflow-x: auto;
+  }
+
   .summary-cards {
     display: grid;
     gap: 20px;
-    width: 80%; /* Ancho de los cards */
-    margin: 0 auto; /* Centrar los cards */
-    margin-bottom: 30px; /* Espaciado inferior */
-  }
-
-  .containerr {
-    max-width: 1200px; /* Límite máximo para no pasarse */
-    width: 95%; /* Ancho responsivo */
-    margin: 0 auto; /* Centrado horizontal */
-    padding-left: 20px; /* Padding en lugar de margin para que no haga scroll horizontal */
-    padding-right: 20px;
+    width: 80%;
+    margin-bottom: 30px;
+    margin-left: 50px;
   }
 }
 
-@media (min-width: 600px) {
+/* Desde 600px en adelante - escritorio pequeño y tablet */
+@media (max-width: 600px) {
   .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -287,8 +279,17 @@ td:hover {
     gap: 20px;
     width: 60%;
     margin-bottom: 30px;
-    margin-right: auto;  /* para alinearlo a la izquierda sin tanto margen fijo */
-
+    margin-right: auto; /* para alinearlo a la izquierda sin tanto margen fijo */
+    margin-left: auto; /* centrado horizontal */
+  }
+  .containerr {
+    max-width: 1200px; /* limite máximo para no pasarse */
+    width: 95%; /* ancho responsivo */
+    margin: 0 auto; /* centrado horizontal */
+    padding-left: 20px; /* padding en lugar de margin para que no haga scroll horizontal */
+    padding-right: 20px;
+  }
+}
 
 /* Pantallas menores a 768px - móviles */
 @media (max-width: 768px) {
@@ -296,15 +297,17 @@ td:hover {
     font-size: 0.8rem;
   }
   .containerr {
-    width: calc(100% - 60px);
-    
+    width: 95%;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .table-wrapper {
     width: 100%;
     overflow-x: auto;
     margin: 0 auto;
   }
- 
+
   .summary-cards {
     display: grid;
     gap: 20px;
@@ -313,14 +316,14 @@ td:hover {
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   header {
     display: flex;
-    flex-direction: column;  /* para que el botón quede debajo del texto */
+    flex-direction: column; /* para que el botón quede debajo del texto */
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;  /* espacio entre texto y botón */
+    gap: 10px; /* espacio entre texto y botón */
   }
 
   .header-title {
@@ -336,20 +339,4 @@ td:hover {
     max-width: 400px;
     width: 70%;
   }
-  
-}
-  }}
-
-  /* Centrado en pantallas grandes */
-@media (min-width: 1024px) {
-  .wallet-container {
-    max-width: 800px; /* o el ancho que prefieras */
-    margin: 0 auto;    /* centra horizontalmente */
-    padding-left: 0;   /* evita desplazamiento si hay sidebar */
-  }
-}
-
-/* Espaciado general en pantallas pequeñas (mantiene responsive) */
-.wallet-container {
-  padding: 1rem;
 }
