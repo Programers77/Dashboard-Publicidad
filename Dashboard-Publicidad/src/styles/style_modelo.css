@@ -171,9 +171,11 @@ header {
   overflow-x: auto; /* Para scroll horizontal en móvil */
   margin-top: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   justify-content: center; /* Centrado horizontal */
   align-items: center; /* Centrado vertical */
+  cursor: pointer;
+  background-color: #f9f9f9; /* Fondo claro para el contenedor */
 }
 
 table {
@@ -182,25 +184,23 @@ table {
   border-spacing: 0;
   font-size: 0.9rem;
   min-width: 700px;
-
-
- 
 }
 
 th,
 td {
   padding: 15px;
   text-align: left;
-  border-bottom: 1px solid var(--border-color);
-  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #e0e0e0; /* Color de borde más suave */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Efecto de transformación */
 }
 
 th {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: #007bff; /* Color de fondo más vibrante */
+  color: #ffffff; /* Color del texto blanco */
   font-weight: 600;
   position: sticky;
   top: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para el encabezado */
 }
 
 th:first-child {
@@ -212,15 +212,16 @@ th:last-child {
 }
 
 tr:nth-child(even) {
-  background-color: var(--light-gray);
+  background-color: #f2f2f2; /* Color de fondo alternativo más claro */
 }
 
 tr:hover {
-  background-color: var(--table-hover-color);
+  background-color: rgba(0, 92, 190, 0.1); /* Color de fondo al pasar el mouse */
+  transform: scale(1.02); /* Efecto de aumento al pasar el mouse */
 }
 
 td:hover {
-  background-color: rgba(8, 42, 192, 0.05);
+  background-color: rgba(0, 123, 255, 0.2); /* Color de fondo al pasar el mouse en celdas */
 }
 
 /* ==== Etiquetas de talla ==== */
