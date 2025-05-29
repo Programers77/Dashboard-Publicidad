@@ -1058,8 +1058,9 @@ tbody tr:hover {
 /* Responsive Adjustments */
 @media (max-width: 992px) {
     .payment-summary-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
+
 
     .payment-filters {
         flex-direction: column;
@@ -1095,9 +1096,7 @@ tbody tr:hover {
 
 
 @media (min-width: 330px) {
-    .payment-summary-grid {
-        grid-template-columns: 1fr;
-    }
+    
     .payment-table-container{
         overflow: scroll;
       
