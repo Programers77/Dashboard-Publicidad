@@ -16,6 +16,16 @@
     --transition: all 0.3s ease;
 }
 
+.payment-table-container{
+    height: 300px; /* Alto fijo */
+    overflow: hidden; /* Oculta el contenido desbordado */
+}
+
+.thead-dash {
+    position: sticky; /* Fija el encabezado */
+    top: 0; /* Posición en la parte superior */
+    z-index: 10; /* Asegura que esté por encima del contenido */
+}
 
 body {
     background-color: var(--body-bg);

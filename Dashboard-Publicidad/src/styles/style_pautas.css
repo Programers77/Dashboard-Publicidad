@@ -283,6 +283,7 @@
   .pautas-table-container {
     overflow-x: auto;
     margin-bottom: 20px;
+    height: 400px;
   }
   
   .pautas-table {

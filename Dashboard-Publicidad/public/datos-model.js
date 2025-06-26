@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (modeloId) {
     await cargarDatosDelModelo(modeloId);
     configurarModalEdicion();
+    // Llama a configurarMostrarImagenPerfil DESPUÉS de cargarDatosDelModelo
+    configurarMostrarImagenPerfil();
   }
 });
 
@@ -28,63 +30,61 @@ async function cargarDatosDelModelo(modeloId) {
     document.getElementById("perfil-email").innerText = detalles.correo;
     document.getElementById("perfil-telefono").innerText = detalles.telefono;
     document.getElementById("perfil-edad").innerText = detalles.edad;
+
     // Mostrar la foto de perfil si existe
     const imgPerfil = document.getElementById("foto-perfill");
     if (detalles.foto_perfil) {
-      imgPerfil.src = detalles.foto_perfil; // Asegúrate de que el backend devuelve una URL completa
+      // **¡Importante!** Asegúrate de que esta URL sea accesible desde el frontend
+      imgPerfil.src = detalles.foto_perfil;
       imgPerfil.alt = "Foto del modelo";
     } else {
       imgPerfil.src = "/descarga.png"; // imagen por defecto
+      imgPerfil.alt = "Foto del modelo por defecto";
     }
 
     if (detalles.pautas_asignadas && detalles.pautas_asignadas.nombres) {
       const tagscontainer = document.querySelector(".tags-container");
-
       tagscontainer.innerHTML = "";
 
       detalles.pautas_asignadas.nombres.forEach((pauta) => {
         console.log("Pautas asignadas:", detalles.pautas_asignadas.nombres);
         const pautaElement = document.createElement("span");
-        pautaElement.classList.add("tag", "tag-gala"); // Agregar las clases necesarias
+        pautaElement.classList.add("tag", "tag-gala");
 
-        // Crear un elemento para la pauta
         const icono = document.createElement("i");
         icono.classList.add("fas", "fa-star");
         pautaElement.appendChild(icono);
 
-        // Agregar el texto de la pauta
         pautaElement.appendChild(document.createTextNode(pauta));
 
-        // Crear el botón de eliminación
-        const botonEliminar = document.createElement("button");
-        botonEliminar.classList.add("tag-remove");
+        // --- INICIO DE CAMBIO: Se elimina el código para el botón de eliminar ---
+        // Anteriormente tenías:
+        // const botonEliminar = document.createElement("button");
+        // botonEliminar.classList.add("tag-remove");
+        // const iconoEliminar = document.createElement("i");
+        // iconoEliminar.classList.add("fas", "fa-times");
+        // botonEliminar.appendChild(iconoEliminar);
+        // pautaElement.appendChild(botonEliminar);
+        // --- FIN DE CAMBIO ---
 
-        // Crear el icono para el botón de eliminación
-        const iconoEliminar = document.createElement("i");
-        iconoEliminar.classList.add("fas", "fa-times");
-        botonEliminar.appendChild(iconoEliminar);
+        // Se asegura que solo se agregue el texto de la pauta al innerText si no hay otros elementos
+        // Como ya estás haciendo pautaElement.appendChild(document.createTextNode(pauta));
+        // esta línea es redundante y podría sobrescribir el icono.
+        // pautaElement.innerText = pauta;
 
-        // Agregar el botón de eliminación al span de la pauta
-        pautaElement.appendChild(botonEliminar);
-
-        pautaElement.innerText = pauta;
-
-        // Agregar el elemento al contenedor
         tagscontainer.appendChild(pautaElement);
       });
     } else {
-      // Si no hay pautas asignadas, mostrar un mensaje predeterminado
-      document.getElementById("tags-container").innerText =
-        "No hay pautas asignadas";
+      const tagsContainer = document.querySelector(".tags-container");
+      if (tagsContainer) {
+        tagsContainer.innerText = "No hay pautas asignadas";
+      }
     }
 
     console.log("Detalles del modelo:", detalles);
-    // Mantener la funcionalidad del saldo y QR
     document.getElementById("saldo").innerText = `$${detalles.saldo}`;
-    // Procesar transacciones
     const transacciones = detalles.transaciones;
 
-    // Inicializar totales
     let totalCredito = 0;
     let totalDebito = 0;
 
@@ -96,21 +96,16 @@ async function cargarDatosDelModelo(modeloId) {
       }
     });
 
-    // Mostrar montos formateados en HTML
     document
       .getElementById("balance-ingresos")
       .querySelector(".credit").innerText = `$${totalCredito.toFixed(2)}`;
     document
       .getElementById("balance-gastos")
       .querySelector(".debit").innerText = `$${totalDebito.toFixed(2)}`;
-
-    // Mostrar cantidad de movimientos
     document.querySelector(".stat-movimientos .stat-value").innerText =
       transacciones.length;
-
     document.getElementById("id-qr").innerText = detalles.codigo_wallet;
 
-    // Actualizar la imagen QR si existe
     const imgQr = document.getElementById("img-qr");
     if (detalles.qr) {
       imgQr.src = detalles.qr;
@@ -121,10 +116,45 @@ async function cargarDatosDelModelo(modeloId) {
   }
 }
 
-//funcionalidad qr
+// Nueva función para configurar la lógica de mostrar la imagen
+function configurarMostrarImagenPerfil() {
+  const profileImage = document.getElementById("foto-perfill");
+  const modalOverlay = document.createElement("div");
+  const modalContent = document.createElement("img");
+  const closeButton = document.createElement("span");
 
+  modalOverlay.classList.add("modal-overlay");
 
-// Función para cargar SweetAlert2 dinámicamente si no está cargado
+  // **Aquí está el cambio clave:** asigna el src del modal cuando se crea,
+  // pero lo actualizaremos cada vez que se abre para asegurar que sea la imagen más reciente.
+  modalContent.classList.add("modal-content");
+  modalContent.alt = profileImage.alt; // Mantener el alt
+
+  closeButton.classList.add("close-button");
+  closeButton.innerHTML = "&times;";
+
+  modalOverlay.appendChild(modalContent);
+  modalOverlay.appendChild(closeButton);
+  document.body.appendChild(modalOverlay);
+
+  profileImage.addEventListener("click", () => {
+    // **¡Importante!** Actualiza el `src` del modal justo antes de mostrarlo
+    // para asegurarte de que siempre refleje la imagen actual cargada por `cargarDatosDelModelo`.
+    modalContent.src = profileImage.src;
+    modalOverlay.style.display = "flex";
+  });
+
+  closeButton.addEventListener("click", () => {
+    modalOverlay.style.display = "none";
+  });
+
+  modalOverlay.addEventListener("click", (event) => {
+    if (event.target === modalOverlay) {
+      modalOverlay.style.display = "none";
+    }
+  });
+}
+
 async function cargarSweetAlert() {
   if (typeof Swal === "undefined") {
     return new Promise((resolve, reject) => {
@@ -149,7 +179,8 @@ function configurarModalEdicion() {
       document.getElementById("edit-email").value = detalles.correo || "";
       document.getElementById("edit-phone").value = detalles.numero_tlf || "";
       document.getElementById("edit-edad").value = detalles.edad || "";
-      document.getElementById("edit-tipo-cuenta").value = detalles.tipo_de_cuenta || "";
+      document.getElementById("edit-tipo-cuenta").value =
+        detalles.tipo_de_cuenta || "";
     });
 
   document
@@ -199,7 +230,6 @@ function configurarModalEdicion() {
           throw new Error(error.message || "Error al actualizar");
         }
 
-        // Actualización local
         const detalles = modeloData.Detalles[0];
         detalles.cedula = updatedData.cedula;
         detalles.correo = updatedData.correo;
@@ -207,23 +237,21 @@ function configurarModalEdicion() {
         detalles.edad = updatedData.edad;
         detalles.tipo_de_cuenta = updatedData.tipo_de_cuenta;
 
-        // Reflejar cambios en la UI
         document.getElementById("cedula-perfil").innerText = detalles.cedula;
         document.getElementById("perfil-email").innerText = detalles.correo;
-        document.getElementById("perfil-telefono").innerText = detalles.numero_tlf;
+        document.getElementById("perfil-telefono").innerText =
+          detalles.numero_tlf;
         document.getElementById("perfil-edad").innerText = detalles.edad;
 
         if (detalles.qr) {
           document.getElementById("img-qr").src = detalles.qr;
         }
 
-        // Cerrar el modal
         const modal = bootstrap.Modal.getInstance(
           document.getElementById("editarModeloModal")
         );
         modal.hide();
 
-        // Mostrar alerta con SweetAlert2
         await cargarSweetAlert();
         Swal.fire({
           icon: "success",
